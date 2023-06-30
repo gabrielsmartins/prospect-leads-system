@@ -1,0 +1,27 @@
+<div class="container add-product-container">
+    <div>
+      <mat-card>
+        <h3 style="text-align: center">Novo Produto</h3>
+        
+        <div>
+          <mat-form-field appearance="outline" class="form-element">
+            <mat-label>Nome</mat-label>
+            <input matInput  [(ngModel)] ="productForm.name" />
+          </mat-form-field>
+        </div>
+   
+        <div class="centered-select">
+          <mat-form-field class="form-element">
+            <mat-label>Categoria</mat-label>
+            <mat-select [(ngModel)]="productForm.category">
+              <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="btn-create">
+            <button mat-raised-button color="primary" (click)="create()">Criar</button>
+          </div>
+      </mat-card>
+    </div>
+  </div>

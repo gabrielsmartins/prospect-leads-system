@@ -1,0 +1,17 @@
+.form-element {
+  width: 500px;
+}
+
+.add-product-container {
+  padding: 20px;
+}
+
+.btn-create {
+  display: flex; 
+  justify-content: center;
+}
+
+.centered-select {
+  display: flex;
+  justify-content: center;
+}
