@@ -57,6 +57,7 @@ subprojects {
 		testImplementation group: 'org.assertj', name: 'assertj-core', version: assertJVersion
 		testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
 		testImplementation 'org.testcontainers:junit-jupiter'
+		testImplementation 'org.testcontainers:postgresql'
 	}
 
 	dependencyManagement {

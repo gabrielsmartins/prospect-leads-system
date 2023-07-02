@@ -5,8 +5,9 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.support.TestPropertySourceUtils;
 import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
-
+@Testcontainers
 @ContextConfiguration(initializers = DatabaseContainer.DataSourceInitializer.class)
 public class DatabaseContainer {
 

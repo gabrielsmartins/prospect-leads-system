@@ -3,5 +3,9 @@ dependencies {
     implementation project(':application')
     implementation project(':adapters:persistence')
     implementation project(':adapters:web')
+
+    testImplementation project(':application').sourceSets.test.output
+    testImplementation project(':adapters:persistence').sourceSets.test.output
+    testImplementation project(':adapters:web').sourceSets.test.output
 }
 
