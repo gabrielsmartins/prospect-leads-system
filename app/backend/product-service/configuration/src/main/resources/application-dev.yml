@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/productdb
+    username: postgres
+    password: postgres
+
+eureka:
+  client:
+    enabled: false
+    register-with-eureka: false

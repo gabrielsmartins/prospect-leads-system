@@ -1,0 +1,11 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    runtimeOnly 'org.postgresql:postgresql'
+    testImplementation 'org.testcontainers:postgresql'
+
+    implementation project(':common')
+    implementation project(':application')
+
+    testImplementation project(':application').sourceSets.test.output
+}

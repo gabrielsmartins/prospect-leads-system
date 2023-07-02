@@ -1,0 +1,15 @@
+rootProject.name = 'product-service'
+
+include ':common'
+include ':application'
+include ':adapters:persistence'
+include ':adapters:web'
+include ':configuration'
+
+findProject(':common')?.name = 'common'
+findProject(':application')?.name = 'application'
+findProject(':adapters:persistence')?.name = 'persistence'
+findProject(':adapters:web')?.name = 'web'
+findProject(':configuration')?.name = 'configuration'
+
+
