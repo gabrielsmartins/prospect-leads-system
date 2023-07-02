@@ -1,4 +1,4 @@
-name: Quarkus Movies Service CI
+name: Product Service CI
 
 on: [push]
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: .
+        working-directory: ./app/backend/product-service
     steps:
       - uses: actions/checkout@v2
 
