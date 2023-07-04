@@ -34,13 +34,13 @@ class DeleteProductControllerTest {
     private DeleteProductUseCase useCase;
 
     @Test
-    @DisplayName("Given Id And Product When Exists Then Return Deleted Product")
-    public void givenIdAndProductWhenExistsThenReturnDeletedProduct() throws Exception {
+    @DisplayName("Given Id And Product When Exists Then Delete Product")
+    public void givenIdAndProductWhenExistsThenDeleteProduct() throws Exception {
         var id = 1;
         this.mockMvc.perform(delete(PRODUCT_ROUTE + "/{id}", id)
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .header(HttpHeaders.ACCEPT,MediaType.APPLICATION_JSON_VALUE))
-                    .andExpect(status().isOk());
+                    .andExpect(status().isNoContent());
         verify(this.useCase, times(1)).delete(anyInt());
     }
 }

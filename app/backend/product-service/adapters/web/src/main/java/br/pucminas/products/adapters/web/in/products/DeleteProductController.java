@@ -24,7 +24,7 @@ public class DeleteProductController {
         log.info(append("id", id), "Deleting product by id");
         this.useCase.delete(id);
         log.info(append("id", id), "Product was deleted by id successfully");
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

@@ -21,9 +21,6 @@ subprojects {
 		compileOnly {
 			extendsFrom annotationProcessor
 		}
-		developmentOnly {
-			extendsFrom compileOnly
-		}
 	}
 
 	ext {
@@ -42,7 +39,6 @@ subprojects {
 		implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 		implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 		annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-		developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
 		compileOnly 'org.projectlombok:lombok'
 		testCompileOnly 'org.projectlombok:lombok'

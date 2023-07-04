@@ -1,1 +1,14 @@
 rootProject.name = 'bff-service'
+
+include ':common'
+include ':application'
+include ':adapters:web'
+include ':adapters:messaging'
+include ':configuration'
+
+findProject(':common')?.name = 'common'
+findProject(':application')?.name = 'application'
+findProject(':adapters:web')?.name = 'web'
+findProject(':adapters:messaging')?.name = 'messaging'
+findProject(':configuration')?.name = 'configuration'
+
