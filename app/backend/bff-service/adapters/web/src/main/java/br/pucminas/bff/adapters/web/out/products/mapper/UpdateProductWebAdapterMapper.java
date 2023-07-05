@@ -25,6 +25,7 @@ public class UpdateProductWebAdapterMapper {
             return null;
         }
         return Product.builder()
+                      .withId(productDto.getId())
                       .withName(productDto.getName())
                       .withActive(productDto.getActive())
                       .withCategory(productDto.getCategory().getDescription())

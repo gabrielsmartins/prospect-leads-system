@@ -8,6 +8,7 @@ import br.pucminas.bff.application.ports.out.UpdateProductPort;
 import br.pucminas.bff.common.stereotype.WebAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -17,6 +18,7 @@ import static net.logstash.logback.marker.Markers.append;
 
 @WebAdapter
 @RequiredArgsConstructor
+@EnableConfigurationProperties(ProductWebClientProperties.class)
 @Slf4j
 public class UpdateProductWebAdapter implements UpdateProductPort {
 

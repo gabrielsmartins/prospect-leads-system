@@ -1,4 +1,4 @@
-name: Product Service CI
+name: BFF Service CI
 
 on: [push]
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./app/backend/product-service
+        working-directory: ./app/backend/bff-service
     steps:
       - uses: actions/checkout@v2
 

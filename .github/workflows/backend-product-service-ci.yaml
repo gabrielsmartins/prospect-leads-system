@@ -17,6 +17,9 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
+      - name: Add Gradle Permission
+        run: chmod +x ./gradlew    
+
       - name: Compile
         run: ./gradlew clean compileTestJava
 
