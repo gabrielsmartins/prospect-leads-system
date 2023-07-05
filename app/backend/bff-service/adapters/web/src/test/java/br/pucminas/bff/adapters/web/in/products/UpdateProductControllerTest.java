@@ -18,7 +18,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
 
-import static br.pucminas.bff.adapters.web.config.Routes.PRODUCT_ROUTE;
+import static br.pucminas.bff.adapters.web.config.ControllerRoutes.PRODUCTS_ROUTE;
 import static br.pucminas.bff.adapters.web.in.support.ProductDtoSupport.defaultUpdateProductDto;
 import static br.pucminas.bff.application.support.ProductSupport.defaultProduct;
 import static org.mockito.ArgumentMatchers.any;
@@ -50,7 +50,7 @@ class UpdateProductControllerTest {
         when(useCase.update(anyInt(), any(Product.class))).thenAnswer(invocation -> Mono.just(product));
 
         webClient.patch()
-                 .uri(PRODUCT_ROUTE + "/{id}", productDto.getId())
+                 .uri(PRODUCTS_ROUTE + "/{id}", productDto.getId())
                  .contentType(MediaType.APPLICATION_JSON)
                  .accept(MediaType.APPLICATION_JSON)
                  .body(BodyInserters.fromValue(body))

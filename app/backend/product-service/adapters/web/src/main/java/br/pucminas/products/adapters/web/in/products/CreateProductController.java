@@ -15,7 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 
-import static br.pucminas.products.adapters.web.config.Routes.PRODUCT_ROUTE;
+import static br.pucminas.products.adapters.web.config.ControllerRoutes.PRODUCT_ROUTE;
 import static net.logstash.logback.marker.Markers.append;
 
 @RestController

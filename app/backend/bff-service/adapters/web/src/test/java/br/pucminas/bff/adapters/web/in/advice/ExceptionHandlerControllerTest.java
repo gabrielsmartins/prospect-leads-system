@@ -19,7 +19,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
 
-import static br.pucminas.bff.adapters.web.config.Routes.PRODUCT_ROUTE;
+import static br.pucminas.bff.adapters.web.config.ControllerRoutes.PRODUCTS_ROUTE;
 import static br.pucminas.bff.adapters.web.in.support.ProductDtoSupport.defaultCreateProductDto;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -49,7 +49,7 @@ class ExceptionHandlerControllerTest {
         var body = objectMapper.writeValueAsString(productDto);
 
         webClient.post()
-                .uri(PRODUCT_ROUTE)
+                .uri(PRODUCTS_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(body))
                 .exchange()
@@ -70,7 +70,7 @@ class ExceptionHandlerControllerTest {
         when(useCase.create(any(Product.class))).thenAnswer(invocation -> Mono.error(new RuntimeException("Error")));
 
         webClient.post()
-                .uri(PRODUCT_ROUTE)
+                .uri(PRODUCTS_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(body))
                 .exchange()

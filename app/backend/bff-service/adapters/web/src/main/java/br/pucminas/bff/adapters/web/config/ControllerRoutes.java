@@ -4,9 +4,9 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Routes {
+public class ControllerRoutes {
 
 
-    public static final String PRODUCT_ROUTE = "/v1/products";
+    public static final String PRODUCTS_ROUTE = "/products/v1";
 
 }

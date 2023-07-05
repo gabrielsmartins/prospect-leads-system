@@ -30,6 +30,17 @@ spring:
     hibernate:
       ddl-auto: none
 
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, prometheus
+
 eureka:
   client:
     enabled: true

@@ -1,6 +1,6 @@
 package br.pucminas.products.adapters.web.in.products;
 
-import br.pucminas.products.adapters.web.config.Routes;
+import br.pucminas.products.adapters.web.config.ControllerRoutes;
 import br.pucminas.products.adapters.web.in.products.dto.UpdateProductDto;
 import br.pucminas.products.adapters.web.in.products.mapper.UpdateProductControllerMapper;
 import br.pucminas.products.application.ports.in.UpdateProductUseCase;
@@ -16,7 +16,7 @@ import javax.validation.Valid;
 import static net.logstash.logback.marker.Markers.append;
 
 @RestController
-@RequestMapping(Routes.PRODUCT_ROUTE)
+@RequestMapping(ControllerRoutes.PRODUCT_ROUTE)
 @RequiredArgsConstructor
 @Slf4j
 @Validated

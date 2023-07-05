@@ -15,7 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
-import static br.pucminas.bff.adapters.web.config.Routes.PRODUCT_ROUTE;
+import static br.pucminas.bff.adapters.web.config.ControllerRoutes.PRODUCTS_ROUTE;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
@@ -39,7 +39,7 @@ class DeleteProductControllerTest {
         when(this.useCase.delete(id)).thenReturn(Mono.just(true).then());
 
         webClient.delete()
-                .uri(PRODUCT_ROUTE + "/{id}", id)
+                .uri(PRODUCTS_ROUTE + "/{id}", id)
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 .expectStatus().isNoContent()

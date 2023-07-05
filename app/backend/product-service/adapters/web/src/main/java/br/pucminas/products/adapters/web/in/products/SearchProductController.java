@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import static br.pucminas.products.adapters.web.config.Routes.PRODUCT_ROUTE;
+import static br.pucminas.products.adapters.web.config.ControllerRoutes.PRODUCT_ROUTE;
 import static net.logstash.logback.marker.Markers.append;
 
 @RestController

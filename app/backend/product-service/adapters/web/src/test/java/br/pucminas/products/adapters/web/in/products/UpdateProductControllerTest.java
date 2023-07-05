@@ -17,7 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static br.pucminas.products.adapters.web.config.Routes.PRODUCT_ROUTE;
+import static br.pucminas.products.adapters.web.config.ControllerRoutes.PRODUCT_ROUTE;
 import static br.pucminas.products.adapters.web.support.ProductDtoSupport.defaultUpdateProductDto;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;

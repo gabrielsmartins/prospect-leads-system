@@ -11,12 +11,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
-import static br.pucminas.bff.adapters.web.config.Routes.PRODUCT_ROUTE;
+import static br.pucminas.bff.adapters.web.config.ControllerRoutes.PRODUCTS_ROUTE;
 import static net.logstash.logback.argument.StructuredArguments.kv;
 import static net.logstash.logback.marker.Markers.append;
 
 @RestController
-@RequestMapping(PRODUCT_ROUTE)
+@RequestMapping(PRODUCTS_ROUTE)
 @RequiredArgsConstructor
 @Validated
 @Slf4j

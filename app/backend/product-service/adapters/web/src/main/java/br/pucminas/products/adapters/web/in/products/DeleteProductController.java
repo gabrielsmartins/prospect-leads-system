@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import static br.pucminas.products.adapters.web.config.Routes.PRODUCT_ROUTE;
+import static br.pucminas.products.adapters.web.config.ControllerRoutes.PRODUCT_ROUTE;
 import static net.logstash.logback.marker.Markers.append;
 
 @RestController
