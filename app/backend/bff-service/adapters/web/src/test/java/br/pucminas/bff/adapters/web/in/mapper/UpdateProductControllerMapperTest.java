@@ -1,4 +1,4 @@
-package br.pucminas.bff.adapters.web.in.products.mapper;
+package br.pucminas.bff.adapters.web.in.mapper;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,6 +23,11 @@ class UpdateProductControllerMapperTest {
         assertThat(productDto.getName()).isEqualTo(product.getName());
         assertThat(productDto.getActive()).isEqualTo(product.isActive());
         assertThat(productDto.getCategory().getDescription()).isEqualTo(product.getCategory());
+        assertThat(productDto.getTotalYearlyPremiumAmount()).isEqualByComparingTo(product.getTotalYearlyPremiumAmount());
+        assertThat(productDto.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getTotalMonthlyPremiumAmount());
+        assertThat(productDto.getTotalCoverageAmount()).isEqualByComparingTo(product.getTotalCoverageAmount());
+        assertThat(productDto.getCoverages()).isEqualTo(product.getCoverages());
+        assertThat(productDto.getAssistances()).isEqualTo(product.getAssistances());
         assertThat(productDto.getCreatedAt()).isEqualTo(product.getCreatedAt());
         assertThat(productDto.getUpdatedAt()).isEqualTo(product.getUpdatedAt());
         assertThat(productDto.getDeletedAt()).isEqualTo(product.getDeletedAt());
@@ -41,6 +46,11 @@ class UpdateProductControllerMapperTest {
         assertThat(product.getId()).isEqualTo(productDto.getId());
         assertThat(product.getName()).isEqualTo(productDto.getName());
         assertThat(product.getCategory()).isEqualTo(productDto.getCategory().getDescription());
+        assertThat(product.getTotalYearlyPremiumAmount()).isEqualByComparingTo(productDto.getTotalYearlyPremiumAmount());
+        assertThat(product.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(productDto.getTotalMonthlyPremiumAmount());
+        assertThat(product.getTotalCoverageAmount()).isEqualByComparingTo(productDto.getTotalCoverageAmount());
+        assertThat(product.getCoverages()).isEqualTo(productDto.getCoverages());
+        assertThat(product.getAssistances()).isEqualTo(productDto.getAssistances());
     }
 
 }

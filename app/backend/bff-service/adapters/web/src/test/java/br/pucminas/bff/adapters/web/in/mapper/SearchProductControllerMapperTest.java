@@ -1,4 +1,4 @@
-package br.pucminas.bff.adapters.web.in.products.mapper;
+package br.pucminas.bff.adapters.web.in.mapper;
 
 
 import org.junit.jupiter.api.DisplayName;
@@ -21,6 +21,11 @@ class SearchProductControllerMapperTest {
         assertThat(productDto.getName()).isEqualTo(product.getName());
         assertThat(productDto.getActive()).isEqualTo(product.isActive());
         assertThat(productDto.getCategory().getDescription()).isEqualTo(product.getCategory());
+        assertThat(productDto.getTotalYearlyPremiumAmount()).isEqualByComparingTo(product.getTotalYearlyPremiumAmount());
+        assertThat(productDto.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getTotalMonthlyPremiumAmount());
+        assertThat(productDto.getTotalCoverageAmount()).isEqualByComparingTo(product.getTotalCoverageAmount());
+        assertThat(productDto.getCoverages()).isEqualTo(product.getCoverages());
+        assertThat(productDto.getAssistances()).isEqualTo(product.getAssistances());
         assertThat(productDto.getCreatedAt()).isEqualTo(product.getCreatedAt());
         assertThat(productDto.getUpdatedAt()).isEqualTo(product.getUpdatedAt());
         assertThat(productDto.getDeletedAt()).isEqualTo(product.getDeletedAt());

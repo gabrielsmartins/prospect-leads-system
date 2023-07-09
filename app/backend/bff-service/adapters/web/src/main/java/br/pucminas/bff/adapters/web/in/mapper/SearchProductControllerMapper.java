@@ -1,4 +1,4 @@
-package br.pucminas.bff.adapters.web.in.products.mapper;
+package br.pucminas.bff.adapters.web.in.mapper;
 
 import br.pucminas.bff.adapters.web.in.products.dto.CategoryEnumDto;
 import br.pucminas.bff.adapters.web.in.products.dto.SearchProductDto;
@@ -18,6 +18,11 @@ public class SearchProductControllerMapper {
                         .withName(product.getName())
                         .withActive(product.isActive())
                         .withCategory(CategoryEnumDto.fromDescription(product.getCategory()))
+                        .withTotalCoverageAmount(product.getTotalCoverageAmount())
+                        .withTotalYearlyPremiumAmount(product.getTotalYearlyPremiumAmount())
+                        .withTotalMonthlyPremiumAmount(product.getTotalMonthlyPremiumAmount())
+                        .withCoverages(product.getCoverages())
+                        .withAssistances(product.getAssistances())
                         .withCreatedAt(product.getCreatedAt())
                         .withUpdatedAt(product.getUpdatedAt())
                         .withDeletedAt(product.getDeletedAt())
