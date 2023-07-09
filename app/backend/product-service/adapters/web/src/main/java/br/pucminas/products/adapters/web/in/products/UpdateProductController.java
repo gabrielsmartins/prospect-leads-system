@@ -24,7 +24,7 @@ public class UpdateProductController {
 
     private final UpdateProductUseCase useCase;
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<UpdateProductDto> update(@PathVariable("id") Integer id, @RequestBody @Valid UpdateProductDto productDto) {
         log.info(append("id", id), "Updating product by id");
 

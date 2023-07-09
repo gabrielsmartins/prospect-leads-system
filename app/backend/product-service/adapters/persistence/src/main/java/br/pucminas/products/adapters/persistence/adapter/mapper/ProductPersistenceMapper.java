@@ -14,29 +14,39 @@ public class ProductPersistenceMapper {
             return null;
         }
         return ProductEntity.builder()
-                .withId(product.getId())
-                .withName(product.getName())
-                .withActive(product.isActive())
-                .withCategory(product.getCategory())
-                .withCreatedAt(product.getCreatedAt())
-                .withUpdatedAt(product.getUpdatedAt())
-                .withDeletedAt(product.getDeletedAt())
-                .build();
+                            .withId(product.getId())
+                            .withName(product.getName())
+                            .withActive(product.isActive())
+                            .withCategory(product.getCategory())
+                            .withTotalCoverageAmount(product.getTotalCoverageAmount())
+                            .withTotalMonthlyPremiumAmount(product.getTotalMonthlyPremiumAmount())
+                            .withTotalYearlyPremiumAmount(product.getTotalYearlyPremiumAmount())
+                            .withCoverages(product.getCoverages())
+                            .withAssistances(product.getAssistances())
+                            .withCreatedAt(product.getCreatedAt())
+                            .withUpdatedAt(product.getUpdatedAt())
+                            .withDeletedAt(product.getDeletedAt())
+                            .build();
     }
 
     public static Product mapToDomain(ProductEntity productEntity){
         if (productEntity == null) {
             return null;
         }
-        return Product.builder()
-                .withId(productEntity.getId())
-                .withName(productEntity.getName())
-                .withActive(productEntity.getActive())
-                .withCategory(productEntity.getCategory())
-                .withCreatedAt(productEntity.getCreatedAt())
-                .withUpdatedAt(productEntity.getUpdatedAt())
-                .withDeletedAt(productEntity.getDeletedAt())
-                .build();
+        var product =  Product.builder()
+                              .withId(productEntity.getId())
+                              .withName(productEntity.getName())
+                              .withActive(productEntity.getActive())
+                              .withCategory(productEntity.getCategory())
+                              .withTotalYearlyPremiumAmount(productEntity.getTotalYearlyPremiumAmount())
+                              .withTotalMonthlyPremiumAmount(productEntity.getTotalMonthlyPremiumAmount())
+                              .withCreatedAt(productEntity.getCreatedAt())
+                              .withUpdatedAt(productEntity.getUpdatedAt())
+                              .withDeletedAt(productEntity.getDeletedAt())
+                              .build();
+        productEntity.getCoverages().forEach(product::addCoverage);
+        productEntity.getAssistances().forEach(product::addAssistance);
+        return product;
     }
 
 }

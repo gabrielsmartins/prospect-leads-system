@@ -19,10 +19,11 @@ public class UpdateProductService implements UpdateProductUseCase {
     public Product update(Integer id, Product product) {
         var existingProduct = this.searchProductPort.findById(id)
                                                     .orElseThrow(() -> new ProductNotFoundException(String.format("Product %s not found", id)));
-        existingProduct.setName(product.getName());
-        existingProduct.setActive(product.isActive());
-        existingProduct.setCategory(product.getCategory());
-        return this.saveProductPort.save(existingProduct);
+        var isNotTheSameId = !existingProduct.getId().equals(product.getId());
+        if (isNotTheSameId) {
+            throw new ProductNotFoundException("Product id is not the same as the informed");
+        }
+        return this.saveProductPort.save(product);
     }
 
 }

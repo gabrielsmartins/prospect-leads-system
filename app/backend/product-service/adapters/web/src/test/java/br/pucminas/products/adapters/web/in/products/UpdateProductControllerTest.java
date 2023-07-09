@@ -22,7 +22,7 @@ import static br.pucminas.products.adapters.web.support.ProductDtoSupport.defaul
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -46,7 +46,7 @@ public class UpdateProductControllerTest {
 
         when(this.useCase.update(anyInt(), any(Product.class))).thenAnswer(invocation -> invocation.getArgument(1));
 
-        this.mockMvc.perform(patch(PRODUCT_ROUTE + "/{id}", id)
+        this.mockMvc.perform(put(PRODUCT_ROUTE + "/{id}", id)
                     .content(content)
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .header(HttpHeaders.ACCEPT,MediaType.APPLICATION_JSON_VALUE))

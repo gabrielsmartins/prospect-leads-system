@@ -36,6 +36,7 @@ class UpdateProductServiceTest {
         var id = 1;
 
         var existingProduct = defaultProduct()
+                                    .withId(id)
                                     .withName("Foo")
                                     .withActive(false)
                                     .withCategory(CategoryEnum.ENTERPRISE)
@@ -44,15 +45,36 @@ class UpdateProductServiceTest {
         when(this.searchProductPort.findById(id)).thenReturn(Optional.of(existingProduct));
         when(this.saveProductPort.save(any(Product.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        var product = defaultProduct().build();
+        var product = defaultProduct()
+                .withId(id)
+                .build();
 
         var updatedProduct = this.service.update(id, product);
 
         assertThat(updatedProduct).isNotNull();
-        assertThat(updatedProduct.getName()).isEqualTo(product.getName());
-        assertThat(updatedProduct.getCategory()).isEqualTo(product.getCategory());
-        assertThat(updatedProduct.isActive()).isEqualTo(product.isActive());
-        verify(this.saveProductPort, times(1)).save(existingProduct);
+        verify(this.saveProductPort, times(1)).save(updatedProduct);
+    }
+
+    @Test
+    @DisplayName("Given Id And Product When Exists And Id Is Invalid Then Throw Exception")
+    public void givenIdAndProductWhenExistsAndIdIsInvalidThenThrowException() {
+
+        var id = 1;
+
+        var existingProduct = defaultProduct()
+                .withId(id)
+                .withName("Foo")
+                .withActive(false)
+                .withCategory(CategoryEnum.ENTERPRISE)
+                .build();
+
+        when(this.searchProductPort.findById(id)).thenReturn(Optional.of(existingProduct));
+        when(this.saveProductPort.save(any(Product.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        var product = defaultProduct()
+                .withId(2)
+                .build();
+        assertThatThrownBy(() -> this.service.update(id, product)).isInstanceOf(ProductNotFoundException.class);
     }
 
     @Test

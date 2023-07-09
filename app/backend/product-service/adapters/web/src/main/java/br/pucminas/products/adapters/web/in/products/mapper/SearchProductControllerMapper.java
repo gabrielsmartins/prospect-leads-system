@@ -14,14 +14,19 @@ public class SearchProductControllerMapper {
             return null;
         }
         return SearchProductDto.builder()
-                        .withId(product.getId())
-                        .withName(product.getName())
-                        .withActive(product.isActive())
-                        .withCategory(CategoryEnumDto.fromCode(product.getCategory().getCode()))
-                        .withCreatedAt(product.getCreatedAt())
-                        .withUpdatedAt(product.getUpdatedAt())
-                        .withDeletedAt(product.getDeletedAt())
-                        .build();
+                               .withId(product.getId())
+                               .withName(product.getName())
+                               .withActive(product.isActive())
+                               .withCategory(CategoryEnumDto.fromCode(product.getCategory().getCode()))
+                               .withTotalYearlyPremiumAmount(product.getTotalYearlyPremiumAmount())
+                               .withTotalMonthlyPremiumAmount(product.getTotalMonthlyPremiumAmount())
+                               .withTotalCoverageAmount(product.getTotalCoverageAmount())
+                               .withCoverages(product.getCoverages())
+                               .withAssistances(product.getAssistances())
+                               .withCreatedAt(product.getCreatedAt())
+                               .withUpdatedAt(product.getUpdatedAt())
+                               .withDeletedAt(product.getDeletedAt())
+                               .build();
     }
 
 }
