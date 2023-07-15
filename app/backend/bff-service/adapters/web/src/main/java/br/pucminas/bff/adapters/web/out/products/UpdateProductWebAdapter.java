@@ -31,7 +31,7 @@ public class UpdateProductWebAdapter implements UpdateProductPort {
         log.info(append("product", product), "Mapping product");
         var productDto = UpdateProductWebAdapterMapper.mapToDto(product);
         log.info(append("product", productDto), "Product was mapped successfully");
-        return this.client.patch()
+        return this.client.put()
                           .uri(this.properties.getUrl() + "/{id}", id)
                           .accept(MediaType.APPLICATION_JSON)
                           .contentType(MediaType.APPLICATION_JSON)

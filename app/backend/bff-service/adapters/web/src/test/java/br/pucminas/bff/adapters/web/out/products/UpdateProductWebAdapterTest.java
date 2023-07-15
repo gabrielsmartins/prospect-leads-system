@@ -46,7 +46,7 @@ class UpdateProductWebAdapterTest {
         var productDto = defaultUpdateProductDto().build();
         var body = this.objectMapper.writeValueAsString(productDto);
 
-        stubFor(patch(urlPathMatching("/products/v1/."))
+        stubFor(put(urlPathMatching("/products/v1/."))
                 .willReturn(aResponse()
                         .withBody(body)
                         .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)

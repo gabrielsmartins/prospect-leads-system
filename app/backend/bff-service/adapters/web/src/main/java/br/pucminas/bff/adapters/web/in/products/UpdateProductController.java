@@ -1,7 +1,7 @@
 package br.pucminas.bff.adapters.web.in.products;
 
 import br.pucminas.bff.adapters.web.in.products.dto.UpdateProductDto;
-import br.pucminas.bff.adapters.web.in.products.mapper.UpdateProductControllerMapper;
+import br.pucminas.bff.adapters.web.in.mapper.UpdateProductControllerMapper;
 import br.pucminas.bff.application.ports.in.UpdateProductUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ public class UpdateProductController {
 
     private final UpdateProductUseCase useCase;
 
-    @PatchMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Mono<UpdateProductDto> update(@PathVariable("id") Integer id, @RequestBody @Valid UpdateProductDto productDto){
         log.info(append("product", productDto), "Mapping product");

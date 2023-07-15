@@ -37,8 +37,7 @@ public class CreateProductControllerMapper {
                              .withCategory(productDto.getCategory().getDescription())
                              .withTotalYearlyPremiumAmount(productDto.getTotalYearlyPremiumAmount())
                              .withTotalMonthlyPremiumAmount(productDto.getTotalMonthlyPremiumAmount())
-                             .withCoverages(productDto.getCoverages())
-                             .withAssistances(productDto.getAssistances())
+                             .withTotalCoverageAmount(productDto.getTotalCoverageAmount())
                              .build();
         productDto.getCoverages().forEach(product::addCoverage);
         productDto.getAssistances().forEach(product::addAssistance);

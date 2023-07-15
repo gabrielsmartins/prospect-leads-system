@@ -17,9 +17,14 @@ class CreateProductWebAdapterMapperTest {
         var productDto = CreateProductWebAdapterMapper.mapToDto(product);
 
         assertThat(productDto).isNotNull();
-        assertThat(productDto).hasAllNullFieldsOrPropertiesExcept("name", "category");
+        assertThat(productDto).hasNoNullFieldsOrPropertiesExcept("id", "active", "createdAt");
         assertThat(productDto.getName()).isEqualTo(product.getName());
         assertThat(productDto.getCategory().getDescription()).isEqualTo(product.getCategory());
+        assertThat(productDto.getTotalYearlyPremiumAmount()).isEqualByComparingTo(product.getTotalYearlyPremiumAmount());
+        assertThat(productDto.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getTotalMonthlyPremiumAmount());
+        assertThat(productDto.getTotalCoverageAmount()).isEqualByComparingTo(product.getTotalCoverageAmount());
+        assertThat(productDto.getCoverages()).isEqualTo(product.getCoverages());
+        assertThat(productDto.getAssistances()).isEqualTo(product.getAssistances());
     }
 
     @Test
@@ -36,6 +41,11 @@ class CreateProductWebAdapterMapperTest {
         assertThat(product.getName()).isEqualTo(productDto.getName());
         assertThat(product.getCategory()).isEqualTo(productDto.getCategory().getDescription());
         assertThat(product.getCreatedAt()).isEqualTo(productDto.getCreatedAt());
+        assertThat(product.getTotalYearlyPremiumAmount()).isEqualByComparingTo(productDto.getTotalYearlyPremiumAmount());
+        assertThat(product.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(productDto.getTotalMonthlyPremiumAmount());
+        assertThat(product.getTotalCoverageAmount()).isEqualByComparingTo(productDto.getTotalCoverageAmount());
+        assertThat(product.getCoverages()).isEqualTo(productDto.getCoverages());
+        assertThat(product.getAssistances()).isEqualTo(productDto.getAssistances());
     }
 
 }

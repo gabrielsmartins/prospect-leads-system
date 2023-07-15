@@ -49,7 +49,7 @@ class UpdateProductControllerTest {
         var product = defaultProduct().build();
         when(useCase.update(anyInt(), any(Product.class))).thenAnswer(invocation -> Mono.just(product));
 
-        webClient.patch()
+        webClient.put()
                  .uri(PRODUCTS_ROUTE + "/{id}", productDto.getId())
                  .contentType(MediaType.APPLICATION_JSON)
                  .accept(MediaType.APPLICATION_JSON)

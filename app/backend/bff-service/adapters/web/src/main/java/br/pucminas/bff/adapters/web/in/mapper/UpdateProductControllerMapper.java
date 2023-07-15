@@ -33,17 +33,18 @@ public class UpdateProductControllerMapper {
         if (productDto == null) {
             return null;
         }
-        return Product.builder()
-                      .withId(productDto.getId())
-                      .withName(productDto.getName())
-                      .withActive(productDto.getActive())
-                      .withCategory(productDto.getCategory().getDescription())
-                      .withTotalCoverageAmount(productDto.getTotalCoverageAmount())
-                      .withTotalYearlyPremiumAmount(productDto.getTotalYearlyPremiumAmount())
-                      .withTotalMonthlyPremiumAmount(productDto.getTotalMonthlyPremiumAmount())
-                      .withCoverages(productDto.getCoverages())
-                      .withAssistances(productDto.getAssistances())
-                      .build();
+        var product =  Product.builder()
+                              .withId(productDto.getId())
+                              .withName(productDto.getName())
+                              .withActive(productDto.getActive())
+                              .withCategory(productDto.getCategory().getDescription())
+                              .withTotalCoverageAmount(productDto.getTotalCoverageAmount())
+                              .withTotalYearlyPremiumAmount(productDto.getTotalYearlyPremiumAmount())
+                              .withTotalMonthlyPremiumAmount(productDto.getTotalMonthlyPremiumAmount())
+                              .build();
+        productDto.getCoverages().forEach(product::addCoverage);
+        productDto.getAssistances().forEach(product::addAssistance);
+        return product;
     }
 
 }

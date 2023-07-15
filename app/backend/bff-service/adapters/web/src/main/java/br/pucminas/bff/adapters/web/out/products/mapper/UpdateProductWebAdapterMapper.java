@@ -1,5 +1,6 @@
 package br.pucminas.bff.adapters.web.out.products.mapper;
 
+
 import br.pucminas.bff.adapters.web.out.products.dto.CategoryEnumDto;
 import br.pucminas.bff.adapters.web.out.products.dto.UpdateProductDto;
 import br.pucminas.bff.application.domain.Product;
@@ -17,6 +18,11 @@ public class UpdateProductWebAdapterMapper {
                                .withName(product.getName())
                                .withActive(product.isActive())
                                .withCategory(CategoryEnumDto.fromDescription(product.getCategory()))
+                               .withTotalCoverageAmount(product.getTotalCoverageAmount())
+                               .withTotalYearlyPremiumAmount(product.getTotalYearlyPremiumAmount())
+                               .withTotalMonthlyPremiumAmount(product.getTotalMonthlyPremiumAmount())
+                               .withCoverages(product.getCoverages())
+                               .withAssistances(product.getAssistances())
                                .build();
     }
 
@@ -29,9 +35,15 @@ public class UpdateProductWebAdapterMapper {
                       .withName(productDto.getName())
                       .withActive(productDto.getActive())
                       .withCategory(productDto.getCategory().getDescription())
+                      .withTotalCoverageAmount(productDto.getTotalCoverageAmount())
+                      .withTotalYearlyPremiumAmount(productDto.getTotalYearlyPremiumAmount())
+                      .withTotalMonthlyPremiumAmount(productDto.getTotalMonthlyPremiumAmount())
+                      .withCoverages(productDto.getCoverages())
+                      .withAssistances(productDto.getAssistances())
                       .withCreatedAt(productDto.getCreatedAt())
                       .withUpdatedAt(productDto.getUpdatedAt())
                       .withDeletedAt(productDto.getDeletedAt())
                       .build();
     }
+
 }

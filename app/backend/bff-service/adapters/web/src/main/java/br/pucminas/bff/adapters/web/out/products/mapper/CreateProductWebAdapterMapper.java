@@ -16,6 +16,11 @@ public class CreateProductWebAdapterMapper {
         return CreateProductDto.builder()
                                .withName(product.getName())
                                .withCategory(CategoryEnumDto.fromDescription(product.getCategory()))
+                               .withTotalCoverageAmount(product.getTotalCoverageAmount())
+                               .withTotalYearlyPremiumAmount(product.getTotalYearlyPremiumAmount())
+                               .withTotalMonthlyPremiumAmount(product.getTotalMonthlyPremiumAmount())
+                               .withCoverages(product.getCoverages())
+                               .withAssistances(product.getAssistances())
                                .build();
     }
 
@@ -24,12 +29,17 @@ public class CreateProductWebAdapterMapper {
             return null;
         }
         return Product.builder()
-                .withId(productDto.getId())
-                .withName(productDto.getName())
-                .withActive(productDto.getActive())
-                .withCategory(productDto.getCategory().getDescription())
-                .withCreatedAt(productDto.getCreatedAt())
-                .build();
+                      .withId(productDto.getId())
+                      .withName(productDto.getName())
+                      .withActive(productDto.getActive())
+                      .withCategory(productDto.getCategory().getDescription())
+                      .withTotalCoverageAmount(productDto.getTotalCoverageAmount())
+                      .withTotalYearlyPremiumAmount(productDto.getTotalYearlyPremiumAmount())
+                      .withTotalMonthlyPremiumAmount(productDto.getTotalMonthlyPremiumAmount())
+                      .withCoverages(productDto.getCoverages())
+                      .withAssistances(productDto.getAssistances())
+                      .withCreatedAt(productDto.getCreatedAt())
+                      .build();
     }
 
 }
