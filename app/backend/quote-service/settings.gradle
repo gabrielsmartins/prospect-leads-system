@@ -1,0 +1,14 @@
+rootProject.name = 'quote-service'
+
+include ':common'
+include ':application'
+include ':adapters:web'
+include ':adapters:persistence'
+include ':configuration'
+
+findProject(':common')?.name = 'common'
+findProject(':application')?.name = 'application'
+findProject(':adapters:web')?.name = 'web'
+findProject(':adapters:persistence')?.name = 'persistence'
+findProject(':configuration')?.name = 'configuration'
+

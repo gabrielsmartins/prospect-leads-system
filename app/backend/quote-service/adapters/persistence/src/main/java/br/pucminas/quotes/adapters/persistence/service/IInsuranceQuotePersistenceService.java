@@ -5,7 +5,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
-public interface IInsuranceQuoteService {
+public interface IInsuranceQuotePersistenceService {
 
     Mono<InsuranceQuoteEntity> save(InsuranceQuoteEntity insuranceQuoteEntity);
 

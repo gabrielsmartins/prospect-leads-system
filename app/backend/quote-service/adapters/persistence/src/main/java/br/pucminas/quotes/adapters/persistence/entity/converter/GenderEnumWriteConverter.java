@@ -5,13 +5,13 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.convert.ReadingConverter;
 
 @ReadingConverter
-public class GenderEnumReadConverter implements Converter<String, GenderEnum> {
+public class GenderEnumWriteConverter implements Converter<GenderEnum, String> {
 
     @Override
-    public GenderEnum convert(String source) {
+    public String convert(GenderEnum source) {
         if (source == null)
             return null;
-        return GenderEnum.fromCode(source);
+        return source.getCode();
     }
 
 }

@@ -1,0 +1,8 @@
+eureka:
+  client:
+    enabled: false
+    register-with-eureka: false
+
+webservice:
+  products:
+    url: http://localhost:5000/products/v1

@@ -2,17 +2,17 @@ package br.pucminas.quotes.adapters.persistence.entity.converter;
 
 import br.pucminas.quotes.application.domain.enums.CustomerTypeEnum;
 import org.springframework.core.convert.converter.Converter;
-import org.springframework.data.convert.WritingConverter;
+import org.springframework.data.convert.ReadingConverter;
 
 
-@WritingConverter
-public class CustomerTypeEnumReadConverter implements Converter<String, CustomerTypeEnum> {
+@ReadingConverter
+public class CustomerTypeEnumWriteConverter implements Converter<CustomerTypeEnum, String> {
 
     @Override
-    public CustomerTypeEnum convert(String source) {
+    public String convert(CustomerTypeEnum source) {
         if (source == null)
             return null;
-        return CustomerTypeEnum.fromCode(source);
+        return source.getCode();
     }
 
 }

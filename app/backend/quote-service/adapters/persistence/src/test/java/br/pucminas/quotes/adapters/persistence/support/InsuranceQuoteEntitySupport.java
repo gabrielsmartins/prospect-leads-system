@@ -1,7 +1,7 @@
-package br.pucminas.quotes.application.support;
+package br.pucminas.quotes.adapters.persistence.support;
 
 
-import br.pucminas.quotes.application.domain.InsuranceQuote;
+import br.pucminas.quotes.adapters.persistence.entity.InsuranceQuoteEntity;
 import br.pucminas.quotes.application.domain.enums.InsuranceQuoteTypeEnum;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,14 +10,16 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class InsuranceQuoteSupport {
+import static br.pucminas.quotes.adapters.persistence.support.CustomerEntitySupport.defaultCustomerEntity;
 
-    public static InsuranceQuote.InsuranceQuoteBuilder defaultInsuranceQuote() {
-        return InsuranceQuote.builder()
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class InsuranceQuoteEntitySupport {
+
+    public static InsuranceQuoteEntity.InsuranceQuoteEntityBuilder defaultInsuranceQuoteEntity() {
+        return InsuranceQuoteEntity.builder()
                 .withId(UUID.randomUUID())
                 .withType(InsuranceQuoteTypeEnum.LIFE)
-                .withCustomer(CustomerSupport.defaultCustomer().build())
+                .withCustomer(defaultCustomerEntity().build())
                 .withProductId(1)
                 .withTotalYearlyPremiumAmount(BigDecimal.valueOf(120))
                 .withTotalMonthlyPremiumAmount(BigDecimal.TEN)

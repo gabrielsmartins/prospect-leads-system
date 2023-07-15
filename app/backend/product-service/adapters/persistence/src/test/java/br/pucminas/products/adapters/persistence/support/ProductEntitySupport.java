@@ -22,6 +22,7 @@ public class ProductEntitySupport {
                             .withActive(true)
                             .withTotalMonthlyPremiumAmount(BigDecimal.TEN)
                             .withTotalYearlyPremiumAmount(BigDecimal.valueOf(120))
+                            .withTotalCoverageAmount(BigDecimal.TEN)
                             .withCategory(CategoryEnum.LIFE)
                             .withCreatedAt(LocalDateTime.now())
                             .withUpdatedAt(LocalDateTime.now())

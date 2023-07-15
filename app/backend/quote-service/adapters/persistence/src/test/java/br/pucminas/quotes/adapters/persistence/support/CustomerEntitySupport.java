@@ -1,6 +1,6 @@
-package br.pucminas.quotes.application.support;
+package br.pucminas.quotes.adapters.persistence.support;
 
-import br.pucminas.quotes.application.domain.Customer;
+import br.pucminas.quotes.adapters.persistence.entity.CustomerEntity;
 import br.pucminas.quotes.application.domain.enums.CustomerTypeEnum;
 import br.pucminas.quotes.application.domain.enums.GenderEnum;
 import lombok.AccessLevel;
@@ -9,10 +9,10 @@ import lombok.AllArgsConstructor;
 import java.time.LocalDate;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class CustomerSupport {
+public class CustomerEntitySupport {
 
-    public static Customer.CustomerBuilder defaultCustomer() {
-        return Customer.builder()
+    public static CustomerEntity.CustomerEntityBuilder defaultCustomerEntity() {
+        return CustomerEntity.builder()
                        .withName("John Wick")
                        .withDocumentNumber("00000100000")
                        .withType(CustomerTypeEnum.NATURAL)

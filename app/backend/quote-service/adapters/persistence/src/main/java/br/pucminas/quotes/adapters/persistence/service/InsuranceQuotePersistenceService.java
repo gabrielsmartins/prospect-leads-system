@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class InsuranceQuoteService implements IInsuranceQuoteService {
+public class InsuranceQuotePersistenceService implements IInsuranceQuotePersistenceService {
 
     private final InsuranceQuoteRepository repository;
 

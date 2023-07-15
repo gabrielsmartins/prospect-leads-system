@@ -1,6 +1,5 @@
 package br.pucminas.products.adapters.persistence.entity;
 
-import br.pucminas.products.application.domain.Product;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,6 @@ class ProductEntityTest {
         var coveragesSize = product.addCoverage("Bar", BigDecimal.TEN);
 
         assertThat(coveragesSize).isEqualTo(2);
-        assertThat(product.getTotalCoverageAmount()).isEqualByComparingTo(BigDecimal.valueOf(20));
     }
 
     @Test
@@ -33,7 +31,6 @@ class ProductEntityTest {
         var coveragesSize = product.removeCoverage("Foo");
 
         assertThat(coveragesSize).isEqualTo(1);
-        assertThat(product.getTotalCoverageAmount()).isEqualByComparingTo(BigDecimal.TEN);
     }
 
     @Test

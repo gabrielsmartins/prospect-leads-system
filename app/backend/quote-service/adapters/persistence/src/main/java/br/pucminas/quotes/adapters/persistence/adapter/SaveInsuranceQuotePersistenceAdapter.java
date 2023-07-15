@@ -4,7 +4,7 @@ import br.pucminas.bff.common.stereotype.PersistenceAdapter;
 import br.pucminas.quotes.adapters.persistence.adapter.mapper.InsuranceQuotePersistenceMapper;
 import br.pucminas.quotes.adapters.persistence.service.InsuranceQuotePersistenceService;
 import br.pucminas.quotes.application.domain.InsuranceQuote;
-import br.pucminas.quotes.application.ports.out.CreateInsuranceQuotePort;
+import br.pucminas.quotes.application.ports.out.SaveInsuranceQuotePort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
@@ -14,12 +14,12 @@ import static net.logstash.logback.marker.Markers.append;
 @PersistenceAdapter
 @RequiredArgsConstructor
 @Slf4j
-public class CreateInsuranceQuotePersistenceAdapter implements CreateInsuranceQuotePort {
+public class SaveInsuranceQuotePersistenceAdapter implements SaveInsuranceQuotePort {
 
     private final InsuranceQuotePersistenceService service;
 
     @Override
-    public Mono<InsuranceQuote> create(InsuranceQuote insuranceQuote) {
+    public Mono<InsuranceQuote> save(InsuranceQuote insuranceQuote) {
         log.info(append("insurance_quote", insuranceQuote), "Mapping insurance quote");
         var insuranceQuoteEntity = InsuranceQuotePersistenceMapper.mapToEntity(insuranceQuote);
         log.info(append("insurance_quote", insuranceQuoteEntity), "Insurance quote was mapped successfully");

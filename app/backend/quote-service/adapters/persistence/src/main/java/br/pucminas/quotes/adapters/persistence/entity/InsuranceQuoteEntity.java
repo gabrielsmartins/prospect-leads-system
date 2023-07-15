@@ -1,7 +1,10 @@
-package br.pucminas.quotes.application.domain;
+package br.pucminas.quotes.adapters.persistence.entity;
 
 import br.pucminas.quotes.application.domain.enums.InsuranceQuoteTypeEnum;
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,65 +16,48 @@ import java.util.*;
 @Setter
 @ToString
 @Builder(setterPrefix = "with")
-public class InsuranceQuote {
+@Document
+public class InsuranceQuoteEntity {
 
+    @Id
     private UUID id;
+
+    @Field("type")
     private InsuranceQuoteTypeEnum type;
-    private Customer customer;
+
+    @Field("customer")
+    private CustomerEntity customer;
+
+    @Field("product_id")
     private Integer productId;
 
+    @Field("total_yearly_premium_amount")
     private BigDecimal totalYearlyPremiumAmount;
 
+    @Field("total_monthly_premium_amount")
     private BigDecimal totalMonthlyPremiumAmount;
 
-    @Builder.Default
-    @Setter(AccessLevel.NONE)
-    private BigDecimal totalCoverageAmount = BigDecimal.ZERO;
+    @Field("total_coverage_amount")
+    private BigDecimal totalCoverageAmount;
 
     @Builder.Default
-    @Getter(AccessLevel.NONE)
-    private final Map<String, BigDecimal> coverages = new LinkedHashMap<>();
+    @Field("coverages")
+    private Map<String, BigDecimal> coverages = new LinkedHashMap<>();
 
     @Builder.Default
-    @Getter(AccessLevel.NONE)
-    private final List<String> assistances = new LinkedList<>();
+    @Field("assistances")
+    private List<String> assistances = new LinkedList<>();
 
+    @Field("finished")
     private boolean finished;
+
+    @Field("created_at")
     private LocalDateTime createdAt;
+
+    @Field("updated_at")
     private LocalDateTime updatedAt;
+
+    @Field("finished_at")
     private LocalDateTime finishedAt;
-
-    public Integer addCoverage(String coverage, BigDecimal amount) {
-        this.coverages.put(coverage, amount);
-        this.totalCoverageAmount = this.totalCoverageAmount.add(amount);
-        return this.coverages.size();
-    }
-
-    public Integer removeCoverage(String coverage) {
-        if (this.coverages.containsKey(coverage)) {
-            var coverageAmount = this.coverages.get(coverage);
-            this.coverages.remove(coverage);
-            this.totalCoverageAmount = this.totalCoverageAmount.subtract(coverageAmount);
-        }
-        return this.coverages.size();
-    }
-
-    public Integer addAssistance(String assistance) {
-        this.assistances.add(assistance);
-        return this.assistances.size();
-    }
-
-    public Integer removeAssistance(String assistance) {
-        this.assistances.remove(assistance);
-        return this.assistances.size();
-    }
-
-    public Map<String, BigDecimal> getCoverages() {
-        return Collections.unmodifiableMap(this.coverages);
-    }
-
-    public List<String> getAssistances() {
-        return Collections.unmodifiableList(this.assistances);
-    }
 
 }
