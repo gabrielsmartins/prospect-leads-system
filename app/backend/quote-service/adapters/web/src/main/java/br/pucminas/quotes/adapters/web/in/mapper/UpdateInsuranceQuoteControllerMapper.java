@@ -19,15 +19,10 @@ public class UpdateInsuranceQuoteControllerMapper {
                                       .withType(InsuranceQuoteTypeEnumDto.fromCode(insuranceQuote.getType().getCode()))
                                       .withCustomer(CustomerControllerMapper.mapToDto(insuranceQuote.getCustomer()))
                                       .withProductId(insuranceQuote.getProductId())
-                                      .withTotalYearlyPremiumAmount(insuranceQuote.getTotalYearlyPremiumAmount())
-                                      .withTotalMonthlyPremiumAmount(insuranceQuote.getTotalMonthlyPremiumAmount())
-                                      .withTotalCoverageAmount(insuranceQuote.getTotalCoverageAmount())
                                       .withCreatedAt(insuranceQuote.getCreatedAt())
                                       .withFinished(insuranceQuote.isFinished())
                                       .withUpdatedAt(insuranceQuote.getUpdatedAt())
                                       .withFinishedAt(insuranceQuote.getFinishedAt())
-                                      .withCoverages(insuranceQuote.getCoverages())
-                                      .withAssistances(insuranceQuote.getAssistances())
                                       .build();
     }
 
@@ -35,18 +30,13 @@ public class UpdateInsuranceQuoteControllerMapper {
         if (insuranceQuoteDto == null) {
             return null;
         }
-        var quote =  InsuranceQuote.builder()
-                                   .withId(insuranceQuoteDto.getId())
-                                   .withType(InsuranceQuoteTypeEnum.fromCode(insuranceQuoteDto.getType().getCode()))
-                                   .withCustomer(CustomerControllerMapper.mapToDomain(insuranceQuoteDto.getCustomer()))
-                                   .withProductId(insuranceQuoteDto.getProductId())
-                                   .withTotalYearlyPremiumAmount(insuranceQuoteDto.getTotalYearlyPremiumAmount())
-                                   .withTotalMonthlyPremiumAmount(insuranceQuoteDto.getTotalMonthlyPremiumAmount())
-                                   .withFinished(insuranceQuoteDto.isFinished())
-                                   .build();
-        insuranceQuoteDto.getCoverages().forEach(quote::addCoverage);
-        insuranceQuoteDto.getAssistances().forEach(quote::addAssistance);
-        return quote;
+        return InsuranceQuote.builder()
+                             .withId(insuranceQuoteDto.getId())
+                             .withType(InsuranceQuoteTypeEnum.fromCode(insuranceQuoteDto.getType().getCode()))
+                             .withCustomer(CustomerControllerMapper.mapToDomain(insuranceQuoteDto.getCustomer()))
+                             .withProductId(insuranceQuoteDto.getProductId())
+                             .withFinished(insuranceQuoteDto.isFinished())
+                             .build();
     }
 
 }

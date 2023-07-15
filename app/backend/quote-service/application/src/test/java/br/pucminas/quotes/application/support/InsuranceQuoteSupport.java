@@ -21,6 +21,7 @@ public class InsuranceQuoteSupport {
                 .withProductId(1)
                 .withTotalYearlyPremiumAmount(BigDecimal.valueOf(120))
                 .withTotalMonthlyPremiumAmount(BigDecimal.TEN)
+                .withTotalCoverageAmount(BigDecimal.TEN)
                 .withCoverages(new LinkedHashMap<>(Map.of("Acidente", BigDecimal.TEN)))
                 .withAssistances(new LinkedList<>(List.of("Manutenção")))
                 .withFinished(true)

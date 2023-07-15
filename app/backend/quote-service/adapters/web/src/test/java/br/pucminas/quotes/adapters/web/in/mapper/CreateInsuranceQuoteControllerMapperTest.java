@@ -24,11 +24,6 @@ class CreateInsuranceQuoteControllerMapperTest {
         assertThat(quoteDto.getCustomer()).isNotNull();
         assertThat(quoteDto.getProductId()).isEqualTo(quote.getProductId());
         assertThat(quoteDto.getCreatedAt()).isEqualTo(quote.getCreatedAt());
-        assertThat(quoteDto.getTotalYearlyPremiumAmount()).isEqualByComparingTo(quote.getTotalYearlyPremiumAmount());
-        assertThat(quoteDto.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(quote.getTotalMonthlyPremiumAmount());
-        assertThat(quoteDto.getTotalCoverageAmount()).isEqualByComparingTo(quote.getTotalCoverageAmount());
-        assertThat(quoteDto.getCoverages()).isEqualTo(quote.getCoverages());
-        assertThat(quoteDto.getAssistances()).isEqualTo(quote.getAssistances());
     }
 
     @Test
@@ -40,16 +35,12 @@ class CreateInsuranceQuoteControllerMapperTest {
         var quote = CreateInsuranceQuoteControllerMapper.mapToDomain(quoteDto);
 
         assertThat(quote).isNotNull();
-        assertThat(quote).hasNoNullFieldsOrPropertiesExcept("createdAt", "updatedAt", "finishedAt");
+        assertThat(quote).hasNoNullFieldsOrPropertiesExcept("coverages", "assistances", "totalYearlyPremiumAmount", "totalMonthlyPremiumAmount", "totalCoverageAmount", "createdAt", "updatedAt", "finishedAt");
         assertThat(quote.getId()).isEqualTo(quoteDto.getId());
         assertThat(quote.getType().getCode()).isEqualTo(quoteDto.getType().getCode());
         assertThat(quote.getCustomer()).isNotNull();
         assertThat(quote.getProductId()).isEqualTo(quoteDto.getProductId());
-        assertThat(quote.getTotalYearlyPremiumAmount()).isEqualByComparingTo(quoteDto.getTotalYearlyPremiumAmount());
-        assertThat(quote.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(quoteDto.getTotalMonthlyPremiumAmount());
-        assertThat(quote.getTotalCoverageAmount()).isNotZero();
-        assertThat(quote.getCoverages()).isEqualTo(quoteDto.getCoverages());
-        assertThat(quote.getAssistances()).isEqualTo(quoteDto.getAssistances());
+        assertThat(quote.getTotalCoverageAmount()).isNull();;
     }
 
 }

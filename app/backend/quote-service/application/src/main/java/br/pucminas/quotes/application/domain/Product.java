@@ -1,6 +1,5 @@
 package br.pucminas.quotes.application.domain;
 
-import br.pucminas.quotes.application.domain.enums.InsuranceQuoteTypeEnum;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -13,13 +12,12 @@ import java.util.*;
 @Setter
 @ToString
 @Builder(setterPrefix = "with")
-public class InsuranceQuote {
+public class Product {
 
-    private UUID id;
-    private InsuranceQuoteTypeEnum type;
-    private Customer customer;
-    private Integer productId;
-
+    private Integer id;
+    private String name;
+    private String category;
+    private boolean active;
     private BigDecimal totalYearlyPremiumAmount;
     private BigDecimal totalMonthlyPremiumAmount;
     private BigDecimal totalCoverageAmount;
@@ -32,10 +30,9 @@ public class InsuranceQuote {
     @Getter(AccessLevel.NONE)
     private final List<String> assistances = new LinkedList<>();
 
-    private boolean finished;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private LocalDateTime finishedAt;
+    private LocalDateTime deletedAt;
 
     public Integer addCoverage(String coverage, BigDecimal amount) {
         this.coverages.put(coverage, amount);
