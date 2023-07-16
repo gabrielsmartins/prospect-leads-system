@@ -23,7 +23,7 @@ class InsuranceQuotePersistenceMapperTest {
         assertThat(insuranceQuote.getProductId()).isEqualTo(insuranceQuoteEntity.getProductId());
         assertThat(insuranceQuote.getTotalYearlyPremiumAmount()).isEqualTo(insuranceQuoteEntity.getTotalYearlyPremiumAmount());
         assertThat(insuranceQuote.getTotalMonthlyPremiumAmount()).isEqualTo(insuranceQuoteEntity.getTotalMonthlyPremiumAmount());
-        assertThat(insuranceQuote.getTotalCoverageAmount()).isNotNull();
+        assertThat(insuranceQuote.getTotalCoverageAmount()).isEqualByComparingTo(insuranceQuoteEntity.getTotalCoverageAmount());
         assertThat(insuranceQuote.getCoverages()).isEqualTo(insuranceQuoteEntity.getCoverages());
         assertThat(insuranceQuote.getAssistances()).isEqualTo(insuranceQuoteEntity.getAssistances());
         assertThat(insuranceQuote.isFinished()).isEqualTo(insuranceQuoteEntity.isFinished());

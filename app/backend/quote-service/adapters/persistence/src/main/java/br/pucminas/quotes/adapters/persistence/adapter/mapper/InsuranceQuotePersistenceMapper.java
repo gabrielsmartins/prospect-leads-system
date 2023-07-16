@@ -40,6 +40,7 @@ public class InsuranceQuotePersistenceMapper {
                                             .withProductId(insuranceQuoteEntity.getProductId())
                                             .withTotalYearlyPremiumAmount(insuranceQuoteEntity.getTotalYearlyPremiumAmount())
                                             .withTotalMonthlyPremiumAmount(insuranceQuoteEntity.getTotalMonthlyPremiumAmount())
+                                            .withTotalCoverageAmount(insuranceQuoteEntity.getTotalCoverageAmount())
                                             .withFinished(insuranceQuoteEntity.isFinished())
                                             .withCreatedAt(insuranceQuoteEntity.getCreatedAt())
                                             .withUpdatedAt(insuranceQuoteEntity.getUpdatedAt())
