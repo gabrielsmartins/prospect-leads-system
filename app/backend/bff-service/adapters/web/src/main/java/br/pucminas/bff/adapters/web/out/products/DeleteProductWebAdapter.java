@@ -1,7 +1,7 @@
 package br.pucminas.bff.adapters.web.out.products;
 
 import br.pucminas.bff.adapters.web.out.products.config.ProductWebClientProperties;
-import br.pucminas.bff.application.ports.out.DeleteProductPort;
+import br.pucminas.bff.application.ports.out.products.DeleteProductPort;
 import br.pucminas.bff.common.stereotype.WebAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -4,7 +4,7 @@ import br.pucminas.bff.adapters.web.out.products.config.ProductWebClientProperti
 import br.pucminas.bff.adapters.web.out.products.dto.CreateProductDto;
 import br.pucminas.bff.adapters.web.out.products.mapper.CreateProductWebAdapterMapper;
 import br.pucminas.bff.application.domain.Product;
-import br.pucminas.bff.application.ports.out.CreateProductPort;
+import br.pucminas.bff.application.ports.out.products.CreateProductPort;
 import br.pucminas.bff.common.stereotype.WebAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

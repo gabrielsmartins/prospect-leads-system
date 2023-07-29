@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: bff-service
+  main:
+    allow-bean-definition-overriding: true
+  #redis:
+  #  username:
+  #  password:
+  #  port: 6379
+  #  host: localhost
+  #  ssl: false
+  #  jedis:
+  #    pool:
+  #      enabled: true
+
+
+redis:
+  streams:
+    key: leads

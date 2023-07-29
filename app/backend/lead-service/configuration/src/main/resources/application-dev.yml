@@ -1,0 +1,10 @@
+eureka:
+  client:
+    enabled: false
+    register-with-eureka: false
+
+webservice:
+  quotes:
+    url: http://localhost:8080/insurance_quotes/v1
+  products:
+    url: http://localhost:8080/products/v1

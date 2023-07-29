@@ -1,7 +1,7 @@
 package br.pucminas.bff.application.service;
 
 import br.pucminas.bff.application.ports.in.DeleteProductUseCase;
-import br.pucminas.bff.application.ports.out.DeleteProductPort;
+import br.pucminas.bff.application.ports.out.products.DeleteProductPort;
 import br.pucminas.bff.common.stereotype.UseCase;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;

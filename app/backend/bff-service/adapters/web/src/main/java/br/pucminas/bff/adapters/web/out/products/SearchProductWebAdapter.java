@@ -4,7 +4,7 @@ import br.pucminas.bff.adapters.web.out.products.config.ProductWebClientProperti
 import br.pucminas.bff.adapters.web.out.products.dto.SearchProductDto;
 import br.pucminas.bff.adapters.web.out.products.mapper.SearchProductWebAdapterMapper;
 import br.pucminas.bff.application.domain.Product;
-import br.pucminas.bff.application.ports.out.SearchProductPort;
+import br.pucminas.bff.application.ports.out.products.SearchProductPort;
 import br.pucminas.bff.common.stereotype.WebAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

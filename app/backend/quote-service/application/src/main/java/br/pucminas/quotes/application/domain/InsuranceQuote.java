@@ -19,7 +19,6 @@ public class InsuranceQuote {
     private InsuranceQuoteTypeEnum type;
     private Customer customer;
     private Integer productId;
-
     private BigDecimal totalYearlyPremiumAmount;
     private BigDecimal totalMonthlyPremiumAmount;
     private BigDecimal totalCoverageAmount;

@@ -1,0 +1,43 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: lead-service
+  main:
+    allow-bean-definition-overriding: true
+  sleuth:
+    enabled: true
+    trace-id128: true
+    opentracing:
+      enabled: true
+
+redis:
+  streams:
+    key: leads
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, prometheus
+
+eureka:
+  client:
+    enabled: true
+    register-with-eureka: true
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          reactive:
+            function:
+              client:
+                ExchangeFunctions: TRACE

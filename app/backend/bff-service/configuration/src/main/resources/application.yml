@@ -12,6 +12,10 @@ spring:
     opentracing:
       enabled: true
 
+redis:
+  streams:
+    key: leads
+
 management:
   endpoint:
     metrics:

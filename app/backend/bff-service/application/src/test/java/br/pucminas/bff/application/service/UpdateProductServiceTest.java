@@ -1,6 +1,6 @@
 package br.pucminas.bff.application.service;
 
-import br.pucminas.bff.application.ports.out.UpdateProductPort;
+import br.pucminas.bff.application.ports.out.products.UpdateProductPort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
