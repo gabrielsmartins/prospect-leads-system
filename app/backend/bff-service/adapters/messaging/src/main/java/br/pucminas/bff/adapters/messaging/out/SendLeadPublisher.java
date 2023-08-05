@@ -7,6 +7,7 @@ import br.pucminas.bff.common.stereotype.MessagingAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.data.redis.connection.stream.StreamRecords;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import reactor.core.publisher.Mono;
@@ -18,6 +19,7 @@ import static net.logstash.logback.marker.Markers.append;
 
 
 @MessagingAdapter
+@EnableConfigurationProperties(RedisStreamProperties.class)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Slf4j
 public class SendLeadPublisher implements SendLeadPort {

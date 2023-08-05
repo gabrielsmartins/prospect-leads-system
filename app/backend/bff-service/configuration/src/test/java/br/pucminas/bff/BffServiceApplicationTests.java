@@ -10,6 +10,7 @@ class BffServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
