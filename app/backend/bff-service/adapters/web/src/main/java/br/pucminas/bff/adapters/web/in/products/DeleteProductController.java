@@ -1,6 +1,6 @@
 package br.pucminas.bff.adapters.web.in.products;
 
-import br.pucminas.bff.application.ports.in.DeleteProductUseCase;
+import br.pucminas.bff.application.ports.in.products.DeleteProductUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

@@ -2,7 +2,7 @@ package br.pucminas.bff.adapters.web.in.products;
 
 import br.pucminas.bff.adapters.web.config.ObjectMapperConfiguration;
 import br.pucminas.bff.application.domain.Product;
-import br.pucminas.bff.application.ports.in.UpdateProductUseCase;
+import br.pucminas.bff.application.ports.in.products.UpdateProductUseCase;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;

@@ -45,7 +45,7 @@ class SearchProductWebAdapterTest {
         var productDto = defaultSearchProductDto().build();
         var body = this.objectMapper.writeValueAsString(productDto);
 
-        stubFor(get(urlPathMatching("/products/v1/."))
+        stubFor(get(urlPathMatching("/products/v1/.*"))
                 .willReturn(aResponse()
                         .withBody(body)
                         .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)

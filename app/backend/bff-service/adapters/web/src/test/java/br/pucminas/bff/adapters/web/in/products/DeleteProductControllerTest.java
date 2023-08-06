@@ -1,7 +1,7 @@
 package br.pucminas.bff.adapters.web.in.products;
 
 import br.pucminas.bff.adapters.web.config.ObjectMapperConfiguration;
-import br.pucminas.bff.application.ports.in.DeleteProductUseCase;
+import br.pucminas.bff.application.ports.in.products.DeleteProductUseCase;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

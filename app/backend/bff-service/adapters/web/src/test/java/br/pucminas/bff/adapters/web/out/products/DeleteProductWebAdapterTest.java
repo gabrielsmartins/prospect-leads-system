@@ -37,7 +37,7 @@ class DeleteProductWebAdapterTest {
     @Test
     @DisplayName("Given Id When Exists Then Delete Product")
     public void givenIdWhenExistsThenDeleteProduct() {
-        stubFor(delete(urlPathMatching("/products/v1/."))
+        stubFor(delete(urlPathMatching("/products/v1/.*"))
                 .willReturn(aResponse()
                         .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                         .withStatus(HttpStatus.SC_NO_CONTENT)));

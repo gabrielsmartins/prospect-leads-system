@@ -6,3 +6,5 @@ eureka:
 webservice:
   products:
     url: http://localhost:8080/products/v1
+  quotes:
+    url: http://localhost:8085/insurance_quotes/v1

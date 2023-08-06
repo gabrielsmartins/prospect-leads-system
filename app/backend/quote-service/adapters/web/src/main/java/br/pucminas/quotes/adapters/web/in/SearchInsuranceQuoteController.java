@@ -1,7 +1,7 @@
 package br.pucminas.quotes.adapters.web.in;
 
 import br.pucminas.quotes.adapters.web.in.dto.SearchInsuranceQuoteDto;
-import br.pucminas.quotes.adapters.web.in.mapper.SearchProductControllerMapper;
+import br.pucminas.quotes.adapters.web.in.mapper.SearchInsuranceQuoteControllerMapper;
 import br.pucminas.quotes.application.ports.in.SearchInsuranceQuoteUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +33,6 @@ public class SearchInsuranceQuoteController {
         return this.useCase.findById(id)
                            .doOnSuccess(p -> log.info(append("quote", p), "Insurance quote was found successfully"))
                            .doOnError(throwable -> log.error("Error updating insurance quote", throwable))
-                           .map(SearchProductControllerMapper::mapToDto);
+                           .map(SearchInsuranceQuoteControllerMapper::mapToDto);
     }
 }

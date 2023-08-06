@@ -1,7 +1,6 @@
 package br.pucminas.quotes.adapters.web.in.mapper;
 
 
-import br.pucminas.quotes.adapters.web.in.mapper.SearchProductControllerMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,7 @@ class SearchInsuranceQuoteControllerMapperTest {
     @DisplayName("Given Quote When Map Then Return Quote Dto")
     public void givenQuoteWhenMapThenReturnQuoteDto() {
         var quote = defaultInsuranceQuote().build();
-        var quoteDto = SearchProductControllerMapper.mapToDto(quote);
+        var quoteDto = SearchInsuranceQuoteControllerMapper.mapToDto(quote);
 
         assertThat(quoteDto).isNotNull();
         assertThat(quoteDto).hasNoNullFieldsOrProperties();

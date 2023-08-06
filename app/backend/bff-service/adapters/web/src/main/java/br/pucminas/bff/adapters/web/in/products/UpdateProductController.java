@@ -2,7 +2,7 @@ package br.pucminas.bff.adapters.web.in.products;
 
 import br.pucminas.bff.adapters.web.in.products.dto.UpdateProductDto;
 import br.pucminas.bff.adapters.web.in.mapper.UpdateProductControllerMapper;
-import br.pucminas.bff.application.ports.in.UpdateProductUseCase;
+import br.pucminas.bff.application.ports.in.products.UpdateProductUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

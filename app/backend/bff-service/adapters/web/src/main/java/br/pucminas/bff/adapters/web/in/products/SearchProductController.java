@@ -2,7 +2,7 @@ package br.pucminas.bff.adapters.web.in.products;
 
 import br.pucminas.bff.adapters.web.in.products.dto.SearchProductDto;
 import br.pucminas.bff.adapters.web.in.mapper.SearchProductControllerMapper;
-import br.pucminas.bff.application.ports.in.SearchProductUseCase;
+import br.pucminas.bff.application.ports.in.products.SearchProductUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
