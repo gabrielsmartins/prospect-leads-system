@@ -12,6 +12,7 @@ import br.pucminas.quotes.application.ports.out.SearchProductPort;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @UseCase
@@ -24,6 +25,7 @@ public class UpdateInsuranceQuoteService implements UpdateInsuranceQuoteUseCase 
 
     @Override
     public Mono<InsuranceQuote> update(UUID id, InsuranceQuote quote) {
+        quote.setUpdatedAt(LocalDateTime.now());
         return this.searchInsuranceQuotePort.findById(id)
                                             .switchIfEmpty(Mono.error(new InsuranceQuoteNotFoundException(String.format("Insurance quote %s not found", id))))
                                             .flatMap(existingQuote -> process(id, quote, existingQuote));

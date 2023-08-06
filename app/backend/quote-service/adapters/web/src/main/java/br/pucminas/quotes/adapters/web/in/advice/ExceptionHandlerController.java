@@ -3,6 +3,7 @@ package br.pucminas.quotes.adapters.web.in.advice;
 import br.pucminas.quotes.adapters.web.in.advice.dto.ErrorDto;
 import br.pucminas.quotes.adapters.web.in.advice.dto.ErrorDto.ErrorFieldDto;
 import br.pucminas.quotes.application.domain.exceptions.InsuranceQuoteNotFoundException;
+import br.pucminas.quotes.application.domain.exceptions.ProductNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -45,6 +46,15 @@ public class ExceptionHandlerController {
                 .build();
     }
 
+    @ExceptionHandler(ProductNotFoundException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorDto handleProductNotFoundException(ProductNotFoundException ex) {
+        log.error(append("exception", ex), "Error processing request");
+        return ErrorDto.builder()
+                .withCode(422)
+                .withMessage(ex.getMessage())
+                .build();
+    }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

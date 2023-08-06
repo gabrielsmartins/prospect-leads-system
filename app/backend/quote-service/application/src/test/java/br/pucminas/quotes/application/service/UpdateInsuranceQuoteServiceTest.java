@@ -16,6 +16,7 @@ import java.util.UUID;
 
 import static br.pucminas.quotes.application.support.InsuranceQuoteSupport.defaultInsuranceQuote;
 import static br.pucminas.quotes.application.support.ProductSupport.defaultProduct;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class UpdateInsuranceQuoteServiceTest {
@@ -57,6 +58,12 @@ class UpdateInsuranceQuoteServiceTest {
                     .verifyComplete();
 
         verify(this.saveInsuranceQuotePort, times(1)).save(any(InsuranceQuote.class));
+        assertThat(quote.getUpdatedAt()).isNotNull();
+        assertThat(quote.getTotalYearlyPremiumAmount()).isEqualByComparingTo(product.getTotalYearlyPremiumAmount());
+        assertThat(quote.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getTotalMonthlyPremiumAmount());
+        assertThat(quote.getTotalCoverageAmount()).isEqualByComparingTo(product.getTotalCoverageAmount());
+        assertThat(quote.getCoverages()).isEqualTo(product.getCoverages());
+        assertThat(quote.getAssistances()).isEqualTo(product.getAssistances());
     }
 
     @Test

@@ -22,7 +22,7 @@ import java.util.Map;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UpdateProductDto {
 
-    @JsonProperty(value = "id", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "id")
     private Integer id;
 
     @JsonProperty(value = "name")

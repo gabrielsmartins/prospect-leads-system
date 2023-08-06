@@ -8,6 +8,8 @@ import br.pucminas.products.application.ports.out.SearchProductPort;
 import br.pucminas.products.common.stereotype.UseCase;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @UseCase
 @RequiredArgsConstructor
 public class UpdateProductService implements UpdateProductUseCase {
@@ -23,6 +25,8 @@ public class UpdateProductService implements UpdateProductUseCase {
         if (isNotTheSameId) {
             throw new ProductNotFoundException("Product id is not the same as the informed");
         }
+        product.setCreatedAt(existingProduct.getCreatedAt());
+        product.setUpdatedAt(LocalDateTime.now());
         return this.saveProductPort.save(product);
     }
 

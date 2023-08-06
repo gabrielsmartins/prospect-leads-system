@@ -53,6 +53,8 @@ class UpdateProductServiceTest {
 
         assertThat(updatedProduct).isNotNull();
         verify(this.saveProductPort, times(1)).save(updatedProduct);
+        assertThat(updatedProduct.getCreatedAt()).isEqualTo(existingProduct.getCreatedAt());
+        assertThat(updatedProduct.getUpdatedAt()).isNotNull();
     }
 
     @Test
