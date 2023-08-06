@@ -12,5 +12,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class RedisStreamProperties {
 
     private String key;
+    private String group;
 
 }

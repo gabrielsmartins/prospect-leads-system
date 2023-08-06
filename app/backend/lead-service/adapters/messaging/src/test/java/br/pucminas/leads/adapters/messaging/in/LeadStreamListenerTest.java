@@ -1,5 +1,6 @@
 package br.pucminas.leads.adapters.messaging.in;
 
+import br.pucminas.leads.adapters.messaging.config.RedisConfiguration;
 import br.pucminas.leads.adapters.messaging.config.RedisStreamProperties;
 import br.pucminas.leads.adapters.messaging.support.RedisContainerSupport;
 import br.pucminas.leads.application.domain.Lead;
@@ -30,7 +31,7 @@ import static org.mockito.Mockito.verify;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @ActiveProfiles("test")
 @EnableConfigurationProperties(RedisStreamProperties.class)
-@Import({ RedisAutoConfiguration.class, RedisReactiveAutoConfiguration.class, LeadStreamListener.class })
+@Import({ RedisConfiguration.class, RedisAutoConfiguration.class, RedisReactiveAutoConfiguration.class, LeadStreamListener.class })
 @ContextConfiguration(initializers = ConfigDataApplicationContextInitializer.class)
 class LeadStreamListenerTest extends RedisContainerSupport {
 

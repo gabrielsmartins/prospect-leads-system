@@ -1,3 +1,13 @@
+spring:
+  redis:
+    password: redis
+    port: 6379
+    host: localhost
+    ssl: false
+    jedis:
+      pool:
+        enabled: true
+
 eureka:
   client:
     enabled: false
@@ -7,4 +17,4 @@ webservice:
   products:
     url: http://localhost:8080/products/v1
   quotes:
-    url: http://localhost:8085/insurance_quotes/v1
+    url: http://localhost:8083/insurance_quotes/v1

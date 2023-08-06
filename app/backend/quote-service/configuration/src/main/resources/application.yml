@@ -1,16 +1,21 @@
 server:
-  port: 8085
+  port: 8083
 
 spring:
   application:
-    name: bff-service
+    name: quote-service
   main:
     allow-bean-definition-overriding: true
+
   sleuth:
     enabled: true
     trace-id128: true
     opentracing:
       enabled: true
+  data:
+    mongodb:
+      authentication-database: admin
+      uuid-representation: standard
 
 management:
   endpoint:

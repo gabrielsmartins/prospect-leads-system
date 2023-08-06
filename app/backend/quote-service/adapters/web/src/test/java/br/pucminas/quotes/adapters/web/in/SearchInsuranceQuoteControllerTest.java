@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
-import static br.pucminas.quotes.adapters.web.config.ControllerRoutes.INSURANCE_QUOTE_ROUTE;
+import static br.pucminas.quotes.adapters.web.config.ControllerRoutes.INSURANCE_QUOTES_ROUTE;
 import static br.pucminas.quotes.application.support.InsuranceQuoteSupport.defaultInsuranceQuote;
 import static org.mockito.Mockito.*;
 
@@ -42,7 +42,7 @@ class SearchInsuranceQuoteControllerTest {
         when(useCase.findById(id)).thenReturn(Mono.just(insuranceQuote));
 
         webClient.get()
-                 .uri(INSURANCE_QUOTE_ROUTE + "/{id}", id)
+                 .uri(INSURANCE_QUOTES_ROUTE + "/{id}", id)
                  .accept(MediaType.APPLICATION_JSON)
                  .exchange()
                  .expectStatus().isOk()

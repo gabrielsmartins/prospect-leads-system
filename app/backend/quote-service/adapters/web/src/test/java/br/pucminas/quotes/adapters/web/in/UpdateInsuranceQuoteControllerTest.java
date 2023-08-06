@@ -20,7 +20,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.UUID;
 
-import static br.pucminas.quotes.adapters.web.config.ControllerRoutes.INSURANCE_QUOTE_ROUTE;
+import static br.pucminas.quotes.adapters.web.config.ControllerRoutes.INSURANCE_QUOTES_ROUTE;
 import static br.pucminas.quotes.adapters.web.in.support.InsuranceQuoteDtoSupport.defaultUpdateInsuranceQuoteDto;
 import static br.pucminas.quotes.application.support.InsuranceQuoteSupport.defaultInsuranceQuote;
 import static org.mockito.ArgumentMatchers.any;
@@ -52,7 +52,7 @@ class UpdateInsuranceQuoteControllerTest {
         when(useCase.update(any(UUID.class), any(InsuranceQuote.class))).thenAnswer(invocation -> Mono.just(quote));
 
         webClient.patch()
-                 .uri(INSURANCE_QUOTE_ROUTE + "/{id}", quoteDto.getId())
+                 .uri(INSURANCE_QUOTES_ROUTE + "/{id}", quoteDto.getId())
                  .contentType(MediaType.APPLICATION_JSON)
                  .accept(MediaType.APPLICATION_JSON)
                  .body(BodyInserters.fromValue(body))

@@ -7,7 +7,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("test")
-class ProductServiceApplicationTests extends DatabaseContainer {
+class ProductServiceApplicationTest extends DatabaseContainer {
 
 	@Test
 	void contextLoads() {

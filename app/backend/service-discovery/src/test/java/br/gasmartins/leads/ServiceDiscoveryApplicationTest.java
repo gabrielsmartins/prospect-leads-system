@@ -1,16 +1,13 @@
-package br.pucminas.bff;
+package br.gasmartins.leads;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
-@ActiveProfiles("test")
-class BffServiceApplicationTests {
+class ServiceDiscoveryApplicationTest {
 
 	@Test
 	void contextLoads() {
-
 	}
 
 }

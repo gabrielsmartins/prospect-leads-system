@@ -17,7 +17,8 @@ class UpdateProductWebAdapterMapperTest {
         var productDto = UpdateProductWebAdapterMapper.mapToDto(product);
 
         assertThat(productDto).isNotNull();
-        assertThat(productDto).hasNoNullFieldsOrPropertiesExcept("id", "createdAt", "updatedAt", "deletedAt");
+        assertThat(productDto).hasNoNullFieldsOrPropertiesExcept("createdAt", "updatedAt", "deletedAt");
+        assertThat(productDto.getId()).isEqualTo(product.getId());
         assertThat(productDto.getName()).isEqualTo(product.getName());
         assertThat(productDto.getActive()).isEqualTo(product.isActive());
         assertThat(productDto.getCategory().getDescription()).isEqualTo(product.getCategory());

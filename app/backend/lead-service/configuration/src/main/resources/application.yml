@@ -6,6 +6,9 @@ spring:
     name: lead-service
   main:
     allow-bean-definition-overriding: true
+  redis:
+    client-name: ${spring.application.name}
+    client-type: LETTUCE
   sleuth:
     enabled: true
     trace-id128: true
@@ -15,6 +18,7 @@ spring:
 redis:
   streams:
     key: leads
+    group: ${spring.application.name}
 
 management:
   endpoint:

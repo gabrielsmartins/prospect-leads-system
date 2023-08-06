@@ -19,7 +19,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
 
-import static br.pucminas.quotes.adapters.web.config.ControllerRoutes.INSURANCE_QUOTE_ROUTE;
+import static br.pucminas.quotes.adapters.web.config.ControllerRoutes.INSURANCE_QUOTES_ROUTE;
 import static br.pucminas.quotes.adapters.web.in.support.InsuranceQuoteDtoSupport.defaultCreateInsuranceQuoteDto;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -49,7 +49,7 @@ class ExceptionHandlerControllerTest {
         var body = objectMapper.writeValueAsString(quoteDto);
 
         webClient.post()
-                .uri(INSURANCE_QUOTE_ROUTE)
+                .uri(INSURANCE_QUOTES_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(body))
                 .exchange()
@@ -70,7 +70,7 @@ class ExceptionHandlerControllerTest {
         when(useCase.create(any(InsuranceQuote.class))).thenAnswer(invocation -> Mono.error(new RuntimeException("Error")));
 
         webClient.post()
-                .uri(INSURANCE_QUOTE_ROUTE)
+                .uri(INSURANCE_QUOTES_ROUTE)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue(body))
                 .exchange()

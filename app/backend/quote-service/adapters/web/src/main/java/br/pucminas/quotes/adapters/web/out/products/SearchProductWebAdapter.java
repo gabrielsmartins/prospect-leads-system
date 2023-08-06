@@ -9,6 +9,7 @@ import br.pucminas.quotes.application.ports.out.SearchProductPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -17,6 +18,7 @@ import static net.logstash.logback.argument.StructuredArguments.kv;
 
 @WebAdapter
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@EnableConfigurationProperties(ProductWebClientProperties.class)
 @Slf4j
 public class SearchProductWebAdapter implements SearchProductPort {
 

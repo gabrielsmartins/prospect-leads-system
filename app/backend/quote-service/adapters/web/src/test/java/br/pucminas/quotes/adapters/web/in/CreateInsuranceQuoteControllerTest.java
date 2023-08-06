@@ -18,7 +18,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
 
-import static br.pucminas.quotes.adapters.web.config.ControllerRoutes.INSURANCE_QUOTE_ROUTE;
+import static br.pucminas.quotes.adapters.web.config.ControllerRoutes.INSURANCE_QUOTES_ROUTE;
 import static br.pucminas.quotes.adapters.web.in.support.InsuranceQuoteDtoSupport.defaultCreateInsuranceQuoteDto;
 import static br.pucminas.quotes.application.support.InsuranceQuoteSupport.defaultInsuranceQuote;
 import static org.mockito.ArgumentMatchers.any;
@@ -50,7 +50,7 @@ class CreateInsuranceQuoteControllerTest {
         when(useCase.create(any(InsuranceQuote.class))).thenAnswer(invocation -> Mono.just(quote));
 
         webClient.post()
-                 .uri(INSURANCE_QUOTE_ROUTE)
+                 .uri(INSURANCE_QUOTES_ROUTE)
                  .contentType(MediaType.APPLICATION_JSON)
                  .accept(MediaType.APPLICATION_JSON)
                  .body(BodyInserters.fromValue(body))

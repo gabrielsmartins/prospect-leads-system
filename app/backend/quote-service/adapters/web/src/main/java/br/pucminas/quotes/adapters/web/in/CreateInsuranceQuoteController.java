@@ -13,11 +13,11 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
 
-import static br.pucminas.quotes.adapters.web.config.ControllerRoutes.INSURANCE_QUOTE_ROUTE;
+import static br.pucminas.quotes.adapters.web.config.ControllerRoutes.INSURANCE_QUOTES_ROUTE;
 import static net.logstash.logback.marker.Markers.append;
 
 @RestController
-@RequestMapping(INSURANCE_QUOTE_ROUTE)
+@RequestMapping(INSURANCE_QUOTES_ROUTE)
 @RequiredArgsConstructor
 @Validated
 @Slf4j

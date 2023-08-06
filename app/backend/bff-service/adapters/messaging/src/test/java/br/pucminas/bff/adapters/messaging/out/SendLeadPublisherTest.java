@@ -23,17 +23,17 @@ import java.util.UUID;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @ActiveProfiles("test")
 @EnableConfigurationProperties(RedisStreamProperties.class)
-@Import({ RedisAutoConfiguration.class, RedisReactiveAutoConfiguration.class, SendLeadPublisher.class })
+@Import({ RedisAutoConfiguration.class, RedisReactiveAutoConfiguration.class, CaptureLeadPublisher.class })
 @ContextConfiguration(initializers = ConfigDataApplicationContextInitializer.class)
 class SendLeadPublisherTest extends RedisContainerSupport {
 
-    private final SendLeadPublisher publisher;
+    private final CaptureLeadPublisher publisher;
 
     @Test
     @DisplayName("Given Insurance Quote Id When Is Valid Then Send")
     public void givenInsuranceQuoteIdWhenIsValidThenSend() {
         var insuranceQuoteId = UUID.randomUUID();
-        this.publisher.send(insuranceQuoteId)
+        this.publisher.capture(insuranceQuoteId)
                       .as(StepVerifier::create)
                       .verifyComplete();
     }

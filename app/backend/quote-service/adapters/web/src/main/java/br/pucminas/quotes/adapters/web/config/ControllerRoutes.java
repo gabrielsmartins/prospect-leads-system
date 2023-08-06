@@ -7,6 +7,6 @@ import lombok.AllArgsConstructor;
 public class ControllerRoutes {
 
 
-    public static final String INSURANCE_QUOTE_ROUTE = "/insurance_quotes/v1";
+    public static final String INSURANCE_QUOTES_ROUTE = "/insurance_quotes/v1";
 
 }

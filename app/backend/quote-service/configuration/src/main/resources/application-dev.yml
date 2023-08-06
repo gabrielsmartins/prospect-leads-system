@@ -1,3 +1,10 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://root:mongodb@localhost:27017/quotes?authSource=admin
+      username: root
+      password: mongodb
+
 eureka:
   client:
     enabled: false

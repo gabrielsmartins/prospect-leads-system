@@ -2,7 +2,7 @@ package br.pucminas.bff.adapters.messaging.out;
 
 import br.pucminas.bff.adapters.messaging.config.RedisStreamProperties;
 import br.pucminas.bff.adapters.messaging.out.dto.LeadDto;
-import br.pucminas.bff.application.ports.out.leads.SendLeadPort;
+import br.pucminas.bff.application.ports.out.leads.CaptureLeadPort;
 import br.pucminas.bff.common.stereotype.MessagingAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,13 +22,13 @@ import static net.logstash.logback.marker.Markers.append;
 @EnableConfigurationProperties(RedisStreamProperties.class)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Slf4j
-public class SendLeadPublisher implements SendLeadPort {
+public class CaptureLeadPublisher implements CaptureLeadPort {
 
     private final ReactiveRedisTemplate<String, String> redisTemplate;
     private final RedisStreamProperties properties;
 
     @Override
-    public Mono<Void> send(UUID insuranceQuoteId) {
+    public Mono<Void> capture(UUID insuranceQuoteId) {
         var leadDto = new LeadDto(insuranceQuoteId, LocalDateTime.now());
         var streamKey = this.properties.getKey();
         log.info(append("lead", leadDto).and(append("stream_key", streamKey)), "Sending lead");
