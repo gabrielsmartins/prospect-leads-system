@@ -1,7 +1,9 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://root:mongodb@localhost:27017/quotes?authSource=admin
+      host: localhost
+      port: 27017
+      database: quotes
       username: root
       password: mongodb
 
