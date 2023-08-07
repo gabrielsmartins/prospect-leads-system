@@ -8,18 +8,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.RedisSystemException;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.ReactiveRedisConnectionFactory;
 import org.springframework.data.redis.connection.stream.Consumer;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.connection.stream.ReadOffset;
-import org.springframework.data.redis.connection.stream.StreamOffset;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
-import org.springframework.data.redis.stream.StreamListener;
-import org.springframework.data.redis.stream.StreamMessageListenerContainer;
-import org.springframework.data.redis.stream.Subscription;
+import org.springframework.data.redis.stream.StreamReceiver;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.util.Collections;
 
@@ -28,35 +26,24 @@ import java.util.Collections;
 @Slf4j
 public class RedisConfiguration {
 
-    private final StreamListener<String, ObjectRecord<String, LeadDto>> streamListener;
     private final ReactiveRedisTemplate<String, String> redisTemplate;
-    private final RedisStreamProperties properties;
-
-
     @Bean
-    public Subscription subscription(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
-        var streamKey = this.properties.getKey();
-        var group = this.properties.getGroup();
-        this.createConsumerGroup(streamKey, group);
-
-        var options = StreamMessageListenerContainer.StreamMessageListenerContainerOptions
-                                                    .builder()
-                                                    .pollTimeout(Duration.ofSeconds(1))
-                                                    .targetType(LeadDto.class)
-                                                    .build();
-
-        var listenerContainer = StreamMessageListenerContainer.create(redisConnectionFactory, options);
-        var consumer = Consumer.from(streamKey, InetAddress.getLocalHost().getHostName());
-        var streamOffset = StreamOffset.create(streamKey, ReadOffset.lastConsumed());
-        var subscription = listenerContainer.receive(consumer, streamOffset, streamListener);
-        listenerContainer.start();
-        return subscription;
+    public StreamReceiver<String, ObjectRecord<String, LeadDto>> receiver(ReactiveRedisConnectionFactory factory) {
+         var options = StreamReceiver.StreamReceiverOptions.builder()
+                 .targetType(LeadDto.class)
+                 .pollTimeout(Duration.ofSeconds(5))
+                 .build();
+         return StreamReceiver.create(factory, options);
     }
 
-    private void createConsumerGroup(String key, String group) {
+    public void createConsumerGroup(String key, String group) {
         try {
-            redisTemplate.opsForStream()
-                         .createGroup(key, group);
+            this.redisTemplate.getConnectionFactory()
+                    .getReactiveConnection()
+                    .streamCommands()
+                    .xGroupCreate(ByteBuffer.wrap(key.getBytes()), group, ReadOffset.from("0-0"), true)
+                    .block();
+            var consumer = Consumer.from(key, InetAddress.getLocalHost().getHostName());
         } catch (RedisSystemException e) {
             if (e.getRootCause() instanceof RedisBusyException) {
                 log.info("STREAM - Redis group already exists, skipping Redis group creation: {}", group);
@@ -65,6 +52,8 @@ public class RedisConfiguration {
                 redisTemplate.opsForStream().add(key, Collections.singletonMap("", ""));
                 redisTemplate.opsForStream().createGroup(key, group);
             } else throw e;
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
         }
     }
 
