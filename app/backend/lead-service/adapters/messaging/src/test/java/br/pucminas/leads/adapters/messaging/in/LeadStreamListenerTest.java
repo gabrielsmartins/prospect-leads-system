@@ -22,7 +22,10 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.Duration;
+
 import static br.pucminas.leads.adapters.messaging.in.support.LeadDtoSupport.defaultLeadDto;
+import static org.awaitility.Awaitility.await;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -53,7 +56,8 @@ class LeadStreamListenerTest extends RedisContainerSupport {
                           .add(record)
                           .block();
 
-        verify(this.useCase, times(1)).process(any(Lead.class));
+        await().atMost(Duration.ofSeconds(5))
+               .untilAsserted(() ->  verify(this.useCase, times(1)).process(any(Lead.class)));
     }
 
 

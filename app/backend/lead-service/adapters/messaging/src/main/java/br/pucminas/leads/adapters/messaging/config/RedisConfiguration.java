@@ -14,6 +14,7 @@ import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.connection.stream.ReadOffset;
 import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.data.redis.stream.StreamReceiver;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -24,6 +25,7 @@ import java.util.Collections;
 @Configuration
 @RequiredArgsConstructor
 @Slf4j
+@EnableScheduling
 public class RedisConfiguration {
 
     private final ReactiveRedisTemplate<String, String> redisTemplate;
