@@ -17,7 +17,7 @@ import org.springframework.boot.test.context.ConfigDataApplicationContextInitial
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.redis.connection.stream.StreamRecords;
-import org.springframework.data.redis.core.ReactiveRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -39,7 +39,7 @@ import static org.mockito.Mockito.verify;
 class LeadStreamListenerTest extends RedisContainerSupport {
 
     private final RedisStreamProperties properties;
-    private final ReactiveRedisTemplate<String, String> redisTemplate;
+    private final RedisTemplate<String, String> redisTemplate;
 
     @MockBean
     private ProcessLeadUseCase useCase;
@@ -53,8 +53,7 @@ class LeadStreamListenerTest extends RedisContainerSupport {
                                    .ofObject(leadDto)
                                    .withStreamKey(streamKey);
         this.redisTemplate.opsForStream()
-                          .add(record)
-                          .block();
+                          .add(record);
 
         await().atMost(Duration.ofSeconds(5))
                .untilAsserted(() ->  verify(this.useCase, times(1)).process(any(Lead.class)));

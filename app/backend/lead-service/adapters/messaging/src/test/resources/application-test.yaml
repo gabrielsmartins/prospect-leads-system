@@ -18,3 +18,8 @@ redis:
   streams:
     key: leads
     group: ${spring.application.name}
+
+eureka:
+  client:
+    enabled: false
+    register-with-eureka: false

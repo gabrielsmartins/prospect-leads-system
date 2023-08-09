@@ -6,20 +6,12 @@ import br.pucminas.leads.adapters.messaging.in.mapper.LeadStreamListenerMapper;
 import br.pucminas.leads.application.ports.in.ProcessLeadUseCase;
 import br.pucminas.leads.common.MessagingAdapter;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.data.redis.connection.stream.Consumer;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
-import org.springframework.data.redis.connection.stream.ReadOffset;
-import org.springframework.data.redis.connection.stream.StreamOffset;
-import org.springframework.data.redis.core.ReactiveRedisTemplate;
-import org.springframework.data.redis.stream.StreamReceiver;
-import org.springframework.scheduling.annotation.Scheduled;
-import reactor.core.publisher.Mono;
-
-import java.net.InetAddress;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.stream.StreamListener;
 
 import static net.logstash.logback.marker.Markers.append;
 
@@ -27,28 +19,14 @@ import static net.logstash.logback.marker.Markers.append;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @EnableConfigurationProperties(RedisStreamProperties.class)
 @Slf4j
-public class LeadStreamListener {
+public class LeadStreamListener implements StreamListener<String, ObjectRecord<String, LeadDto>> {
 
     private final RedisStreamProperties redisStreamProperties;
-    private final StreamReceiver<String, ObjectRecord<String, LeadDto>> streamReceiver;
-    private final ReactiveRedisTemplate<String, String> redisTemplate;
+    private final RedisTemplate<String, String> redisTemplate;
     private final ProcessLeadUseCase useCase;
 
-    @Scheduled(fixedRate = 100)
-    public void consume() {
-        var streamKey = this.redisStreamProperties.getKey();
-        var group = this.redisStreamProperties.getGroup();
-        var leads = this.streamReceiver.receive(Consumer.from(group, getConsumerName()), StreamOffset.create(streamKey, ReadOffset.lastConsumed()));
-        leads.flatMap(this::process)
-              .subscribe();
-    }
-
-    @SneakyThrows
-    private static String getConsumerName() {
-        return InetAddress.getLocalHost().getHostName();
-    }
-
-    public Mono<Void> process(ObjectRecord<String, LeadDto> message) {
+    @Override
+    public void onMessage(ObjectRecord<String, LeadDto> message) {
         var streamKey = this.redisStreamProperties.getKey();
         try {
             log.info(append("payload", message), "Receiving lead from: {}", streamKey);
@@ -65,7 +43,6 @@ public class LeadStreamListener {
         } finally {
             redisTemplate.opsForStream().acknowledge(streamKey, message);
         }
-        return Mono.empty().then();
     }
 
 }
