@@ -18,6 +18,8 @@ public class CustomerPersistenceMapper {
                             .withDocumentNumber(customer.getDocumentNumber())
                             .withDateOfBirth(customer.getDateOfBirth())
                             .withName(customer.getName())
+                            .withEmail(customer.getEmail())
+                            .withPhoneNumber(customer.getPhoneNumber())
                             .build();
     }
 
@@ -31,6 +33,8 @@ public class CustomerPersistenceMapper {
                         .withDocumentNumber(customerEntity.getDocumentNumber())
                         .withDateOfBirth(customerEntity.getDateOfBirth())
                         .withName(customerEntity.getName())
+                        .withEmail(customerEntity.getEmail())
+                        .withPhoneNumber(customerEntity.getPhoneNumber())
                         .build();
     }
 }

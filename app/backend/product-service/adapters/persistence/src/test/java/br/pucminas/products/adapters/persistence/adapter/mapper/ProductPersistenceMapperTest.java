@@ -20,6 +20,10 @@ class ProductPersistenceMapperTest {
         assertThat(productEntity.getId()).isEqualTo(product.getId());
         assertThat(productEntity.getName()).isEqualTo(product.getName());
         assertThat(productEntity.getActive()).isEqualTo(product.isActive());
+        assertThat(productEntity.getMaxTotalMonthlyPremiumAmount()).isEqualTo(product.getMaxTotalMonthlyPremiumAmount());
+        assertThat(productEntity.getMinTotalMonthlyPremiumAmount()).isEqualTo(product.getMinTotalMonthlyPremiumAmount());
+        assertThat(productEntity.getSuggestedTotalMonthlyPremiumAmount()).isEqualTo(product.getSuggestedTotalMonthlyPremiumAmount());
+        assertThat(productEntity.getTotalCoverageAmount()).isEqualTo(product.getTotalCoverageAmount());
         assertThat(productEntity.getCategory()).isEqualTo(product.getCategory());
         assertThat(productEntity.getCreatedAt()).isEqualTo(product.getCreatedAt());
         assertThat(productEntity.getUpdatedAt()).isEqualTo(product.getUpdatedAt());
@@ -37,6 +41,11 @@ class ProductPersistenceMapperTest {
         assertThat(product.getId()).isEqualTo(productEntity.getId());
         assertThat(product.getName()).isEqualTo(productEntity.getName());
         assertThat(product.isActive()).isEqualTo(productEntity.getActive());
+        assertThat(product.getMaxTotalMonthlyPremiumAmount()).isEqualTo(productEntity.getMaxTotalMonthlyPremiumAmount());
+        assertThat(product.getMinTotalMonthlyPremiumAmount()).isEqualTo(productEntity.getMinTotalMonthlyPremiumAmount());
+        assertThat(product.getSuggestedTotalMonthlyPremiumAmount()).isEqualTo(productEntity.getSuggestedTotalMonthlyPremiumAmount());
+        assertThat(product.getTotalCoverageAmount()).isEqualTo(productEntity.getTotalCoverageAmount());
+        assertThat(product.getName()).isEqualTo(productEntity.getName());
         assertThat(product.getCategory()).isEqualTo(productEntity.getCategory());
         assertThat(product.getCreatedAt()).isEqualTo(productEntity.getCreatedAt());
         assertThat(product.getUpdatedAt()).isEqualTo(productEntity.getUpdatedAt());

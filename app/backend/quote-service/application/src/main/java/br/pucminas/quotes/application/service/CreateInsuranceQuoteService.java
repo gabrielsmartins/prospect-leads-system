@@ -33,8 +33,7 @@ public class CreateInsuranceQuoteService implements CreateInsuranceQuoteUseCase 
         if (!product.isActive()) {
             return Mono.error(new ProductNotFoundException(String.format("Product %s is not active", product)));
         }
-        quote.setTotalMonthlyPremiumAmount(product.getTotalMonthlyPremiumAmount());
-        quote.setTotalYearlyPremiumAmount(product.getTotalYearlyPremiumAmount());
+        quote.setTotalMonthlyPremiumAmount(product.getSuggestedTotalMonthlyPremiumAmount());
         quote.setTotalCoverageAmount(product.getTotalCoverageAmount());
         product.getCoverages().forEach(quote::addCoverage);
         product.getAssistances().forEach(quote::addAssistance);

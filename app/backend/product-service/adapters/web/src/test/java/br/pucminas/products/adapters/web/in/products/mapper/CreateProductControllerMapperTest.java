@@ -22,8 +22,6 @@ class CreateProductControllerMapperTest {
         assertThat(productDto.getId()).isEqualTo(product.getId());
         assertThat(productDto.getName()).isEqualTo(product.getName());
         assertThat(productDto.getCategory().getCode()).isEqualTo(product.getCategory().getCode());
-        assertThat(productDto.getTotalYearlyPremiumAmount()).isEqualByComparingTo(product.getTotalYearlyPremiumAmount());
-        assertThat(productDto.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getTotalMonthlyPremiumAmount());
         assertThat(productDto.getTotalCoverageAmount()).isEqualByComparingTo(product.getTotalCoverageAmount());
         assertThat(productDto.getCoverages()).isEqualTo(product.getCoverages());
         assertThat(productDto.getAssistances()).isEqualTo(product.getAssistances());
@@ -41,8 +39,6 @@ class CreateProductControllerMapperTest {
         assertThat(product).hasNoNullFieldsOrPropertiesExcept("createdAt", "updatedAt", "deletedAt");
         assertThat(product.getName()).isEqualTo(productDto.getName());
         assertThat(product.getCategory().getCode()).isEqualTo(productDto.getCategory().getCode());
-        assertThat(product.getTotalYearlyPremiumAmount()).isEqualByComparingTo(productDto.getTotalYearlyPremiumAmount());
-        assertThat(product.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(productDto.getTotalMonthlyPremiumAmount());
         assertThat(product.getTotalCoverageAmount()).isNotZero();
         assertThat(product.getCoverages()).isEqualTo(productDto.getCoverages());
         assertThat(product.getAssistances()).isEqualTo(productDto.getAssistances());

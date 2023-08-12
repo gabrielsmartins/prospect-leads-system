@@ -1,4 +1,4 @@
-package br.pucminas.bff.adapters.web.in.mapper;
+package br.pucminas.bff.adapters.web.in.products.mapper;
 
 import br.pucminas.bff.adapters.web.in.products.dto.CategoryEnumDto;
 import br.pucminas.bff.adapters.web.in.products.dto.CreateProductDto;
@@ -19,8 +19,9 @@ public class CreateProductControllerMapper {
                                .withActive(product.isActive())
                                .withCategory(CategoryEnumDto.fromDescription(product.getCategory()))
                                .withTotalCoverageAmount(product.getTotalCoverageAmount())
-                               .withTotalYearlyPremiumAmount(product.getTotalYearlyPremiumAmount())
-                               .withTotalMonthlyPremiumAmount(product.getTotalMonthlyPremiumAmount())
+                               .withMinTotalMonthlyPremiumAmount(product.getMinTotalMonthlyPremiumAmount())
+                               .withMaxTotalMonthlyPremiumAmount(product.getMaxTotalMonthlyPremiumAmount())
+                               .withSuggestedTotalMonthlyPremiumAmount(product.getSuggestedTotalMonthlyPremiumAmount())
                                .withCoverages(product.getCoverages())
                                .withAssistances(product.getAssistances())
                                .withCreatedAt(product.getCreatedAt())
@@ -35,8 +36,9 @@ public class CreateProductControllerMapper {
                              .withId(productDto.getId())
                              .withName(productDto.getName())
                              .withCategory(productDto.getCategory().getDescription())
-                             .withTotalYearlyPremiumAmount(productDto.getTotalYearlyPremiumAmount())
-                             .withTotalMonthlyPremiumAmount(productDto.getTotalMonthlyPremiumAmount())
+                             .withMinTotalMonthlyPremiumAmount(productDto.getMinTotalMonthlyPremiumAmount())
+                             .withMaxTotalMonthlyPremiumAmount(productDto.getMaxTotalMonthlyPremiumAmount())
+                             .withSuggestedTotalMonthlyPremiumAmount(productDto.getSuggestedTotalMonthlyPremiumAmount())
                              .withTotalCoverageAmount(productDto.getTotalCoverageAmount())
                              .build();
         productDto.getCoverages().forEach(product::addCoverage);

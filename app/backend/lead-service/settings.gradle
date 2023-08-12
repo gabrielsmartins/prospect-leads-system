@@ -3,10 +3,12 @@ rootProject.name = 'lead-service'
 include ':common'
 include ':application'
 include ':adapters:messaging'
+include ':adapters:streams'
 include ':configuration'
 
 findProject(':common')?.name = 'common'
 findProject(':application')?.name = 'application'
 findProject(':adapters:messaging')?.name = 'messaging'
+findProject(':adapters:streams')?.name = 'streams'
 findProject(':configuration')?.name = 'configuration'
 

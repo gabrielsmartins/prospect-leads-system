@@ -59,8 +59,7 @@ class UpdateInsuranceQuoteServiceTest {
 
         verify(this.saveInsuranceQuotePort, times(1)).save(any(InsuranceQuote.class));
         assertThat(quote.getUpdatedAt()).isNotNull();
-        assertThat(quote.getTotalYearlyPremiumAmount()).isEqualByComparingTo(product.getTotalYearlyPremiumAmount());
-        assertThat(quote.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getTotalMonthlyPremiumAmount());
+        assertThat(quote.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getSuggestedTotalMonthlyPremiumAmount());
         assertThat(quote.getTotalCoverageAmount()).isEqualByComparingTo(product.getTotalCoverageAmount());
         assertThat(quote.getCoverages()).isEqualTo(product.getCoverages());
         assertThat(quote.getAssistances()).isEqualTo(product.getAssistances());

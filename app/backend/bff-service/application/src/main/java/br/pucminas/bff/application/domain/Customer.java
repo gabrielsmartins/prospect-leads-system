@@ -17,5 +17,7 @@ public class Customer {
     private String type;
     private String gender;
     private LocalDate dateOfBirth;
+    private String email;
+    private Integer phoneNumber;
 
 }

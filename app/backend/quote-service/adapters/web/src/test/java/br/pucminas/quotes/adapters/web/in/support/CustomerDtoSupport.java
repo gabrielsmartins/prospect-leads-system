@@ -17,6 +17,8 @@ public class CustomerDtoSupport {
                        .withDocumentNumber("00000100000")
                        .withType(CustomerTypeEnumDto.NATURAL)
                        .withGender(GenderEnumDto.MALE)
-                       .withDateOfBirth(LocalDate.now().minusYears(30));
+                       .withDateOfBirth(LocalDate.now().minusYears(30))
+                       .withEmail("foo@gmail.com")
+                       .withPhoneNumber(1130305050);
     }
 }

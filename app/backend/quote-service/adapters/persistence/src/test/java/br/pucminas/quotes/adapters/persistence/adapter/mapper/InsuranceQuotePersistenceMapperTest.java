@@ -21,7 +21,6 @@ class InsuranceQuotePersistenceMapperTest {
         assertThat(insuranceQuote.getType()).isEqualTo(insuranceQuoteEntity.getType());
         assertThat(insuranceQuote.getCustomer()).isNotNull();
         assertThat(insuranceQuote.getProductId()).isEqualTo(insuranceQuoteEntity.getProductId());
-        assertThat(insuranceQuote.getTotalYearlyPremiumAmount()).isEqualTo(insuranceQuoteEntity.getTotalYearlyPremiumAmount());
         assertThat(insuranceQuote.getTotalMonthlyPremiumAmount()).isEqualTo(insuranceQuoteEntity.getTotalMonthlyPremiumAmount());
         assertThat(insuranceQuote.getTotalCoverageAmount()).isEqualByComparingTo(insuranceQuoteEntity.getTotalCoverageAmount());
         assertThat(insuranceQuote.getCoverages()).isEqualTo(insuranceQuoteEntity.getCoverages());
@@ -44,7 +43,6 @@ class InsuranceQuotePersistenceMapperTest {
         assertThat(insuranceQuoteEntity.getType()).isEqualTo(insuranceQuote.getType());
         assertThat(insuranceQuoteEntity.getCustomer()).isNotNull();
         assertThat(insuranceQuoteEntity.getProductId()).isEqualTo(insuranceQuote.getProductId());
-        assertThat(insuranceQuoteEntity.getTotalYearlyPremiumAmount()).isEqualTo(insuranceQuote.getTotalYearlyPremiumAmount());
         assertThat(insuranceQuoteEntity.getTotalMonthlyPremiumAmount()).isEqualTo(insuranceQuote.getTotalMonthlyPremiumAmount());
         assertThat(insuranceQuoteEntity.getTotalCoverageAmount()).isEqualTo(insuranceQuote.getTotalCoverageAmount());
         assertThat(insuranceQuoteEntity.getCoverages()).isEqualTo(insuranceQuote.getCoverages());

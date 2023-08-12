@@ -30,4 +30,10 @@ public class CustomerDto {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
+    @JsonProperty("email")
+    private String email;
+
+    @JsonProperty("phone_number")
+    private Integer phoneNumber;
+
 }

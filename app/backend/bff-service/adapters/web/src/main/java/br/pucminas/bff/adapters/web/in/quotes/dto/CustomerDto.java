@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
@@ -35,5 +36,14 @@ public class CustomerDto {
     @JsonFormat(pattern = "yyyy-MM-dd")
     @NotNull
     private LocalDate dateOfBirth;
+
+    @JsonProperty("email")
+    @Email
+    @NotNull
+    private String email;
+
+    @JsonProperty("phone_number")
+    @NotNull
+    private Integer phoneNumber;
 
 }

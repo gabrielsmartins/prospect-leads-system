@@ -18,6 +18,8 @@ public class CustomerWebAdapterMapper {
                           .withGender(customer.getGender())
                           .withName(customer.getName())
                           .withDateOfBirth(customer.getDateOfBirth())
+                          .withEmail(customer.getEmail())
+                          .withPhoneNumber(customer.getPhoneNumber())
                           .build();
     }
 
@@ -31,6 +33,8 @@ public class CustomerWebAdapterMapper {
                        .withGender(customerDto.getGender())
                        .withName(customerDto.getName())
                        .withDateOfBirth(customerDto.getDateOfBirth())
+                       .withEmail(customerDto.getEmail())
+                       .withPhoneNumber(customerDto.getPhoneNumber())
                        .build();
     }
 }

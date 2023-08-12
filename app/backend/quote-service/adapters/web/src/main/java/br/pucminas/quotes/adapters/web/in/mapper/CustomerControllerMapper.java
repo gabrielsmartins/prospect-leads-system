@@ -22,6 +22,8 @@ public class CustomerControllerMapper {
                        .withType(CustomerTypeEnum.fromCode(customerDto.getType().getCode()))
                        .withGender(GenderEnum.fromCode(customerDto.getGender().getCode()))
                        .withDateOfBirth(customerDto.getDateOfBirth())
+                       .withEmail(customerDto.getEmail())
+                       .withPhoneNumber(customerDto.getPhoneNumber())
                        .build();
     }
 
@@ -35,6 +37,8 @@ public class CustomerControllerMapper {
                           .withType(CustomerTypeEnumDto.fromCode(customer.getType().getCode()))
                           .withGender(GenderEnumDto.fromCode(customer.getGender().getCode()))
                           .withDateOfBirth(customer.getDateOfBirth())
+                          .withEmail(customer.getEmail())
+                          .withPhoneNumber(customer.getPhoneNumber())
                           .build();
     }
 }

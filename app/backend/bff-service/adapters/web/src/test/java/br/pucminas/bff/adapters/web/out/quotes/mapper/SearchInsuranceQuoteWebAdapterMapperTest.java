@@ -22,7 +22,6 @@ class SearchInsuranceQuoteWebAdapterMapperTest {
         assertThat(insuranceQuote.getProductId()).isEqualTo(insuranceQuoteDto.getProductId());
         assertThat(insuranceQuote.getTotalCoverageAmount()).isEqualTo(insuranceQuoteDto.getTotalCoverageAmount());
         assertThat(insuranceQuote.getTotalMonthlyPremiumAmount()).isEqualTo(insuranceQuoteDto.getTotalMonthlyPremiumAmount());
-        assertThat(insuranceQuote.getTotalYearlyPremiumAmount()).isEqualTo(insuranceQuoteDto.getTotalYearlyPremiumAmount());
         assertThat(insuranceQuote.getAssistances()).isEqualTo(insuranceQuoteDto.getAssistances());
         assertThat(insuranceQuote.getCoverages()).isEqualTo(insuranceQuoteDto.getCoverages());
         assertThat(insuranceQuote.isFinished()).isEqualTo(insuranceQuoteDto.isFinished());

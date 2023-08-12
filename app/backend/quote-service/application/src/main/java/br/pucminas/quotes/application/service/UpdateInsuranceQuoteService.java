@@ -35,7 +35,6 @@ public class UpdateInsuranceQuoteService implements UpdateInsuranceQuoteUseCase 
         if (!existingQuote.getId().equals(quote.getId())) {
             return Mono.error(new InsuranceQuoteNotFoundException(String.format("Insurance quote id %s is not the same as the existing", id)));
         }
-
         var productId = quote.getProductId();
         return this.searchProductPort.findById(productId)
                 .switchIfEmpty(Mono.error(new ProductNotFoundException(String.format("Product %s does not exist", productId))))
@@ -46,8 +45,7 @@ public class UpdateInsuranceQuoteService implements UpdateInsuranceQuoteUseCase 
         if (!product.isActive()) {
             return Mono.error(new ProductNotFoundException(String.format("Product %s is not active", product)));
         }
-        existingQuote.setTotalMonthlyPremiumAmount(product.getTotalMonthlyPremiumAmount());
-        existingQuote.setTotalYearlyPremiumAmount(product.getTotalYearlyPremiumAmount());
+        existingQuote.setTotalMonthlyPremiumAmount(product.getSuggestedTotalMonthlyPremiumAmount());
         existingQuote.setTotalCoverageAmount(product.getTotalCoverageAmount());
         product.getCoverages().forEach(existingQuote::addCoverage);
         product.getAssistances().forEach(existingQuote::addAssistance);

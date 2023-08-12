@@ -23,6 +23,7 @@ public class CreateInsuranceQuoteService implements CreateInsuranceQuoteUseCase 
 
     public Mono<InsuranceQuote> captureLead(InsuranceQuote quote) {
         var id = quote.getId();
+        var productId = quote.getProductId();
         return this.captureLeadPort.capture(id)
                                    .then(Mono.just(quote));
     }

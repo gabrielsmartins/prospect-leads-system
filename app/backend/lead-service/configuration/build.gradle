@@ -1,6 +1,4 @@
-plugins {
-    id "org.springframework.boot" version "2.7.13"
-}
+apply plugin: 'org.springframework.boot'
 
 dependencies {
     implementation project(':common')
@@ -11,4 +9,9 @@ dependencies {
 
     testImplementation project(':application').sourceSets.test.output
     testImplementation project(':adapters:messaging').sourceSets.test.output
+}
+
+bootJar{
+    destinationDirectory = file(rootProject.buildDir)
+    archiveFileName = rootProject.name + ".jar"
 }

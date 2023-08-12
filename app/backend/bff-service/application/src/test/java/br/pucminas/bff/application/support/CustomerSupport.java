@@ -16,7 +16,9 @@ public class CustomerSupport {
                        .withDocumentNumber("00000100000")
                        .withType("F")
                        .withGender("M")
-                       .withDateOfBirth(LocalDate.now().minusYears(30));
+                       .withDateOfBirth(LocalDate.now().minusYears(30))
+                       .withEmail("foo@gmail.com")
+                       .withPhoneNumber(1160604040);
     }
 
 }

@@ -18,11 +18,9 @@ public class Product {
     private String name;
     private String category;
     private boolean active;
-
-    private BigDecimal totalYearlyPremiumAmount;
-
-    private BigDecimal totalMonthlyPremiumAmount;
-
+    private BigDecimal maxTotalMonthlyPremiumAmount;
+    private BigDecimal minTotalMonthlyPremiumAmount;
+    private BigDecimal suggestedTotalMonthlyPremiumAmount;
     private BigDecimal totalCoverageAmount;
 
     @Builder.Default

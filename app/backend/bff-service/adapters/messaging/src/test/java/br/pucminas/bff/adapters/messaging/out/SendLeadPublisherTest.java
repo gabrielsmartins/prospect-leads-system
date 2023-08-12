@@ -33,6 +33,7 @@ class SendLeadPublisherTest extends RedisContainerSupport {
     @DisplayName("Given Insurance Quote Id When Is Valid Then Send")
     public void givenInsuranceQuoteIdWhenIsValidThenSend() {
         var insuranceQuoteId = UUID.randomUUID();
+        var productId = 1;
         this.publisher.capture(insuranceQuoteId)
                       .as(StepVerifier::create)
                       .verifyComplete();

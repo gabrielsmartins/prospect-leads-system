@@ -24,6 +24,8 @@ class CustomerWebAdapterMapperTest {
         assertThat(customerDto.getDocumentNumber()).isEqualTo(customer.getDocumentNumber());
         assertThat(customerDto.getGender()).isEqualTo(customer.getGender());
         assertThat(customerDto.getDateOfBirth()).isEqualTo(customer.getDateOfBirth());
+        assertThat(customerDto.getEmail()).isEqualTo(customer.getEmail());
+        assertThat(customerDto.getPhoneNumber()).isEqualTo(customer.getPhoneNumber());
     }
 
     @Test
@@ -40,6 +42,8 @@ class CustomerWebAdapterMapperTest {
         assertThat(customer.getDocumentNumber()).isEqualTo(customerDto.getDocumentNumber());
         assertThat(customer.getGender()).isEqualTo(customerDto.getGender());
         assertThat(customer.getDateOfBirth()).isEqualTo(customerDto.getDateOfBirth());
+        assertThat(customer.getEmail()).isEqualTo(customerDto.getEmail());
+        assertThat(customer.getPhoneNumber()).isEqualTo(customerDto.getPhoneNumber());
     }
 
 }

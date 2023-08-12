@@ -19,8 +19,9 @@ public class CreateProductControllerMapper {
                                .withName(product.getName())
                                .withActive(product.isActive())
                                .withCategory(CategoryEnumDto.fromCode(product.getCategory().getCode()))
-                               .withTotalYearlyPremiumAmount(product.getTotalYearlyPremiumAmount())
-                               .withTotalMonthlyPremiumAmount(product.getTotalMonthlyPremiumAmount())
+                               .withMinTotalMonthlyPremiumAmount(product.getMinTotalMonthlyPremiumAmount())
+                               .withMaxTotalMonthlyPremiumAmount(product.getMaxTotalMonthlyPremiumAmount())
+                               .withSuggestedTotalMonthlyPremiumAmount(product.getSuggestedTotalMonthlyPremiumAmount())
                                .withTotalCoverageAmount(product.getTotalCoverageAmount())
                                .withCoverages(product.getCoverages())
                                .withAssistances(product.getAssistances())
@@ -36,9 +37,10 @@ public class CreateProductControllerMapper {
                              .withId(productDto.getId())
                              .withName(productDto.getName())
                              .withCategory(CategoryEnum.fromCode(productDto.getCategory().getCode()))
-                             .withTotalYearlyPremiumAmount(productDto.getTotalYearlyPremiumAmount())
-                             .withTotalMonthlyPremiumAmount(productDto.getTotalMonthlyPremiumAmount())
+                             .withMinTotalMonthlyPremiumAmount(productDto.getMinTotalMonthlyPremiumAmount())
+                             .withMaxTotalMonthlyPremiumAmount(productDto.getMaxTotalMonthlyPremiumAmount())
                              .build();
+        product.setSuggestedTotalMonthlyPremiumAmount(productDto.getSuggestedTotalMonthlyPremiumAmount());
         productDto.getCoverages().forEach(product::addCoverage);
         productDto.getAssistances().forEach(product::addAssistance);
         return product;

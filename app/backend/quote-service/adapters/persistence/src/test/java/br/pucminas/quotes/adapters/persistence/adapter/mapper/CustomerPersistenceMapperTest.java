@@ -22,6 +22,8 @@ class CustomerPersistenceMapperTest {
         assertThat(customerEntity.getDocumentNumber()).isEqualTo(customer.getDocumentNumber());
         assertThat(customerEntity.getGender()).isEqualTo(customer.getGender());
         assertThat(customerEntity.getDateOfBirth()).isEqualTo(customer.getDateOfBirth());
+        assertThat(customerEntity.getEmail()).isEqualTo(customer.getEmail());
+        assertThat(customerEntity.getPhoneNumber()).isEqualTo(customer.getPhoneNumber());
     }
 
     @Test
@@ -37,6 +39,8 @@ class CustomerPersistenceMapperTest {
         assertThat(customer.getDocumentNumber()).isEqualTo(customerEntity.getDocumentNumber());
         assertThat(customer.getGender()).isEqualTo(customerEntity.getGender());
         assertThat(customer.getDateOfBirth()).isEqualTo(customerEntity.getDateOfBirth());
+        assertThat(customer.getEmail()).isEqualTo(customerEntity.getEmail());
+        assertThat(customer.getPhoneNumber()).isEqualTo(customerEntity.getPhoneNumber());
     }
 
 }

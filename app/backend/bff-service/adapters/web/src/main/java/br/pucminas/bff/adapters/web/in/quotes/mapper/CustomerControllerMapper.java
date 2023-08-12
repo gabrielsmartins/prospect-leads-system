@@ -19,6 +19,8 @@ public class CustomerControllerMapper {
                        .withType(customerDto.getType())
                        .withGender(customerDto.getGender())
                        .withDateOfBirth(customerDto.getDateOfBirth())
+                       .withEmail(customerDto.getEmail())
+                       .withPhoneNumber(customerDto.getPhoneNumber())
                        .build();
     }
 
@@ -32,6 +34,8 @@ public class CustomerControllerMapper {
                           .withType(customer.getType())
                           .withGender(customer.getGender())
                           .withDateOfBirth(customer.getDateOfBirth())
+                          .withEmail(customer.getEmail())
+                          .withPhoneNumber(customer.getPhoneNumber())
                           .build();
     }
 }

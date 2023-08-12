@@ -1,6 +1,22 @@
-plugins {
-	id 'java'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'io.spring.dependency-management'
+
+apply from: "$rootDir/repositories.gradle"
+apply from: "$rootDir/repositories.gradle", to: buildscript
+
+buildscript {
+	apply from: "$rootDir/repositories.gradle", to: buildscript
+	ext {
+		springBootPluginVersion = '2.7.13'
+		springBootDependencyManagementPluginVersion = '1.0.15.RELEASE'
+		avroPluginVersion = '1.8.0'
+	}
+	dependencies {
+		classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: springBootPluginVersion
+		classpath group: 'io.spring.gradle', name: 'dependency-management-plugin', version: springBootDependencyManagementPluginVersion
+		classpath group: 'com.github.davidmc24.gradle.plugin', name: 'gradle-avro-plugin', version: avroPluginVersion
+	}
 }
 
 subprojects {
@@ -14,7 +30,8 @@ subprojects {
 	version = '0.0.1-SNAPSHOT'
 
 	java {
-		sourceCompatibility = '11'
+		sourceCompatibility = JavaVersion.VERSION_11
+		targetCompatibility = JavaVersion.VERSION_11
 	}
 
 	configurations {
@@ -26,6 +43,8 @@ subprojects {
 	ext {
 		set('springBootVersion', "2.7.13")
 		set('springCloudVersion', "2021.0.7")
+		set('avroVersion', "1.11.2")
+		set('confluentVersion', "7.4.0")
 		set('logstashVersion', "7.4")
 		set('assertJVersion', "3.24.2")
 		set('mockitoVersion', "5.4.0")
@@ -78,14 +97,14 @@ subprojects {
 		toolVersion = '0.8.7'
 	}
 
-	/*jacocoTestReport {
+	jacocoTestReport {
 		reports {
-			html.enabled = true
-			xml.enabled = true
-			csv.enabled = false
+			html.required = true
+			xml.required = true
+			csv.required = false
 			html.destination file("${buildDir}/jacocoHtml")
 		}
-	}*/
+	}
 
 }
 

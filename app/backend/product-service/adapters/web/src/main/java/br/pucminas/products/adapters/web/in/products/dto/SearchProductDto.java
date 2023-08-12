@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -33,11 +35,16 @@ public class SearchProductDto {
     @JsonProperty(value = "category")
     private CategoryEnumDto category;
 
-    @JsonProperty(value = "total_yearly_premium_amount")
-    private BigDecimal totalYearlyPremiumAmount;
+    @JsonProperty(value = "minimum_total_monthly_premium_amount")
+    private BigDecimal minTotalMonthlyPremiumAmount;
 
-    @JsonProperty(value = "total_monthly_premium_amount")
-    private BigDecimal totalMonthlyPremiumAmount;
+    @JsonProperty(value = "maximum_total_monthly_premium_amount")
+    private BigDecimal maxTotalMonthlyPremiumAmount;
+
+    @JsonProperty(value = "suggested_total_monthly_premium_amount")
+    @NotNull
+    @PositiveOrZero
+    private BigDecimal suggestedTotalMonthlyPremiumAmount;
 
     @JsonProperty(value = "total_coverage_amount", access = JsonProperty.Access.READ_ONLY)
     private BigDecimal totalCoverageAmount;

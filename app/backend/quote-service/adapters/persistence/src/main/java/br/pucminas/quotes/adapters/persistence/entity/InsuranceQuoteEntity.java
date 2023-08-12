@@ -31,9 +31,6 @@ public class InsuranceQuoteEntity {
     @Field("product_id")
     private Integer productId;
 
-    @Field("total_yearly_premium_amount")
-    private BigDecimal totalYearlyPremiumAmount;
-
     @Field("total_monthly_premium_amount")
     private BigDecimal totalMonthlyPremiumAmount;
 

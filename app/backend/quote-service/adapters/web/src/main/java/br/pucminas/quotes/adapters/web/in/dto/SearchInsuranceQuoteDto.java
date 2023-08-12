@@ -29,9 +29,6 @@ public class SearchInsuranceQuoteDto {
     @JsonProperty(value = "product_id")
     private Integer productId;
 
-    @JsonProperty(value = "total_yearly_premium_amount")
-    private BigDecimal totalYearlyPremiumAmount;
-
     @JsonProperty(value = "total_monthly_premium_amount")
     private BigDecimal totalMonthlyPremiumAmount;
 

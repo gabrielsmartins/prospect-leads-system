@@ -17,7 +17,6 @@ public class SearchInsuranceQuoteWebAdapterMapper {
                              .withProductId(quoteDto.getProductId())
                              .withType(quoteDto.getType())
                              .withCustomer(CustomerWebAdapterMapper.mapToDomain(quoteDto.getCustomer()))
-                             .withTotalYearlyPremiumAmount(quoteDto.getTotalYearlyPremiumAmount())
                              .withTotalMonthlyPremiumAmount(quoteDto.getTotalMonthlyPremiumAmount())
                              .withTotalCoverageAmount(quoteDto.getTotalCoverageAmount())
                              .withAssistances(quoteDto.getAssistances())

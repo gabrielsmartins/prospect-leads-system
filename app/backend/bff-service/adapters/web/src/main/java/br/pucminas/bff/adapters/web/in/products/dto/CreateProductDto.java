@@ -7,6 +7,7 @@ import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -37,13 +38,20 @@ public class CreateProductDto {
     @NotNull
     private CategoryEnumDto category;
 
-    @JsonProperty(value = "total_yearly_premium_amount")
+    @JsonProperty(value = "min_total_monthly_premium_amount")
     @NotNull
-    private BigDecimal totalYearlyPremiumAmount;
+    @PositiveOrZero
+    private BigDecimal minTotalMonthlyPremiumAmount;
 
-    @JsonProperty(value = "total_monthly_premium_amount")
+    @JsonProperty(value = "max_total_monthly_premium_amount")
     @NotNull
-    private BigDecimal totalMonthlyPremiumAmount;
+    @PositiveOrZero
+    private BigDecimal maxTotalMonthlyPremiumAmount;
+
+    @JsonProperty(value = "suggested_total_monthly_premium_amount")
+    @NotNull
+    @PositiveOrZero
+    private BigDecimal suggestedTotalMonthlyPremiumAmount;
 
     @JsonProperty(value = "total_coverage_amount", access = JsonProperty.Access.READ_ONLY)
     private BigDecimal totalCoverageAmount;

@@ -2,6 +2,7 @@ package br.pucminas.products.adapters.web.in.advice;
 
 import br.pucminas.products.adapters.web.in.advice.dto.ErrorDto;
 import br.pucminas.products.application.domain.exceptions.ProductNotFoundException;
+import br.pucminas.products.application.domain.exceptions.UnsupportedSuggestedPremiumAmountException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -12,6 +13,16 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 @Slf4j
 public class ExceptionHandlerController {
+
+    @ExceptionHandler(UnsupportedSuggestedPremiumAmountException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ErrorDto handleUnsupportedSuggestedPremiumAmountException(UnsupportedSuggestedPremiumAmountException ex){
+        log.warn("Invalid Request", ex);
+        return ErrorDto.builder()
+                .withCode(422)
+                .withMessage(ex.getMessage())
+                .build();
+    }
 
     @ExceptionHandler(ProductNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)

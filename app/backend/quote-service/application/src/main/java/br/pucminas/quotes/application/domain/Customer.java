@@ -19,5 +19,6 @@ public class Customer {
     private CustomerTypeEnum type;
     private GenderEnum gender;
     private LocalDate dateOfBirth;
-
+    private String email;
+    private Integer phoneNumber;
 }

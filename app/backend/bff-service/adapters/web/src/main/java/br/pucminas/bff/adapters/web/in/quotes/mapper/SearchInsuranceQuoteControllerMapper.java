@@ -18,7 +18,6 @@ public class SearchInsuranceQuoteControllerMapper {
                                       .withType(insuranceQuote.getType())
                                       .withCustomer(CustomerControllerMapper.mapToDto(insuranceQuote.getCustomer()))
                                       .withProductId(insuranceQuote.getProductId())
-                                      .withTotalYearlyPremiumAmount(insuranceQuote.getTotalYearlyPremiumAmount())
                                       .withTotalMonthlyPremiumAmount(insuranceQuote.getTotalMonthlyPremiumAmount())
                                       .withTotalCoverageAmount(insuranceQuote.getTotalCoverageAmount())
                                       .withCreatedAt(insuranceQuote.getCreatedAt())

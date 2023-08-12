@@ -22,8 +22,9 @@ class UpdateProductWebAdapterMapperTest {
         assertThat(productDto.getName()).isEqualTo(product.getName());
         assertThat(productDto.getActive()).isEqualTo(product.isActive());
         assertThat(productDto.getCategory().getDescription()).isEqualTo(product.getCategory());
-        assertThat(productDto.getTotalYearlyPremiumAmount()).isEqualByComparingTo(product.getTotalYearlyPremiumAmount());
-        assertThat(productDto.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getTotalMonthlyPremiumAmount());
+        assertThat(productDto.getMinTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getMinTotalMonthlyPremiumAmount());
+        assertThat(productDto.getMaxTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getMaxTotalMonthlyPremiumAmount());
+        assertThat(productDto.getSuggestedTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getSuggestedTotalMonthlyPremiumAmount());
         assertThat(productDto.getTotalCoverageAmount()).isEqualByComparingTo(product.getTotalCoverageAmount());
         assertThat(productDto.getCoverages()).isEqualTo(product.getCoverages());
         assertThat(productDto.getAssistances()).isEqualTo(product.getAssistances());
@@ -42,8 +43,9 @@ class UpdateProductWebAdapterMapperTest {
         assertThat(product.isActive()).isEqualTo(productDto.getActive());
         assertThat(product.getName()).isEqualTo(productDto.getName());
         assertThat(product.getCategory()).isEqualTo(productDto.getCategory().getDescription());
-        assertThat(product.getTotalYearlyPremiumAmount()).isEqualByComparingTo(productDto.getTotalYearlyPremiumAmount());
-        assertThat(product.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(productDto.getTotalMonthlyPremiumAmount());
+        assertThat(product.getMinTotalMonthlyPremiumAmount()).isEqualByComparingTo(productDto.getMinTotalMonthlyPremiumAmount());
+        assertThat(product.getMaxTotalMonthlyPremiumAmount()).isEqualByComparingTo(productDto.getMaxTotalMonthlyPremiumAmount());
+        assertThat(product.getSuggestedTotalMonthlyPremiumAmount()).isEqualByComparingTo(productDto.getSuggestedTotalMonthlyPremiumAmount());
         assertThat(product.getTotalCoverageAmount()).isEqualByComparingTo(productDto.getTotalCoverageAmount());
         assertThat(product.getCoverages()).isEqualTo(productDto.getCoverages());
         assertThat(product.getAssistances()).isEqualTo(productDto.getAssistances());

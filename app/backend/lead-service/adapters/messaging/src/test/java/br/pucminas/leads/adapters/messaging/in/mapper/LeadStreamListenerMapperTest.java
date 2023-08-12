@@ -15,7 +15,7 @@ class LeadStreamListenerMapperTest {
         var lead = LeadStreamListenerMapper.mapToDomain(leadDto);
 
         assertThat(lead).isNotNull();
-        assertThat(lead).hasNoNullFieldsOrProperties();
+        assertThat(lead).hasNoNullFieldsOrPropertiesExcept("processedAt");
         assertThat(lead.getInsuranceQuoteId()).isEqualTo(leadDto.getInsuranceQuoteId());
         assertThat(lead.getCreatedAt()).isEqualTo(leadDto.getCreatedAt());
     }

@@ -17,19 +17,18 @@ public class InsuranceQuoteEntitySupport {
 
     public static InsuranceQuoteEntity.InsuranceQuoteEntityBuilder defaultInsuranceQuoteEntity() {
         return InsuranceQuoteEntity.builder()
-                .withId(UUID.randomUUID())
-                .withType(InsuranceQuoteTypeEnum.LIFE)
-                .withCustomer(defaultCustomerEntity().build())
-                .withProductId(1)
-                .withTotalYearlyPremiumAmount(BigDecimal.valueOf(120))
-                .withTotalMonthlyPremiumAmount(BigDecimal.TEN)
-                .withTotalCoverageAmount(BigDecimal.TEN)
-                .withCoverages(new LinkedHashMap<>(Map.of("Acidente", BigDecimal.TEN)))
-                .withAssistances(new LinkedList<>(List.of("Manutenção")))
-                .withFinished(true)
-                .withCreatedAt(LocalDateTime.now())
-                .withUpdatedAt(LocalDateTime.now())
-                .withFinishedAt(LocalDateTime.now());
+                                   .withId(UUID.randomUUID())
+                                   .withType(InsuranceQuoteTypeEnum.LIFE)
+                                   .withCustomer(defaultCustomerEntity().build())
+                                   .withProductId(1)
+                                   .withTotalMonthlyPremiumAmount(BigDecimal.TEN)
+                                   .withTotalCoverageAmount(BigDecimal.TEN)
+                                   .withCoverages(new LinkedHashMap<>(Map.of("Acidente", BigDecimal.TEN)))
+                                   .withAssistances(new LinkedList<>(List.of("Manutenção")))
+                                   .withFinished(true)
+                                   .withCreatedAt(LocalDateTime.now())
+                                   .withUpdatedAt(LocalDateTime.now())
+                                   .withFinishedAt(LocalDateTime.now());
     }
 
 }

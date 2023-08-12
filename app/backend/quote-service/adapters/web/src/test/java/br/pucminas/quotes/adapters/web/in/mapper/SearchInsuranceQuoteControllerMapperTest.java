@@ -25,7 +25,6 @@ class SearchInsuranceQuoteControllerMapperTest {
         assertThat(quoteDto.getCreatedAt()).isEqualTo(quote.getCreatedAt());
         assertThat(quoteDto.getUpdatedAt()).isEqualTo(quote.getUpdatedAt());
         assertThat(quoteDto.getFinishedAt()).isEqualTo(quote.getFinishedAt());
-        assertThat(quoteDto.getTotalYearlyPremiumAmount()).isEqualByComparingTo(quote.getTotalYearlyPremiumAmount());
         assertThat(quoteDto.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(quote.getTotalMonthlyPremiumAmount());
         assertThat(quoteDto.getTotalCoverageAmount()).isEqualByComparingTo(quote.getTotalCoverageAmount());
         assertThat(quoteDto.getCoverages()).isEqualTo(quote.getCoverages());

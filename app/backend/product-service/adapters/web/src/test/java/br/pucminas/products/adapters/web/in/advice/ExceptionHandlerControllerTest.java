@@ -22,6 +22,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.math.BigDecimal;
+
 import static br.pucminas.products.adapters.web.config.ControllerRoutes.PRODUCT_ROUTE;
 import static br.pucminas.products.adapters.web.support.ProductDtoSupport.defaultCreateProductDto;
 import static org.mockito.ArgumentMatchers.any;
@@ -62,6 +64,22 @@ class ExceptionHandlerControllerTest {
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .header(HttpHeaders.ACCEPT,MediaType.APPLICATION_JSON_VALUE))
                     .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    @DisplayName("Given Product When Is Invalid Then Return UnProcessable Entity")
+    public void givenProductWhenIsInvalidThenReturnUnProcessableEntity() throws Exception {
+        var productDto = defaultCreateProductDto()
+                .withSuggestedTotalMonthlyPremiumAmount(BigDecimal.ONE)
+                .build();
+        var content = this.objectMapper.writeValueAsString(productDto);
+
+
+        this.mockMvc.perform(post(PRODUCT_ROUTE)
+                        .content(content)
+                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .header(HttpHeaders.ACCEPT,MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isUnprocessableEntity());
     }
 
     @Test

@@ -40,11 +40,14 @@ public class ProductEntity implements Serializable {
     @Convert(converter = CategoryEnumConverter.class)
     private CategoryEnum category;
 
-    @Column(name = "total_yearly_premium_amount", columnDefinition = "decimal(17,2)", nullable = false)
-    private BigDecimal totalYearlyPremiumAmount;
+    @Column(name = "max_total_monthly_premium_amount", columnDefinition = "decimal(17,2)", nullable = false)
+    private BigDecimal maxTotalMonthlyPremiumAmount;
 
-    @Column(name = "total_monthly_premium_amount", columnDefinition = "decimal(17,2)", nullable = false)
-    private BigDecimal totalMonthlyPremiumAmount;
+    @Column(name = "suggested_total_monthly_premium_amount", columnDefinition = "decimal(17,2)", nullable = false)
+    private BigDecimal suggestedTotalMonthlyPremiumAmount;
+
+    @Column(name = "min_total_monthly_premium_amount", columnDefinition = "decimal(17,2)", nullable = false)
+    private BigDecimal minTotalMonthlyPremiumAmount;
 
     @Column(name = "total_coverage_amount", columnDefinition = "decimal(17,2)", nullable = false)
     private BigDecimal totalCoverageAmount;

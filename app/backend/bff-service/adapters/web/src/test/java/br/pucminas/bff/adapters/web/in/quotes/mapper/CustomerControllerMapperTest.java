@@ -22,6 +22,8 @@ class CustomerControllerMapperTest {
         assertThat(customer.getGender()).isEqualTo(customerDto.getGender());
         assertThat(customer.getDateOfBirth()).isEqualTo(customerDto.getDateOfBirth());
         assertThat(customer.getType()).isEqualTo(customerDto.getType());
+        assertThat(customer.getEmail()).isEqualTo(customerDto.getEmail());
+        assertThat(customer.getPhoneNumber()).isEqualTo(customerDto.getPhoneNumber());
     }
 
     @Test
@@ -37,6 +39,8 @@ class CustomerControllerMapperTest {
         assertThat(customerDto.getGender()).isEqualTo(customer.getGender());
         assertThat(customerDto.getDateOfBirth()).isEqualTo(customer.getDateOfBirth());
         assertThat(customerDto.getType()).isEqualTo(customer.getType());
+        assertThat(customerDto.getEmail()).isEqualTo(customer.getEmail());
+        assertThat(customerDto.getPhoneNumber()).isEqualTo(customer.getPhoneNumber());
     }
 
 }

@@ -17,7 +17,9 @@ public class CustomerSupport {
                        .withDocumentNumber("00000100000")
                        .withType(CustomerTypeEnum.NATURAL)
                        .withGender(GenderEnum.MALE)
-                       .withDateOfBirth(LocalDate.now().minusYears(30));
+                       .withDateOfBirth(LocalDate.now().minusYears(30))
+                       .withEmail("foo@gmail.com")
+                       .withPhoneNumber(1150503030);
     }
 
 }

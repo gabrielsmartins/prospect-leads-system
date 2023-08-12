@@ -21,8 +21,9 @@ class ProductWebAdapterMapperTest {
         assertThat(product.getName()).isEqualTo(productDto.getName());
         assertThat(product.getCategory()).isEqualTo(productDto.getCategory());
         assertThat(product.isActive()).isEqualTo(productDto.getActive());
-        assertThat(product.getTotalYearlyPremiumAmount()).isEqualTo(productDto.getTotalYearlyPremiumAmount());
-        assertThat(product.getTotalMonthlyPremiumAmount()).isEqualTo(productDto.getTotalMonthlyPremiumAmount());
+        assertThat(product.getMinTotalMonthlyPremiumAmount()).isEqualTo(productDto.getMinTotalMonthlyPremiumAmount());
+        assertThat(product.getMaxTotalMonthlyPremiumAmount()).isEqualTo(productDto.getMaxTotalMonthlyPremiumAmount());
+        assertThat(product.getSuggestedTotalMonthlyPremiumAmount()).isEqualTo(productDto.getSuggestedTotalMonthlyPremiumAmount());
         assertThat(product.getTotalCoverageAmount()).isEqualTo(productDto.getTotalCoverageAmount());
         assertThat(product.getCreatedAt()).isEqualTo(productDto.getCreatedAt());
         assertThat(product.getUpdatedAt()).isEqualTo(productDto.getUpdatedAt());

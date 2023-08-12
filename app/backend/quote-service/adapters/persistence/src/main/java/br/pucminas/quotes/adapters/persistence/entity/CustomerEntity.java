@@ -30,4 +30,10 @@ public class CustomerEntity {
     @Field("date_of_birth")
     private LocalDate dateOfBirth;
 
+    @Field("email")
+    private String email;
+
+    @Field("phone_number")
+    private Integer phoneNumber;
+
 }

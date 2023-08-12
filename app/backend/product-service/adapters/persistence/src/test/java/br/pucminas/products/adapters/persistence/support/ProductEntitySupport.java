@@ -3,6 +3,7 @@ package br.pucminas.products.adapters.persistence.support;
 
 import br.pucminas.products.adapters.persistence.entity.ProductEntity;
 import br.pucminas.products.application.domain.enums.CategoryEnum;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
 import java.math.BigDecimal;
@@ -12,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProductEntitySupport {
 
     public static ProductEntity.ProductEntityBuilder defaultProductEntity() {
@@ -20,8 +21,9 @@ public class ProductEntitySupport {
                             .withId(1)
                             .withName("Seguro Vida Individual")
                             .withActive(true)
-                            .withTotalMonthlyPremiumAmount(BigDecimal.TEN)
-                            .withTotalYearlyPremiumAmount(BigDecimal.valueOf(120))
+                            .withMinTotalMonthlyPremiumAmount(BigDecimal.TEN)
+                            .withMaxTotalMonthlyPremiumAmount(BigDecimal.valueOf(120))
+                            .withSuggestedTotalMonthlyPremiumAmount(BigDecimal.TEN)
                             .withTotalCoverageAmount(BigDecimal.TEN)
                             .withCategory(CategoryEnum.LIFE)
                             .withCreatedAt(LocalDateTime.now())
