@@ -8,6 +8,14 @@ spring:
       pool:
         enabled: true
 
+aws:
+  dynamodb:
+    endpoint: http://localhost:4566
+    region: sa-east-1
+    credentials:
+      access-key: foo
+      secret-key: bar
+
 eureka:
   client:
     enabled: true

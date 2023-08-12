@@ -1,8 +1,33 @@
+configurations.testImplementation.canBeResolved = true
 dependencies {
     implementation project(':common')
     implementation project(':application')
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+    implementation "com.amazonaws:aws-java-sdk-dynamodb:${awsSdkVersion}"
 
     testImplementation project(':application').sourceSets.test.output
+    testImplementation "com.amazonaws:DynamoDBLocal:${dynamoDbLocalVersion}"
+
+    testImplementation "com.almworks.sqlite4java:sqlite4java:1.0.392"
+    testImplementation "com.almworks.sqlite4java:libsqlite4java-osx:1.0.392"
+
+    dependencyManagement {
+        imports {
+            mavenBom("com.amazonaws:aws-java-sdk-bom:${awsSdkVersion}")
+        }
+    }
+
+}
+
+task copyNativeDeps(type: Copy) {
+    from (configurations.testImplementation) {
+        include "*.dylib"
+        include "*.so"
+        include "*.dll"
+    }
+    into 'build/native-libs'
+}
+
+test.dependsOn copyNativeDeps
+test.doFirst {
+    systemProperty "java.library.path", 'build/native-libs'
 }

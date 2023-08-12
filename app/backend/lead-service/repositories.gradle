@@ -18,4 +18,9 @@ repositories {
         name "confluent"
         url "https://packages.confluent.io/maven/"
     }
+    maven {
+        name "dynamodb-local"
+        url "https://s3-us-west-2.amazonaws.com/dynamodb-local/release"
+    }
+
 }

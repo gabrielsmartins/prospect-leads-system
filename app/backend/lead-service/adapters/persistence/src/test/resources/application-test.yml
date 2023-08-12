@@ -1,7 +1,7 @@
-spring:
-  data:
-    mongodb:
-      uuid-representation: standard
-  mongodb:
-    embedded:
-      version: 4.0.21
+aws:
+  dynamodb:
+    endpoint: http://localhost:8000
+    region: sa-east-1
+    credentials:
+      access-key: foo
+      secret-key: bar

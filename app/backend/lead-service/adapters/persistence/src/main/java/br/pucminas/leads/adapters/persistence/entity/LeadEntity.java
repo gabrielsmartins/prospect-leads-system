@@ -1,8 +1,8 @@
 package br.pucminas.leads.adapters.persistence.entity;
 
+import br.pucminas.leads.adapters.persistence.entity.converter.LocalDateTimeConverter;
+import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -13,18 +13,22 @@ import java.util.UUID;
 @Setter
 @ToString
 @Builder(setterPrefix = "with")
+@DynamoDBTable(tableName="Leads")
 public class LeadEntity {
 
-    @Id
+    @DynamoDBHashKey(attributeName = "Id")
     private UUID insuranceQuoteId;
 
-    @Field("created_at")
+    @DynamoDBAttribute(attributeName="CreatedAt")
+    @DynamoDBTypeConverted(converter = LocalDateTimeConverter.class)
     private LocalDateTime createdAt;
 
-    @Field("processed_at")
+    @DynamoDBAttribute(attributeName="ProcessedAt")
+    @DynamoDBTypeConverted(converter = LocalDateTimeConverter.class)
     private LocalDateTime processedAt;
 
-    @Field("sent")
+    @DynamoDBAttribute(attributeName="Sent")
+    @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.BOOL)
     private boolean sent;
 
 }
