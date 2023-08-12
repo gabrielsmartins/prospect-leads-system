@@ -1,0 +1,9 @@
+dependencies {
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+    implementation 'org.springframework.cloud:spring-cloud-contract-wiremock'
+
+    implementation project(':common')
+    implementation project(':application')
+
+    testImplementation project(':application').sourceSets.test.output
+}

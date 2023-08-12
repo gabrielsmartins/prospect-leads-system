@@ -27,4 +27,5 @@ public class SearchInsuranceQuoteWebAdapterMapper {
                              .withFinished(quoteDto.isFinished())
                              .build();
     }
+
 }
