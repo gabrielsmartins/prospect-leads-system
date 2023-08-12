@@ -1,6 +1,21 @@
-plugins {
-	id 'java'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'io.spring.dependency-management'
+
+apply from: "$rootDir/repositories.gradle"
+apply from: "$rootDir/repositories.gradle", to: buildscript
+
+buildscript {
+	apply from: "$rootDir/repositories.gradle", to: buildscript
+	ext {
+		springBootPluginVersion = '2.7.13'
+		springBootDependencyManagementPluginVersion = '1.0.15.RELEASE'
+		avroPluginVersion = '1.8.0'
+	}
+	dependencies {
+		classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: springBootPluginVersion
+		classpath group: 'io.spring.gradle', name: 'dependency-management-plugin', version: springBootDependencyManagementPluginVersion
+	}
 }
 
 subprojects {
@@ -73,14 +88,15 @@ subprojects {
 		toolVersion = '0.8.7'
 	}
 
-	/*jacocoTestReport {
+	jacocoTestReport {
 		reports {
-			html.enabled = true
-			xml.enabled = true
-			csv.enabled = false
+			html.required = true
+			xml.required = true
+			csv.required = false
 			html.destination file("${buildDir}/jacocoHtml")
 		}
-	}*/
+	}
+
 }
 
 
