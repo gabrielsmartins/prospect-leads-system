@@ -3,15 +3,11 @@ spring:
     name: lead-service
   main:
     allow-bean-definition-overriding: true
-  #redis:
-  #  username:
-  #  password:
-  #  port: 6379
-  #  host: localhost
-  #  ssl: false
-  #  jedis:
-  #    pool:
-  #      enabled: true
+  redis:
+    client-type: LETTUCE
+    lettuce:
+      pool:
+        enabled: true
 
 
 redis:

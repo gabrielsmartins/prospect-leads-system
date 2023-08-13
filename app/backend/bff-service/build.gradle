@@ -44,6 +44,7 @@ subprojects {
 		set('logstashVersion', "7.4")
 		set('assertJVersion', "3.24.2")
 		set('mockitoVersion', "5.4.0")
+		set('apacheCommonPoolVersion', "2.11.1")
 		set('testcontainersVersion', "1.17.3")
 		set('testcontainersRedisVersion', "1.6.4")
 	}

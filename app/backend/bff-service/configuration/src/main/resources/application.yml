@@ -9,6 +9,9 @@ spring:
   redis:
     client-name: ${spring.application.name}
     client-type: LETTUCE
+    lettuce:
+      pool:
+        enabled: true
   sleuth:
     enabled: true
     trace-id128: true
