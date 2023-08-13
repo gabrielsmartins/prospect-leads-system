@@ -1,53 +1,113 @@
-plugins {
-	id 'java'
-	id 'org.springframework.boot' version '2.7.13'
-	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
-}
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'io.spring.dependency-management'
 
-group = 'br.gasmartins.leads'
-version = '0.0.1-SNAPSHOT'
+apply from: "$rootDir/repositories.gradle"
+apply from: "$rootDir/repositories.gradle", to: buildscript
 
-java {
-	sourceCompatibility = '11'
-}
-
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
+buildscript {
+	apply from: "$rootDir/repositories.gradle", to: buildscript
+	ext {
+		springBootPluginVersion = '2.7.13'
+		springBootDependencyManagementPluginVersion = '1.0.15.RELEASE'
+		avroPluginVersion = '1.8.0'
+	}
+	dependencies {
+		classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: springBootPluginVersion
+		classpath group: 'io.spring.gradle', name: 'dependency-management-plugin', version: springBootDependencyManagementPluginVersion
+		classpath group: 'com.github.davidmc24.gradle.plugin', name: 'gradle-avro-plugin', version: avroPluginVersion
 	}
 }
 
-repositories {
-	mavenCentral()
-}
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'java-library'
+	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'jacoco'
+	apply from: "${rootDir}/repositories.gradle"
 
-ext {
-	set('springCloudVersion', "2021.0.7")
-}
+	group = 'br.pucminas.notifications'
+	version = '0.0.1-SNAPSHOT'
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
-	implementation 'org.springframework.boot:spring-boot-starter-mail'
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-	implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
-	implementation 'org.springframework.kafka:spring-kafka'
-	compileOnly 'org.projectlombok:lombok'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.kafka:spring-kafka-test'
-}
-
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	java {
+		sourceCompatibility = JavaVersion.VERSION_11
+		targetCompatibility = JavaVersion.VERSION_11
 	}
+
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	ext {
+		set('springBootVersion', "2.7.13")
+		set('springCloudVersion', "2021.0.7")
+		set('avroVersion', "1.11.2")
+		set('confluentVersion', "7.4.0")
+		set('logstashVersion', "7.4")
+		set('assertJVersion', "3.24.2")
+		set('mockitoVersion', "5.4.0")
+		set('testcontainersVersion', "1.17.3")
+		set('testcontainersRedisVersion', "1.6.4")
+		set('awaitilityVersion', "4.2.0")
+		set('awsSdkVersion', "1.12.528")
+		set('dynamoDbLocalVersion', "1.15.0")
+	}
+
+	dependencies {
+		implementation 'org.springframework.boot:spring-boot-starter'
+		implementation 'org.springframework.boot:spring-boot-starter-web'
+		implementation 'org.springframework.boot:spring-boot-starter-actuator'
+		implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
+		implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+		implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+		annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+		compileOnly 'org.projectlombok:lombok'
+		testCompileOnly 'org.projectlombok:lombok'
+		runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+
+		annotationProcessor 'org.projectlombok:lombok'
+		testAnnotationProcessor 'org.projectlombok:lombok'
+
+		implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: logstashVersion
+
+		implementation 'org.springframework.boot:spring-boot-starter-test'
+		testImplementation 'io.projectreactor:reactor-test'
+		testImplementation group: 'org.assertj', name: 'assertj-core', version: assertJVersion
+		testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
+		testImplementation 'org.testcontainers:junit-jupiter'
+		testImplementation group: 'org.awaitility', name: 'awaitility', version: awaitilityVersion
+		testImplementation group: 'com.redis.testcontainers', name: 'testcontainers-redis', version: testcontainersRedisVersion
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+			mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
+			mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+		}
+	}
+
+	test {
+		useJUnitPlatform()
+		finalizedBy(jacocoTestReport)
+	}
+
+	jacoco {
+		toolVersion = '0.8.7'
+	}
+
+	jacocoTestReport {
+		reports {
+			html.required = true
+			xml.required = true
+			csv.required = false
+			html.destination file("${buildDir}/jacocoHtml")
+		}
+	}
+
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
+

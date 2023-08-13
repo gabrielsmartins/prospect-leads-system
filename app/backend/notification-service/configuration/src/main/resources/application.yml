@@ -1,0 +1,82 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: lead-service
+  main:
+    allow-bean-definition-overriding: true
+  data:
+    mongodb:
+      uuid-representation: standard
+  redis:
+    client-name: ${spring.application.name}
+    client-type: LETTUCE
+  sleuth:
+    enabled: true
+    trace-id128: true
+    opentracing:
+      enabled: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    properties:
+      request.timeout.ms: 20000
+      retry.backoff.ms: 500
+      value.subject.name.strategy: io.confluent.kafka.serializers.subject.TopicRecordNameStrategy
+      schema.registry.url: http://localhost:8081
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
+    consumer:
+      group-id: ${spring.application.name}
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      schema.registry.url: ${spring.kafka.properties.schema.registry.url}
+      properties:
+        specific.avro.reader: true
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      schema.registry.url: ${spring.kafka.properties.schema.registry.url}
+      acks: all
+      auto.register.schemas: true
+      properties:
+        enable.idempotence: true
+
+redis:
+  streams:
+    key: leads
+    group: ${spring.application.name}
+
+topic:
+  input:
+    notification-emitted: notification-emitted
+  output:
+    lead-processed: lead-processed
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics, prometheus
+
+eureka:
+  client:
+    enabled: true
+    register-with-eureka: true
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          reactive:
+            function:
+              client:
+                ExchangeFunctions: TRACE

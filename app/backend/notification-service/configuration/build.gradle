@@ -1,0 +1,17 @@
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation project(':common')
+    implementation project(':application')
+    implementation project(':adapters:messaging')
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    testImplementation project(':application').sourceSets.test.output
+    testImplementation project(':adapters:messaging').sourceSets.test.output
+}
+
+bootJar {
+    destinationDirectory = file(rootProject.buildDir)
+    archiveFileName = rootProject.name + ".jar"
+}
