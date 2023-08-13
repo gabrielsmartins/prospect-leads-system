@@ -1,4 +1,3 @@
-configurations.testImplementation.canBeResolved = true
 dependencies {
     implementation project(':common')
     implementation project(':application')
@@ -6,9 +5,6 @@ dependencies {
 
     testImplementation project(':application').sourceSets.test.output
     testImplementation "com.amazonaws:DynamoDBLocal:${dynamoDbLocalVersion}"
-
-    testImplementation "com.almworks.sqlite4java:sqlite4java:1.0.392"
-    testImplementation "com.almworks.sqlite4java:libsqlite4java-osx:1.0.392"
 
     dependencyManagement {
         imports {
@@ -19,15 +15,15 @@ dependencies {
 }
 
 task copyNativeDeps(type: Copy) {
-    from (configurations.testImplementation) {
+    from (configurations.testRuntimeClasspath) {
         include "*.dylib"
         include "*.so"
         include "*.dll"
     }
-    into 'build/native-libs'
+    into("$project.buildDir/libs")
 }
 
 test.dependsOn copyNativeDeps
 test.doFirst {
-    systemProperty "java.library.path", 'build/native-libs'
+    systemProperty "java.library.path", "$project.buildDir/libs"
 }

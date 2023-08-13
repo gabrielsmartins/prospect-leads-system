@@ -12,7 +12,7 @@ public class DynamoDBExtension implements AfterEachCallback, BeforeEachCallback 
     public DynamoDBExtension(){
         // This one should be copied during test-compile time. If project's basedir does not contains a folder
         // named 'native-libs' please try '$ mvn clean install' from command line first
-        System.setProperty("sqlite4java.library.path", "native-libs");
+        System.setProperty("sqlite4java.library.path", "build/libs");
 
     }
 
