@@ -18,8 +18,14 @@ public class Product {
     private String name;
     private String category;
     private boolean active;
+
+    @Builder.Default
     private BigDecimal maxTotalMonthlyPremiumAmount = BigDecimal.ZERO;
+
+    @Builder.Default
     private BigDecimal minTotalMonthlyPremiumAmount = BigDecimal.ZERO;
+
+    @Builder.Default
     private BigDecimal suggestedTotalMonthlyPremiumAmount = BigDecimal.ZERO;
     private BigDecimal totalCoverageAmount;
 

@@ -35,10 +35,10 @@ public class SearchProductDto {
     @JsonProperty(value = "category")
     private CategoryEnumDto category;
 
-    @JsonProperty(value = "minimum_total_monthly_premium_amount")
+    @JsonProperty(value = "min_total_monthly_premium_amount")
     private BigDecimal minTotalMonthlyPremiumAmount;
 
-    @JsonProperty(value = "maximum_total_monthly_premium_amount")
+    @JsonProperty(value = "max_total_monthly_premium_amount")
     private BigDecimal maxTotalMonthlyPremiumAmount;
 
     @JsonProperty(value = "suggested_total_monthly_premium_amount")

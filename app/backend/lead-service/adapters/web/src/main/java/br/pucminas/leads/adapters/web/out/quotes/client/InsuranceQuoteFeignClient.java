@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.UUID;
 
-@FeignClient(name = "quotes")
+@FeignClient(name = "quotes", url = "${webservice.quotes.url}")
 public interface InsuranceQuoteFeignClient {
 
     @GetMapping("/{id}")
