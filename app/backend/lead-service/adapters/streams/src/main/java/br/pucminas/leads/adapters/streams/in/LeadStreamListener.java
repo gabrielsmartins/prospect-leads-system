@@ -4,7 +4,7 @@ import br.pucminas.leads.adapters.streams.config.RedisStreamProperties;
 import br.pucminas.leads.adapters.streams.in.dto.LeadDto;
 import br.pucminas.leads.adapters.streams.in.mapper.LeadStreamListenerMapper;
 import br.pucminas.leads.application.ports.in.ProcessLeadUseCase;
-import br.pucminas.leads.common.MessagingAdapter;
+import br.pucminas.leads.common.stereotype.StreamAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.data.redis.stream.StreamListener;
 
 import static net.logstash.logback.marker.Markers.append;
 
-@MessagingAdapter
+@StreamAdapter
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @EnableConfigurationProperties(RedisStreamProperties.class)
 @Slf4j

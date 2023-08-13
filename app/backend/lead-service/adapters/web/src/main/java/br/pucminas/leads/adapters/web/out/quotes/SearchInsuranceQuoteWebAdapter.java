@@ -4,7 +4,7 @@ import br.pucminas.leads.adapters.web.out.quotes.client.InsuranceQuoteFeignClien
 import br.pucminas.leads.adapters.web.out.quotes.mapper.InsuranceQuoteWebMapper;
 import br.pucminas.leads.application.domain.InsuranceQuote;
 import br.pucminas.leads.application.ports.out.SearchInsuranceQuotePort;
-import br.pucminas.leads.common.WebAdapter;
+import br.pucminas.leads.common.stereotype.WebAdapter;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

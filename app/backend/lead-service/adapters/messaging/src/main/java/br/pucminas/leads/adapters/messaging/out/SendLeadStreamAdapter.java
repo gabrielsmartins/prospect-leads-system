@@ -4,7 +4,7 @@ import br.pucminas.leads.adapters.messaging.config.TopicProperties;
 import br.pucminas.leads.adapters.messaging.out.mapper.LeadStreamAdapterMapper;
 import br.pucminas.leads.application.domain.Lead;
 import br.pucminas.leads.application.ports.out.SendLeadPort;
-import br.pucminas.leads.common.SteamAdapter;
+import br.pucminas.leads.common.stereotype.MessagingAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.avro.specific.SpecificRecord;
@@ -15,7 +15,7 @@ import org.springframework.messaging.support.MessageBuilder;
 
 import static net.logstash.logback.marker.Markers.append;
 
-@SteamAdapter
+@MessagingAdapter
 @RequiredArgsConstructor
 @Slf4j
 @EnableConfigurationProperties(TopicProperties.class)

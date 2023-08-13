@@ -1,4 +1,4 @@
-package br.pucminas.leads.common;
+package br.pucminas.leads.common.stereotype;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Component
-public @interface SteamAdapter {
+public @interface WebAdapter {
 
     @AliasFor(annotation = Component.class)
     String value() default "";

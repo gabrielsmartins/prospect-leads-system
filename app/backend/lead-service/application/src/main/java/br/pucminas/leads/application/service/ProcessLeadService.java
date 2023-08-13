@@ -4,7 +4,7 @@ import br.pucminas.leads.application.domain.Lead;
 import br.pucminas.leads.application.ports.in.ProcessLeadUseCase;
 import br.pucminas.leads.application.ports.out.SaveLeadPort;
 import br.pucminas.leads.application.ports.out.SendLeadPort;
-import br.pucminas.leads.common.UseCase;
+import br.pucminas.leads.common.stereotype.UseCase;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;

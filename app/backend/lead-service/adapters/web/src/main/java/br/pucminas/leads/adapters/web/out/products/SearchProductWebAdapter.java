@@ -4,7 +4,7 @@ import br.pucminas.leads.adapters.web.out.products.client.ProductFeignClient;
 import br.pucminas.leads.adapters.web.out.products.mapper.ProductWebAdapterMapper;
 import br.pucminas.leads.application.domain.Product;
 import br.pucminas.leads.application.ports.out.SearchProductPort;
-import br.pucminas.leads.common.WebAdapter;
+import br.pucminas.leads.common.stereotype.WebAdapter;
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

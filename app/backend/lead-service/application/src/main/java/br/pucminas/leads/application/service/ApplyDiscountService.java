@@ -6,7 +6,7 @@ import br.pucminas.leads.application.domain.exceptions.ProductNotFoundException;
 import br.pucminas.leads.application.ports.out.SearchInsuranceQuotePort;
 import br.pucminas.leads.application.ports.out.SearchProductPort;
 import br.pucminas.leads.application.service.discount.CompoundDiscountApplier;
-import br.pucminas.leads.common.UseCase;
+import br.pucminas.leads.common.stereotype.UseCase;
 import lombok.RequiredArgsConstructor;
 
 @UseCase

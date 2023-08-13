@@ -4,7 +4,7 @@ import br.pucminas.leads.adapters.persistence.adapter.mapper.LeadPersistenceMapp
 import br.pucminas.leads.adapters.persistence.service.ILeadPersistenceService;
 import br.pucminas.leads.application.domain.Lead;
 import br.pucminas.leads.application.ports.out.SaveLeadPort;
-import br.pucminas.leads.common.PersistenceAdapter;
+import br.pucminas.leads.common.stereotype.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
