@@ -19,6 +19,10 @@ public class UpdateInsuranceQuoteControllerMapper {
                                       .withType(InsuranceQuoteTypeEnumDto.fromCode(insuranceQuote.getType().getCode()))
                                       .withCustomer(CustomerControllerMapper.mapToDto(insuranceQuote.getCustomer()))
                                       .withProductId(insuranceQuote.getProductId())
+                                      .withTotalMonthlyPremiumAmount(insuranceQuote.getTotalMonthlyPremiumAmount())
+                                      .withTotalCoverageAmount(insuranceQuote.getTotalCoverageAmount())
+                                      .withCoverages(insuranceQuote.getCoverages())
+                                      .withAssistances(insuranceQuote.getAssistances())
                                       .withCreatedAt(insuranceQuote.getCreatedAt())
                                       .withFinished(insuranceQuote.isFinished())
                                       .withUpdatedAt(insuranceQuote.getUpdatedAt())
@@ -36,6 +40,13 @@ public class UpdateInsuranceQuoteControllerMapper {
                              .withCustomer(CustomerControllerMapper.mapToDomain(insuranceQuoteDto.getCustomer()))
                              .withProductId(insuranceQuoteDto.getProductId())
                              .withFinished(insuranceQuoteDto.isFinished())
+                             .withTotalCoverageAmount(insuranceQuoteDto.getTotalCoverageAmount())
+                             .withTotalMonthlyPremiumAmount(insuranceQuoteDto.getTotalMonthlyPremiumAmount())
+                             .withCoverages(insuranceQuoteDto.getCoverages())
+                             .withAssistances(insuranceQuoteDto.getAssistances())
+                             .withCreatedAt(insuranceQuoteDto.getCreatedAt())
+                             .withUpdatedAt(insuranceQuoteDto.getUpdatedAt())
+                             .withFinishedAt(insuranceQuoteDto.getFinishedAt())
                              .build();
     }
 

@@ -1,4 +1,5 @@
-package br.pucminas.bff.adapters.web.out.quotes.dto;
+package br.pucminas.leads.adapters.web.out.quotes.client.dto;
+
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,9 +15,9 @@ import java.util.*;
 @Setter
 @ToString
 @Builder(setterPrefix = "with")
-public class UpdateInsuranceQuoteDto {
+public class SearchInsuranceQuoteDto {
 
-    @JsonProperty(value = "id", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "id")
     private UUID id;
 
     @JsonProperty(value = "type")
@@ -56,5 +57,30 @@ public class UpdateInsuranceQuoteDto {
     @JsonProperty(value = "finished_at")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime finishedAt;
+
+    public Integer addCoverage(String coverage, BigDecimal amount) {
+        this.coverages.put(coverage, amount);
+        this.totalCoverageAmount = this.totalCoverageAmount.add(amount);
+        return this.coverages.size();
+    }
+
+    public Integer removeCoverage(String coverage) {
+        if (this.coverages.containsKey(coverage)) {
+            var coverageAmount = this.coverages.get(coverage);
+            this.coverages.remove(coverage);
+            this.totalCoverageAmount = this.totalCoverageAmount.subtract(coverageAmount);
+        }
+        return this.coverages.size();
+    }
+
+    public Integer addAssistance(String assistance) {
+        this.assistances.add(assistance);
+        return this.assistances.size();
+    }
+
+    public Integer removeAssistance(String assistance) {
+        this.assistances.remove(assistance);
+        return this.assistances.size();
+    }
 
 }

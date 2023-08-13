@@ -7,8 +7,9 @@ import br.pucminas.quotes.adapters.web.in.dto.enums.InsuranceQuoteTypeEnumDto;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.*;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class InsuranceQuoteDtoSupport {
@@ -29,6 +30,10 @@ public class InsuranceQuoteDtoSupport {
                                       .withCustomer(CustomerDtoSupport.defaultCustomerDto().build())
                                       .withProductId(1)
                                       .withFinished(false)
+                                      .withTotalCoverageAmount(BigDecimal.valueOf(50))
+                                      .withTotalMonthlyPremiumAmount(BigDecimal.TEN)
+                                      .withCoverages(new LinkedHashMap<>(Map.of("Acidente", BigDecimal.TEN)))
+                                      .withAssistances(new LinkedList<>(List.of("Manutenção")))
                                       .withCreatedAt(LocalDateTime.now())
                                       .withUpdatedAt(LocalDateTime.now())
                                       .withFinishedAt(LocalDateTime.now());

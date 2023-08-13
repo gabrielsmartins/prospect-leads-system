@@ -4,12 +4,12 @@ dependencies {
     implementation project(':common')
     implementation project(':application')
     implementation project(':adapters:web')
-    implementation project(':adapters:messaging')
+    implementation project(':adapters:streams')
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     testImplementation project(':application').sourceSets.test.output
-    testImplementation project(':adapters:messaging').sourceSets.test.output
+    testImplementation project(':adapters:streams').sourceSets.test.output
     testImplementation project(':adapters:web').sourceSets.test.output
 }
 

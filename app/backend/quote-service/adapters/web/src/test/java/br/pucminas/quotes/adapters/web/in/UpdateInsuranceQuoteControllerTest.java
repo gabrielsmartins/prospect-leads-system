@@ -41,6 +41,30 @@ class UpdateInsuranceQuoteControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
+    @DisplayName("Given Id When Exists Then Return Updated Quote With Product")
+    public void givenIdWhenExistsThenReturnUpdatedQuoteWithProduct() throws JsonProcessingException {
+
+        var quoteDto = defaultUpdateInsuranceQuoteDto().build();
+
+        var body = objectMapper.writeValueAsString(quoteDto);
+
+        var quote = defaultInsuranceQuote().build();
+        when(useCase.update(any(UUID.class), anyInt())).thenAnswer(invocation -> Mono.just(quote));
+
+        webClient.patch()
+                 .uri(INSURANCE_QUOTES_ROUTE + "/{id}", quoteDto.getId())
+                 .contentType(MediaType.APPLICATION_JSON)
+                 .accept(MediaType.APPLICATION_JSON)
+                 .body(BodyInserters.fromValue(body))
+                 .exchange()
+                 .expectStatus().isOk()
+                 .expectBody()
+                 .jsonPath("id").isNotEmpty();
+
+        verify(this.useCase, times(1)).update(any(UUID.class), anyInt());
+    }
+
+    @Test
     @DisplayName("Given Id When Exists Then Return Updated Quote")
     public void givenIdWhenExistsThenReturnUpdatedQuote() throws JsonProcessingException {
 
@@ -51,7 +75,7 @@ class UpdateInsuranceQuoteControllerTest {
         var quote = defaultInsuranceQuote().build();
         when(useCase.update(any(UUID.class), any(InsuranceQuote.class))).thenAnswer(invocation -> Mono.just(quote));
 
-        webClient.patch()
+        webClient.put()
                  .uri(INSURANCE_QUOTES_ROUTE + "/{id}", quoteDto.getId())
                  .contentType(MediaType.APPLICATION_JSON)
                  .accept(MediaType.APPLICATION_JSON)

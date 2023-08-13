@@ -30,6 +30,17 @@ public class UpdateInsuranceQuoteController {
 
     @PatchMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
+    public Mono<UpdateInsuranceQuoteDto> updateWithProduct(@PathVariable("id") UUID id, @RequestBody @Valid UpdateInsuranceQuoteDto quoteDto){
+        log.info(append("quote", quoteDto), "Updating insurance quote with product by id {}", kv("id", id));
+        var productId = quoteDto.getProductId();
+        return this.useCase.update(id, productId)
+                           .doOnSuccess(p -> log.info(append("quote", p), "Insurance quote was updated successfully"))
+                           .doOnError(throwable -> log.error("Error updating quote", throwable))
+                           .map(UpdateInsuranceQuoteControllerMapper::mapToDto);
+    }
+
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
     public Mono<UpdateInsuranceQuoteDto> update(@PathVariable("id") UUID id, @RequestBody @Valid UpdateInsuranceQuoteDto quoteDto){
         log.info(append("quote", quoteDto), "Mapping insurance quote");
         var quote = UpdateInsuranceQuoteControllerMapper.mapToDomain(quoteDto);

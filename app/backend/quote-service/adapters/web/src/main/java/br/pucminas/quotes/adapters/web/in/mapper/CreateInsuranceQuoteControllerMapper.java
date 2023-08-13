@@ -27,12 +27,12 @@ public class CreateInsuranceQuoteControllerMapper {
         if (insuranceQuoteDto == null) {
             return null;
         }
-        return   InsuranceQuote.builder()
-                               .withId(insuranceQuoteDto.getId())
-                               .withType(InsuranceQuoteTypeEnum.fromCode(insuranceQuoteDto.getType().getCode()))
-                               .withCustomer(CustomerControllerMapper.mapToDomain(insuranceQuoteDto.getCustomer()))
-                               .withProductId(insuranceQuoteDto.getProductId())
-                               .build();
+        return InsuranceQuote.builder()
+                             .withId(insuranceQuoteDto.getId())
+                             .withType(InsuranceQuoteTypeEnum.fromCode(insuranceQuoteDto.getType().getCode()))
+                             .withCustomer(CustomerControllerMapper.mapToDomain(insuranceQuoteDto.getCustomer()))
+                             .withProductId(insuranceQuoteDto.getProductId())
+                             .build();
     }
 
 }

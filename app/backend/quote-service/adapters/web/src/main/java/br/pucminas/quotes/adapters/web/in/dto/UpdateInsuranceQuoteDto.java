@@ -6,8 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,18 +33,32 @@ public class UpdateInsuranceQuoteDto {
     @NotNull
     private Integer productId;
 
+    @JsonProperty(value = "total_monthly_premium_amount")
+    private BigDecimal totalMonthlyPremiumAmount;
+
+    @JsonProperty(value = "total_coverage_amount")
+    private BigDecimal totalCoverageAmount;
+
+    @Builder.Default
+    @JsonProperty(value = "coverages")
+    private final Map<String, BigDecimal> coverages = new LinkedHashMap<>();
+
+    @Builder.Default
+    @JsonProperty(value = "assistances")
+    private final List<String> assistances = new LinkedList<>();
+
     @JsonProperty(value = "finished")
     private boolean finished;
 
-    @JsonProperty(value = "created_at", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "created_at")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime createdAt;
 
-    @JsonProperty(value = "updated_at", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "updated_at")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime updatedAt;
 
-    @JsonProperty(value = "finished_at", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "finished_at")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime finishedAt;
 

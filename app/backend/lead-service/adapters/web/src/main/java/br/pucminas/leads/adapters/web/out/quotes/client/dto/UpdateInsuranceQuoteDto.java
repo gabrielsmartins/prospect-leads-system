@@ -1,4 +1,4 @@
-package br.pucminas.bff.adapters.web.out.quotes.dto;
+package br.pucminas.leads.adapters.web.out.quotes.client.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

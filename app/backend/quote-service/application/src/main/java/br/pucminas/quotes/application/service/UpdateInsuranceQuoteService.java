@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.UUID;
 
 @UseCase
@@ -24,32 +25,56 @@ public class UpdateInsuranceQuoteService implements UpdateInsuranceQuoteUseCase 
     private final SaveInsuranceQuotePort saveInsuranceQuotePort;
 
     @Override
-    public Mono<InsuranceQuote> update(UUID id, InsuranceQuote quote) {
-        quote.setUpdatedAt(LocalDateTime.now());
+    public Mono<InsuranceQuote> update(UUID id, Integer productId) {
+        return this.findInsuranceQuote(id)
+                   .flatMap(existingInsuranceQuote -> this.findActiveProduct(productId)
+                                                          .flatMap(product -> this.updateWithProduct(existingInsuranceQuote, product)));
+    }
+
+    @Override
+    public Mono<InsuranceQuote> update(UUID id, InsuranceQuote insuranceQuote) {
+        return this.findInsuranceQuote(id)
+                   .flatMap(existingInsuranceQuote -> {
+                       var productId = insuranceQuote.getProductId();
+                       return this.findActiveProduct(productId)
+                                  .flatMap(product -> this.update(insuranceQuote));
+                   });
+    }
+
+
+    private Mono<InsuranceQuote> findInsuranceQuote(UUID id) {
         return this.searchInsuranceQuotePort.findById(id)
-                                            .switchIfEmpty(Mono.error(new InsuranceQuoteNotFoundException(String.format("Insurance quote %s not found", id))))
-                                            .flatMap(existingQuote -> process(id, quote, existingQuote));
+                                            .switchIfEmpty(Mono.error(new InsuranceQuoteNotFoundException(String.format("Insurance quote %s not found", id))));
     }
 
-    private Mono<InsuranceQuote> process(UUID id, InsuranceQuote quote, InsuranceQuote existingQuote) {
-        if (!existingQuote.getId().equals(quote.getId())) {
-            return Mono.error(new InsuranceQuoteNotFoundException(String.format("Insurance quote id %s is not the same as the existing", id)));
-        }
-        var productId = quote.getProductId();
+    private Mono<Product> findActiveProduct(Integer productId) {
         return this.searchProductPort.findById(productId)
-                .switchIfEmpty(Mono.error(new ProductNotFoundException(String.format("Product %s does not exist", productId))))
-                .flatMap(product -> updateWithProduct(existingQuote, product));
+                                     .switchIfEmpty(Mono.error(new ProductNotFoundException(String.format("Product %s does not exist", productId))))
+                                     .flatMap(product -> {
+                                        if (!product.isActive()) {
+                                            return Mono.error(new ProductNotFoundException(String.format("Product %s is not active", product.getId())));
+                                        }
+                                        return Mono.just(product);
+                                     });
     }
 
-    private Mono<InsuranceQuote> updateWithProduct(InsuranceQuote existingQuote, Product product) {
-        if (!product.isActive()) {
-            return Mono.error(new ProductNotFoundException(String.format("Product %s is not active", product)));
-        }
-        existingQuote.setTotalMonthlyPremiumAmount(product.getSuggestedTotalMonthlyPremiumAmount());
-        existingQuote.setTotalCoverageAmount(product.getTotalCoverageAmount());
-        product.getCoverages().forEach(existingQuote::addCoverage);
-        product.getAssistances().forEach(existingQuote::addAssistance);
-        return this.saveInsuranceQuotePort.save(existingQuote);
+
+    private Mono<InsuranceQuote> update(InsuranceQuote quote) {
+        quote.setUpdatedAt(LocalDateTime.now());
+        return this.saveInsuranceQuotePort.save(quote);
+    }
+
+    private Mono<InsuranceQuote> updateWithProduct(InsuranceQuote quote, Product product) {
+        quote.setTotalMonthlyPremiumAmount(product.getSuggestedTotalMonthlyPremiumAmount());
+        quote.setTotalCoverageAmount(product.getTotalCoverageAmount());
+        var coverageIds = new ArrayList<>(quote.getCoverages().keySet());
+        coverageIds.forEach(quote::removeCoverage);
+        quote.getAssistances().forEach(quote::removeAssistance);
+
+        product.getCoverages().forEach(quote::addCoverage);
+        product.getAssistances().forEach(quote::addAssistance);
+        quote.setUpdatedAt(LocalDateTime.now());
+        return this.saveInsuranceQuotePort.save(quote);
     }
 
 }

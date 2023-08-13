@@ -58,29 +58,5 @@ public class SearchInsuranceQuoteDto {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime finishedAt;
 
-    public Integer addCoverage(String coverage, BigDecimal amount) {
-        this.coverages.put(coverage, amount);
-        this.totalCoverageAmount = this.totalCoverageAmount.add(amount);
-        return this.coverages.size();
-    }
-
-    public Integer removeCoverage(String coverage) {
-        if (this.coverages.containsKey(coverage)) {
-            var coverageAmount = this.coverages.get(coverage);
-            this.coverages.remove(coverage);
-            this.totalCoverageAmount = this.totalCoverageAmount.subtract(coverageAmount);
-        }
-        return this.coverages.size();
-    }
-
-    public Integer addAssistance(String assistance) {
-        this.assistances.add(assistance);
-        return this.assistances.size();
-    }
-
-    public Integer removeAssistance(String assistance) {
-        this.assistances.remove(assistance);
-        return this.assistances.size();
-    }
 
 }

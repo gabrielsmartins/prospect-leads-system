@@ -7,6 +7,8 @@ import java.util.UUID;
 
 public interface UpdateInsuranceQuoteUseCase {
 
-    Mono<InsuranceQuote> update(UUID id, InsuranceQuote quote);
+    Mono<InsuranceQuote> update(UUID id, Integer productId);
+
+    Mono<InsuranceQuote> update(UUID id, InsuranceQuote insuranceQuote);
 
 }

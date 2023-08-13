@@ -23,4 +23,19 @@ public class CustomerWebMapper {
                 .build();
     }
 
+    public static CustomerDto mapToDto(Customer customer) {
+        if (customer == null) {
+            return null;
+        }
+        return CustomerDto.builder()
+                          .withDocumentNumber(customer.getDocumentNumber())
+                          .withType(customer.getType())
+                          .withGender(customer.getGender())
+                          .withName(customer.getName())
+                          .withDateOfBirth(customer.getDateOfBirth())
+                          .withEmail(customer.getEmail())
+                          .withPhoneNumber(customer.getPhoneNumber())
+                          .build();
+    }
+
 }

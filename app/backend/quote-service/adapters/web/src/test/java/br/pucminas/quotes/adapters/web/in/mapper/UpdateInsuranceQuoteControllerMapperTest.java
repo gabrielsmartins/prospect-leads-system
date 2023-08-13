@@ -23,7 +23,11 @@ class UpdateInsuranceQuoteControllerMapperTest {
         assertThat(quoteDto.getType().getCode()).isEqualTo(quote.getType().getCode());
         assertThat(quoteDto.getCustomer()).isNotNull();
         assertThat(quoteDto.getProductId()).isEqualTo(quote.getProductId());
-        assertThat(quoteDto.isFinished()).isEqualTo(quote.isFinished());
+        assertThat(quoteDto.getTotalMonthlyPremiumAmount()).isEqualTo(quote.getTotalMonthlyPremiumAmount());
+        assertThat(quoteDto.getTotalCoverageAmount()).isEqualTo(quote.getTotalCoverageAmount());
+        assertThat(quoteDto.getCreatedAt()).isEqualTo(quote.getCreatedAt());
+        assertThat(quoteDto.getAssistances()).isEqualTo(quote.getAssistances());
+        assertThat(quoteDto.getCoverages()).isEqualTo(quote.getCoverages());
         assertThat(quoteDto.getCreatedAt()).isEqualTo(quote.getCreatedAt());
         assertThat(quoteDto.getUpdatedAt()).isEqualTo(quote.getUpdatedAt());
         assertThat(quoteDto.getFinishedAt()).isEqualTo(quote.getFinishedAt());
@@ -38,12 +42,19 @@ class UpdateInsuranceQuoteControllerMapperTest {
         var quote = UpdateInsuranceQuoteControllerMapper.mapToDomain(quoteDto);
 
         assertThat(quote).isNotNull();
-        assertThat(quote).hasNoNullFieldsOrPropertiesExcept("totalYearlyPremiumAmount", "totalMonthlyPremiumAmount", "totalCoverageAmount", "createdAt", "updatedAt", "finishedAt");
+        assertThat(quote).hasNoNullFieldsOrProperties();
         assertThat(quote.getId()).isEqualTo(quoteDto.getId());
         assertThat(quote.getType().getCode()).isEqualTo(quoteDto.getType().getCode());
         assertThat(quote.getCustomer()).isNotNull();
         assertThat(quote.getProductId()).isEqualTo(quoteDto.getProductId());
-        assertThat(quote.isFinished()).isEqualTo(quoteDto.isFinished());
+        assertThat(quote.getTotalMonthlyPremiumAmount()).isEqualTo(quoteDto.getTotalMonthlyPremiumAmount());
+        assertThat(quote.getTotalCoverageAmount()).isEqualTo(quoteDto.getTotalCoverageAmount());
+        assertThat(quote.getCreatedAt()).isEqualTo(quoteDto.getCreatedAt());
+        assertThat(quote.getAssistances()).isEqualTo(quoteDto.getAssistances());
+        assertThat(quote.getCoverages()).isEqualTo(quoteDto.getCoverages());
+        assertThat(quote.getCreatedAt()).isEqualTo(quoteDto.getCreatedAt());
+        assertThat(quote.getUpdatedAt()).isEqualTo(quoteDto.getUpdatedAt());
+        assertThat(quote.getFinishedAt()).isEqualTo(quoteDto.getFinishedAt());
     }
 
 }

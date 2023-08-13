@@ -18,7 +18,7 @@ class UpdateInsuranceQuoteWebAdapterMapperTest {
         var quoteDto = UpdateInsuranceQuoteWebAdapterMapper.mapToDto(insuranceQuote);
 
         assertThat(quoteDto).isNotNull();
-        assertThat(quoteDto).hasNoNullFieldsOrPropertiesExcept("id", "createdAt", "updatedAt", "finishedAt");
+        assertThat(quoteDto).hasNoNullFieldsOrPropertiesExcept("id", "createdAt", "updatedAt", "finishedAt", "totalMonthlyPremiumAmount", "totalCoverageAmount");
         assertThat(quoteDto.getId()).isEqualTo(insuranceQuote.getId());
         assertThat(quoteDto.getType()).isEqualTo(insuranceQuote.getType());
         assertThat(quoteDto.isFinished()).isEqualTo(insuranceQuote.isFinished());

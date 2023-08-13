@@ -1,6 +1,5 @@
 package br.pucminas.leads.adapters.web.out.quotes;
 
-
 import br.pucminas.leads.adapters.web.config.web.ObjectMapperConfiguration;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,33 +18,32 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import wiremock.org.apache.hc.core5.http.HttpStatus;
 
-import static br.pucminas.leads.adapters.web.support.InsuranceQuoteDtoSupport.defaultSearchInsuranceQuoteDto;
+import static br.pucminas.leads.adapters.web.support.InsuranceQuoteDtoSupport.defaultUpdateInsuranceQuoteDto;
 import static br.pucminas.leads.application.support.InsuranceQuoteSupport.defaultInsuranceQuote;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @AutoConfigureWireMock(port = 5000)
 @Import({
-        SearchInsuranceQuoteWebAdapter.class,
+        UpdateInsuranceQuoteWebAdapter.class,
         ObjectMapperConfiguration.class
 })
 @ActiveProfiles("test")
 @ContextConfiguration(initializers = ConfigDataApplicationContextInitializer.class)
-class SearchInsuranceQuoteWebAdapterTest {
+class UpdateInsuranceQuoteWebAdapterTest {
 
-    private final SearchInsuranceQuoteWebAdapter adapter;
+    private final UpdateInsuranceQuoteWebAdapter adapter;
     private final ObjectMapper objectMapper;
 
     @Test
-    @DisplayName("Given Insurance Quote When Exists Then Return Insurance Quote")
-    public void givenInsuranceQuoteWhenExistsThenReturnInsuranceQuote() throws JsonProcessingException {
+    @DisplayName("Given Insurance Quote When Update Then Return Updated Insurance Quote")
+    public void givenInsuranceQuoteWhenUpdateThenReturnUpdatedInsuranceQuote() throws JsonProcessingException {
 
-        var quoteDto = defaultSearchInsuranceQuoteDto().build();
+        var quoteDto = defaultUpdateInsuranceQuoteDto().build();
         var body = this.objectMapper.writeValueAsString(quoteDto);
 
-        stubFor(get(urlPathMatching("/insurance_quotes/v1/.*"))
+        stubFor(put(urlPathMatching("/insurance_quotes/v1/.*"))
                 .willReturn(aResponse()
                         .withBody(body)
                         .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -53,22 +51,6 @@ class SearchInsuranceQuoteWebAdapterTest {
 
         var quote = defaultInsuranceQuote().build();
 
-        var optionalInsuranceQuote = this.adapter.findById(quote.getId());
-        assertThat(optionalInsuranceQuote).isPresent();
-    }
-
-    @Test
-    @DisplayName("Given Insurance Quote When Not Exists Then Return Empty")
-    public void givenInsuranceQuoteWhenNotExistsThenReturnEmpty() throws JsonProcessingException {
-
-        stubFor(get(urlPathMatching("/insurance_quotes/v1/.*"))
-                .willReturn(aResponse()
-                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                        .withStatus(HttpStatus.SC_NOT_FOUND)));
-
-        var quote = defaultInsuranceQuote().build();
-
-        var optionalInsuranceQuote = this.adapter.findById(quote.getId());
-        assertThat(optionalInsuranceQuote).isEmpty();
+        this.adapter.update(quote.getId(), quote);
     }
 }

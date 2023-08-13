@@ -35,8 +35,8 @@ class UpdateInsuranceQuoteServiceTest {
     }
 
     @Test
-    @DisplayName("Given Id When Product Exists And Insurance Quote Exists Then Return Updated Quote")
-    public void givenIdWhenProductExistsAndInsuranceQuoteExistsThenReturnUpdatedQuote() {
+    @DisplayName("Given Id And Product Id When Product Exists And Insurance Quote Exists Then Return Updated Quote")
+    public void givenIdAndProductIdWhenProductExistsAndInsuranceQuoteExistsThenReturnUpdatedQuote() {
         var id = UUID.randomUUID();
         var existingQuote = defaultInsuranceQuote()
                             .withId(id)
@@ -45,43 +45,54 @@ class UpdateInsuranceQuoteServiceTest {
         var product = defaultProduct().withActive(true).build();
         when(this.searchProductPort.findById(anyInt())).thenReturn(Mono.just(product));
         when(this.searchInsuranceQuotePort.findById(id)).thenReturn(Mono.just(existingQuote));
-
-        var quote= defaultInsuranceQuote()
-                        .withId(id)
-                        .build();
-
         when(this.saveInsuranceQuotePort.save(any(InsuranceQuote.class))).thenAnswer(invocation -> Mono.just(invocation.getArgument(0)));
 
-        this.service.update(id, quote)
+        var productId = 1;
+        this.service.update(id, productId)
                     .as(StepVerifier::create)
                     .expectNextCount(1)
                     .verifyComplete();
 
-        verify(this.saveInsuranceQuotePort, times(1)).save(any(InsuranceQuote.class));
-        assertThat(quote.getUpdatedAt()).isNotNull();
-        assertThat(quote.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getSuggestedTotalMonthlyPremiumAmount());
-        assertThat(quote.getTotalCoverageAmount()).isEqualByComparingTo(product.getTotalCoverageAmount());
-        assertThat(quote.getCoverages()).isEqualTo(product.getCoverages());
-        assertThat(quote.getAssistances()).isEqualTo(product.getAssistances());
+        verify(this.saveInsuranceQuotePort, times(1)).save(existingQuote);
+        assertThat(existingQuote.getUpdatedAt()).isNotNull();
+        assertThat(existingQuote.getTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getSuggestedTotalMonthlyPremiumAmount());
+        assertThat(existingQuote.getTotalCoverageAmount()).isEqualByComparingTo(product.getTotalCoverageAmount());
+        assertThat(existingQuote.getCoverages()).isEqualTo(product.getCoverages());
+        assertThat(existingQuote.getAssistances()).isEqualTo(product.getAssistances());
     }
 
     @Test
-    @DisplayName("Given Id When Insurance Quote Exists And Is Invalid Then Throw Exception")
-    public void givenIdWhenInsuranceQuoteExistsAndIsInvalidThenThrowException() {
+    @DisplayName("Given Id And Insurance Quote When Product Exists And Insurance Quote Exists Then Return Updated Quote")
+    public void givenIdAndInsuranceQuoteWhenProductExistsAndInsuranceQuoteExistsThenReturnUpdatedQuote() {
         var id = UUID.randomUUID();
-        var existingQuote = defaultInsuranceQuote()
-                .withId(id)
-                .build();
+        var existingQuote = defaultInsuranceQuote().withId(id)
+                                                   .build();
 
+        var product = defaultProduct().withActive(true).build();
+        when(this.searchProductPort.findById(anyInt())).thenReturn(Mono.just(product));
         when(this.searchInsuranceQuotePort.findById(id)).thenReturn(Mono.just(existingQuote));
-
-        var quote= defaultInsuranceQuote()
-                    .withId(UUID.randomUUID())
-                    .build();
-
         when(this.saveInsuranceQuotePort.save(any(InsuranceQuote.class))).thenAnswer(invocation -> Mono.just(invocation.getArgument(0)));
 
-        this.service.update(id, quote)
+        var insuranceQuote = defaultInsuranceQuote().build();
+        this.service.update(id, insuranceQuote)
+                    .as(StepVerifier::create)
+                    .expectNextCount(1)
+                    .verifyComplete();
+
+        verify(this.saveInsuranceQuotePort, times(1)).save(insuranceQuote);
+        assertThat(existingQuote.getUpdatedAt()).isNotNull();
+    }
+
+    @Test
+    @DisplayName("Given Id And Product Id When Insurance Quote Not Exists Then Throw Exception")
+    public void givenIdAndProductIdWhenInsuranceQuoteNotExistsThenThrowException() {
+        var id = UUID.randomUUID();
+
+        when(this.searchInsuranceQuotePort.findById(id)).thenReturn(Mono.empty());
+        when(this.saveInsuranceQuotePort.save(any(InsuranceQuote.class))).thenAnswer(invocation -> Mono.just(invocation.getArgument(0)));
+
+        var productId = 1;
+        this.service.update(id, productId)
                     .as(StepVerifier::create)
                     .expectError(InsuranceQuoteNotFoundException.class)
                     .verify();
@@ -90,44 +101,19 @@ class UpdateInsuranceQuoteServiceTest {
     }
 
     @Test
-    @DisplayName("Given Id When Insurance Quote Not Exists Then Throw Exception")
-    public void givenIdWhenInsuranceQuoteNotExistsThenThrowException() {
-        var id = UUID.randomUUID();
-
-        when(this.searchInsuranceQuotePort.findById(id)).thenReturn(Mono.empty());
-
-        var quote= defaultInsuranceQuote()
-                .withId(UUID.randomUUID())
-                .build();
-
-        when(this.saveInsuranceQuotePort.save(any(InsuranceQuote.class))).thenAnswer(invocation -> Mono.just(invocation.getArgument(0)));
-
-        this.service.update(id, quote)
-                .as(StepVerifier::create)
-                .expectError(InsuranceQuoteNotFoundException.class)
-                .verify();
-
-        verify(this.saveInsuranceQuotePort, never()).save(any(InsuranceQuote.class));
-    }
-
-    @Test
-    @DisplayName("Given Id When Product Not Exists And Insurance Quote Exists Then Return Updated Quote")
-    public void givenIdWhenProductNotExistsAndInsuranceQuoteExistsThenReturnUpdatedQuote() {
+    @DisplayName("Given Id And Product Id When Product Not Exists And Insurance Quote Exists Then Throw Exception")
+    public void givenIdAndProductIdWhenProductNotExistsAndInsuranceQuoteExistsThenThrowException() {
         var id = UUID.randomUUID();
         var existingQuote = defaultInsuranceQuote()
-                .withId(id)
-                .build();
+                                .withId(id)
+                                .build();
 
         when(this.searchProductPort.findById(anyInt())).thenReturn(Mono.empty());
         when(this.searchInsuranceQuotePort.findById(id)).thenReturn(Mono.just(existingQuote));
-
-        var quote= defaultInsuranceQuote()
-                .withId(id)
-                .build();
-
         when(this.saveInsuranceQuotePort.save(any(InsuranceQuote.class))).thenAnswer(invocation -> Mono.just(invocation.getArgument(0)));
 
-        this.service.update(id, quote)
+        var productId = 1;
+        this.service.update(id, productId)
                     .as(StepVerifier::create)
                     .expectError(ProductNotFoundException.class)
                     .verify();
@@ -136,27 +122,28 @@ class UpdateInsuranceQuoteServiceTest {
     }
 
     @Test
-    @DisplayName("Given Id When Product Exists And Is Not Active And Insurance Quote Exists Then Return Updated Quote")
-    public void givenIdWhenProductExistsAndIsNotActiveAndInsuranceQuoteExistsThenReturnUpdatedQuote() {
+    @DisplayName("Given Id And Product Id When Product Exists And Is Not Active And Insurance Quote Exists Then Throw Exception")
+    public void givenIdAndProductIdWhenProductExistsAndIsNotActiveAndInsuranceQuoteExistsThenThrowException() {
         var id = UUID.randomUUID();
         var existingQuote = defaultInsuranceQuote()
-                .withId(id)
-                .build();
+                                .withId(id)
+                                .build();
 
         var product = defaultProduct().withActive(false).build();
         when(this.searchProductPort.findById(anyInt())).thenReturn(Mono.just(product));
         when(this.searchInsuranceQuotePort.findById(id)).thenReturn(Mono.just(existingQuote));
 
         var quote= defaultInsuranceQuote()
-                .withId(id)
-                .build();
+                    .withId(id)
+                    .build();
 
         when(this.saveInsuranceQuotePort.save(any(InsuranceQuote.class))).thenAnswer(invocation -> Mono.just(invocation.getArgument(0)));
 
-        this.service.update(id, quote)
-                .as(StepVerifier::create)
-                .expectError(ProductNotFoundException.class)
-                .verify();
+        var productId = 1;
+        this.service.update(id, productId)
+                    .as(StepVerifier::create)
+                    .expectError(ProductNotFoundException.class)
+                    .verify();
 
         verify(this.saveInsuranceQuotePort, never()).save(any(InsuranceQuote.class));
     }
