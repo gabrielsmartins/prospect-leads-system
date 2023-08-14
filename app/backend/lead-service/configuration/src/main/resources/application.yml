@@ -21,6 +21,8 @@ spring:
     opentracing:
       enabled: true
   kafka:
+    admin:
+      auto-create: true
     bootstrap-servers: localhost:9092
     properties:
       request.timeout.ms: 20000
@@ -36,6 +38,7 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
       schema.registry.url: ${spring.kafka.properties.schema.registry.url}
+      auto.register.schemas: true
       properties:
         specific.avro.reader: true
     producer:

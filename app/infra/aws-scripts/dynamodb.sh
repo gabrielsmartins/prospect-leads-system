@@ -15,7 +15,7 @@ aws dynamodb \
     --attribute-definitions \
         AttributeName=Id,AttributeType=S \
     --key-schema \
-        AttributeName=id,KeyType=HASH \
+        AttributeName=Id,KeyType=HASH \
     --billing-mode PAY_PER_REQUEST \
     --endpoint http://localhost:4566 \
     --region sa-east-1 \
