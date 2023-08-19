@@ -22,4 +22,7 @@ public class LeadDto {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime createdAt;
 
+    @JsonProperty("delivery_time")
+    private Long deliveryTime;
+
 }

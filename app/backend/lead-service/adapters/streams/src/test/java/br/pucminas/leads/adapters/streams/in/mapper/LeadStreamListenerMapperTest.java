@@ -18,6 +18,7 @@ class LeadStreamListenerMapperTest {
         assertThat(lead).hasNoNullFieldsOrPropertiesExcept("processedAt");
         assertThat(lead.getInsuranceQuoteId()).isEqualTo(leadDto.getInsuranceQuoteId());
         assertThat(lead.getCreatedAt()).isEqualTo(leadDto.getCreatedAt());
+        assertThat(lead.getDeliveryTime()).isEqualTo(leadDto.getDeliveryTime());
     }
 
 }

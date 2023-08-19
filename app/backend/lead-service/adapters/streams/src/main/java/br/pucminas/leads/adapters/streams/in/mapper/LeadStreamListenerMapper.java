@@ -15,6 +15,7 @@ public class LeadStreamListenerMapper {
         return Lead.builder()
                    .withInsuranceQuoteId(leadDto.getInsuranceQuoteId())
                    .withCreatedAt(leadDto.getCreatedAt())
+                   .withDeliveryTime(leadDto.getDeliveryTime())
                    .build();
     }
 

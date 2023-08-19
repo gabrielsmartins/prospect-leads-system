@@ -12,4 +12,5 @@ spring:
 
 redis:
   streams:
-    key: leads
+    key: event:leads
+    deliveryTime: 3000

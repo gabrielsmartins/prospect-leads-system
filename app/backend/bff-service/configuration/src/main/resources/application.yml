@@ -20,7 +20,8 @@ spring:
 
 redis:
   streams:
-    key: leads
+    key: event:leads
+    deliveryTime: 180000
 
 management:
   endpoint:

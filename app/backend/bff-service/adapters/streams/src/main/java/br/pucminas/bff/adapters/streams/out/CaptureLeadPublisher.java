@@ -29,8 +29,9 @@ public class CaptureLeadPublisher implements CaptureLeadPort {
 
     @Override
     public Mono<Void> capture(UUID insuranceQuoteId) {
-        var leadDto = new LeadDto(insuranceQuoteId, LocalDateTime.now());
         var streamKey = this.properties.getKey();
+        var deliveryTime = System.currentTimeMillis() + this.properties.getDeliveryTime();
+        var leadDto = new LeadDto(insuranceQuoteId, LocalDateTime.now(), deliveryTime);
         log.info(append("lead", leadDto).and(append("stream_key", streamKey)), "Sending lead");
         var record = StreamRecords.newRecord()
                                   .ofObject(leadDto)

@@ -52,7 +52,7 @@ spring:
 
 redis:
   streams:
-    key: leads
+    key: event:leads
     group: ${spring.application.name}
 
 topic:

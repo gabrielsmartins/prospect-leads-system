@@ -9,9 +9,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
+import org.springframework.data.redis.connection.stream.StreamRecords;
+import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.data.redis.stream.StreamListener;
+
+import java.util.List;
 
 import static net.logstash.logback.marker.Markers.append;
 
@@ -29,20 +35,53 @@ public class LeadStreamListener implements StreamListener<String, ObjectRecord<S
     public void onMessage(ObjectRecord<String, LeadDto> message) {
         var streamKey = this.redisStreamProperties.getKey();
         try {
-            log.info(append("payload", message), "Receiving lead from: {}", streamKey);
+            var leadDto = message.getValue();
 
+            long currentTime = System.currentTimeMillis();
+            long deliveryTime = leadDto.getDeliveryTime();
+
+            if (currentTime < deliveryTime) {
+                reDrive(message);
+                return;
+            }
+
+            log.info(append("payload", message), "Receiving lead from: {}", streamKey);
             log.info(append("payload", message), "Mapping lead");
-            var lead = LeadStreamListenerMapper.mapToDomain(message.getValue());
+            var lead = LeadStreamListenerMapper.mapToDomain(leadDto);
             log.info(append("payload", lead), "Lead was mapped successfully");
 
             log.info(append("payload", lead), "Processing lead");
             this.useCase.process(lead);
             log.info(append("payload", message), "Lead was processed successfully");
+            acknowledgeAndDelete(message, streamKey);
         } catch (Exception e) {
             log.error(append("payload", message), "Error processing lead", e);
-        } finally {
-            redisTemplate.opsForStream().acknowledge(streamKey, message);
+            acknowledgeAndDelete(message, streamKey);
         }
+    }
+
+    private void acknowledgeAndDelete(ObjectRecord<String, LeadDto> message, String streamKey) {
+        this.redisTemplate.opsForStream().acknowledge(streamKey, message);
+        this.redisTemplate.opsForStream().delete(message);
+    }
+
+    private void reDrive(ObjectRecord<String, LeadDto> message) {
+        var streamKey = message.getStream();
+        this.redisTemplate.execute(new SessionCallback<List<Object>>() {
+            @Override
+            public List<Object> execute(RedisOperations operations) throws DataAccessException {
+                operations.multi();
+                operations.opsForStream().acknowledge(streamKey, message);
+                operations.opsForStream().delete(message);
+                var record = StreamRecords.newRecord()
+                                          .ofObject(message.getValue())
+                                          .withStreamKey(streamKey);
+                operations.opsForStream()
+                          .add(record);
+                return operations.exec();
+            }
+        });
+
     }
 
 }
