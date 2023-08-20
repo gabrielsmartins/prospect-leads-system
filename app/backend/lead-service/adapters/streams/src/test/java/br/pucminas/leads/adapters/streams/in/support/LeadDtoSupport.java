@@ -14,6 +14,6 @@ public class LeadDtoSupport {
         return LeadDto.builder()
                       .withInsuranceQuoteId(UUID.randomUUID())
                       .withCreatedAt(LocalDateTime.now())
-                      .withDeliveryTime(System.currentTimeMillis() + 3000L);
+                      .withDeliveryTime(System.currentTimeMillis());
     }
 }

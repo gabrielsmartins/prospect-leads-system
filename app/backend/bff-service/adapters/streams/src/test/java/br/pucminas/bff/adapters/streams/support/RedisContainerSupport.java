@@ -12,7 +12,7 @@ public class RedisContainerSupport {
     private static final RedisContainer REDIS_CONTAINER;
 
     static {
-        REDIS_CONTAINER = new RedisContainer(DockerImageName.parse("redis:5.0.3-alpine")).withExposedPorts(6379);
+        REDIS_CONTAINER = new RedisContainer(DockerImageName.parse("redis:7.2.0-alpine")).withExposedPorts(6379);
         REDIS_CONTAINER.start();
     }
 
