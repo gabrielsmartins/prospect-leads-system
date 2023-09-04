@@ -1,8 +1,39 @@
+import com.github.davidmc24.gradle.plugin.avro.GenerateAvroJavaTask
+
+apply plugin: 'com.github.davidmc24.gradle.plugin.avro-base'
+
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.kafka:spring-kafka'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+    implementation "io.confluent:kafka-avro-serializer:${confluentVersion}"
+    implementation "org.apache.avro:avro:${avroVersion}"
 
     implementation project(':common')
     implementation project(':application')
 
     testImplementation project(':application').sourceSets.test.output
+}
+
+avro {
+    enableDecimalLogicalType = true
+    outputCharacterEncoding = "UTF-8"
+}
+
+def generateAvro = tasks.register("generateAvro", GenerateAvroJavaTask) {
+    source("src/main/avro")
+    outputDir = file("$buildDir/generated-sources/avro")
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir file("$buildDir/generated-sources/avro")
+        }
+    }
+}
+
+tasks.named("compileJava").configure {
+    source(generateAvro)
 }

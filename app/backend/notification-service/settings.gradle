@@ -2,11 +2,16 @@ rootProject.name = 'notification-service'
 
 include ':common'
 include ':application'
+include ':adapters:email'
+include ':adapters:whatsapp'
 include ':adapters:messaging'
 include ':configuration'
 
 findProject(':common')?.name = 'common'
 findProject(':application')?.name = 'application'
+findProject(':adapters:email')?.name = 'email'
+findProject(':adapters:whatsapp')?.name = 'whatsapp'
 findProject(':adapters:messaging')?.name = 'messaging'
 findProject(':configuration')?.name = 'configuration'
+
 

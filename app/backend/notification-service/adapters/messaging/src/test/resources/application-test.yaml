@@ -1,26 +1,33 @@
 spring:
-  application:
-    name: lead-service
-  main:
-    allow-bean-definition-overriding: true
-  #redis:
-  #  username:
-  #  password:
-  #  port: 6379
-  #  host: localhost
-  #  ssl: false
-  #  jedis:
-  #    pool:
-  #      enabled: true
+  kafka:
+    bootstrap-servers: ${spring.embedded.kafka.brokers}
+    properties:
+      request.timeout.ms: 20000
+      retry.backoff.ms: 500
+      value.subject.name.strategy: io.confluent.kafka.serializers.subject.TopicRecordNameStrategy
+      schema.registry.url: mock://http://localhost:8081
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
+    consumer:
+      group-id: ${spring.application.name}
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      schema.registry.url: ${spring.kafka.properties.schema.registry.url}
+      properties:
+        specific.avro.reader: true
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      schema.registry.url: ${spring.kafka.properties.schema.registry.url}
+      acks: all
+      auto.register.schemas: true
+      properties:
+        enable.idempotence: true
 
-
-redis:
-  streams:
-    key: leads
-    group: ${spring.application.name}
-
-eureka:
-  client:
-    enabled: false
-    register-with-eureka: false
-
+topic:
+  input:
+    lead-processed: lead-processed
+  output:
+    notification-emitted: notification-emitted

@@ -1,7 +1,7 @@
 package br.pucminas.leads.adapters.messaging.out;
 
 import br.pucminas.leads.adapters.messaging.config.TopicProperties;
-import br.pucminas.leads.adapters.messaging.out.mapper.LeadStreamAdapterMapper;
+import br.pucminas.leads.adapters.messaging.out.mapper.LeadProducerMapper;
 import br.pucminas.leads.application.domain.Lead;
 import br.pucminas.leads.application.ports.out.SendLeadPort;
 import br.pucminas.leads.common.stereotype.MessagingAdapter;
@@ -27,7 +27,7 @@ public class SendLeadProducer implements SendLeadPort {
     @Override
     public void send(Lead lead) {
         log.info(append("lead", lead), "Mapping lead");
-        var leadProcessed = LeadStreamAdapterMapper.mapToMessage(lead);
+        var leadProcessed = LeadProducerMapper.mapToMessage(lead);
         log.info(append("lead", leadProcessed), "Lead was mapped successfully");
         var topic = this.topicProperties.getOutputTopic(TopicProperties.LEAD_PROCESSED);
         var message = MessageBuilder.withPayload(leadProcessed)

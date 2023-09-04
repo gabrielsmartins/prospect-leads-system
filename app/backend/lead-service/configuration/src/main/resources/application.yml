@@ -61,6 +61,13 @@ topic:
   output:
     lead-processed: lead-processed
 
+org:
+  jobrunr:
+    background-job-server:
+      enabled: true
+    dashboard:
+      enabled: true
+
 management:
   endpoint:
     metrics:

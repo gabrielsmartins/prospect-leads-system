@@ -1,5 +1,6 @@
 package br.pucminas.leads.application.support;
 
+import br.pucminas.leads.application.domain.InsuranceQuote;
 import br.pucminas.leads.application.domain.Lead;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -11,8 +12,10 @@ import java.util.UUID;
 public class LeadSupport {
 
     public static Lead.LeadBuilder defaultLead() {
+        var insuranceQuote = new InsuranceQuote();
+        insuranceQuote.setId(UUID.randomUUID());
         return Lead.builder()
-                   .withInsuranceQuoteId(UUID.randomUUID())
+                   .withInsuranceQuote(insuranceQuote)
                    .withSent(false)
                    .withCreatedAt(LocalDateTime.now())
                    .withProcessedAt(LocalDateTime.now());

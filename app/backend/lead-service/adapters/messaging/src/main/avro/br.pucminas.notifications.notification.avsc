@@ -4,24 +4,233 @@
   "namespace":"br.pucminas.notifications.schemas.lead_processed",
   "fields":[
     {
-      "name":"insurance_quote_id",
+      "name": "insurance_quote",
       "type": {
-        "type": "string",
-        "logicalType": "uuid"
+        "type": "record",
+        "name": "InsuranceQuote",
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "type": "string",
+              "logicalType": "uuid"
+            }
+          },
+          {
+            "name": "insurance_quote_type",
+            "type": {
+              "type": "enum",
+              "name": "InsuranceQuoteType",
+              "symbols": [
+                "LIFE",
+                "PET",
+                "ENTERPRISE",
+                "TRAVEL"
+              ]
+            }
+          },
+          {
+            "name": "total_monthly_premium_amount",
+            "type": {
+              "type": "bytes",
+              "logicalType": "decimal",
+              "precision": 9,
+              "scale": 2
+            }
+          },
+          {
+            "name": "total_coverage_amount",
+            "type": {
+              "type": "bytes",
+              "logicalType": "decimal",
+              "precision": 9,
+              "scale": 2
+            }
+          },
+          {
+            "name": "coverages",
+            "type": {
+              "type": "map",
+              "values": {
+                "type": "bytes",
+                "logicalType": "decimal",
+                "precision": 9,
+                "scale": 2
+              }
+            }
+          },
+          {
+            "name": "assistances",
+            "type": {
+              "type": "array",
+              "items": "string"
+            }
+          },
+          {
+            "name": "finished",
+            "type": "boolean"
+          },
+          {
+            "name": "created_at",
+            "type": {
+              "type": "long",
+              "logicalType": "local-timestamp-millis"
+            }
+          },
+          {
+            "name": "updated_at",
+            "type": {
+              "type": "long",
+              "logicalType": "local-timestamp-millis"
+            }
+          },
+          {
+            "name": "finished_at",
+            "type": {
+              "type": "long",
+              "logicalType": "local-timestamp-millis"
+            }
+          },
+          {
+            "name": "customer",
+            "type": {
+              "type": "record",
+              "name": "Customer",
+              "fields": [
+                {
+                  "name": "document_number",
+                  "type": "string"
+                },
+                {
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "name": "customer_type",
+                  "type": {
+                    "type": "enum",
+                    "name": "CustomerType",
+                    "symbols": [
+                      "LEGAL",
+                      "NATURAL"
+                    ]
+                  }
+                },
+                {
+                  "name": "date_of_birth",
+                  "type": {
+                    "type": "int",
+                    "logicalType": "date"
+                  }
+                },
+                {
+                  "name": "email",
+                  "type": "string"
+                },
+                {
+                  "name": "phone_number",
+                  "type": "int"
+                }
+              ]
+            }
+          }
+        ]
       }
     },
     {
-      "name":"created_at",
+      "name": "product",
       "type": {
-        "type": "long",
-        "logicalType": "local-timestamp-millis"
-      }
-    },
-    {
-      "name":"processed_at",
-      "type": {
-        "type": "long",
-        "logicalType": "local-timestamp-millis"
+        "type": "record",
+        "name": "Product",
+        "fields": [
+          {
+            "name":"product_id",
+            "type": "int"
+          },
+          {
+            "name":"name",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": {
+              "type": "enum",
+              "name": "Category",
+              "symbols": ["LIFE", "PET", "ENTERPRISE", "TRAVEL"]
+            }
+          },
+          {
+            "name":"active",
+            "type": "boolean"
+          },
+          { "name": "max_total_monthly_premium_amount",
+            "type": {
+              "type": "bytes",
+              "logicalType": "decimal",
+              "precision": 9,
+              "scale": 2
+            }
+          },
+          { "name": "min_total_monthly_premium_amount",
+            "type": {
+              "type": "bytes",
+              "logicalType": "decimal",
+              "precision": 9,
+              "scale": 2
+            }
+          },
+          { "name": "suggested_total_monthly_premium_amount",
+            "type": {
+              "type": "bytes",
+              "logicalType": "decimal",
+              "precision": 9,
+              "scale": 2
+            }
+          },
+          { "name": "total_coverage_amount",
+            "type": {
+              "type": "bytes",
+              "logicalType": "decimal",
+              "precision": 9,
+              "scale": 2
+            }
+          },
+          {
+            "name": "coverages",
+            "type": {
+              "type": "map",
+              "values": "double"
+            }
+          },
+          {
+            "name":"assistances",
+            "type": {
+              "type": "array",
+              "items": "string"
+            }
+          },
+          {
+            "name":"created_at",
+            "type": {
+              "type": "long",
+              "logicalType": "local-timestamp-millis"
+            }
+          },
+          {
+            "name":"updated_at",
+            "type": {
+              "type": "long",
+              "logicalType": "local-timestamp-millis"
+            }
+          },
+          {
+            "name":"deleted_at",
+            "type": {
+              "type": "long",
+              "logicalType": "local-timestamp-millis"
+            }
+          }
+        ]
       }
     }
   ]

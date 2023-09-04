@@ -13,10 +13,10 @@ import java.util.UUID;
 @Builder(setterPrefix = "with")
 public class Lead {
 
-    private UUID insuranceQuoteId;
+    private InsuranceQuote insuranceQuote;
+    private Product product;
     private LocalDateTime createdAt;
     private LocalDateTime processedAt;
-    private Long deliveryTime;
     private boolean sent;
 
 }

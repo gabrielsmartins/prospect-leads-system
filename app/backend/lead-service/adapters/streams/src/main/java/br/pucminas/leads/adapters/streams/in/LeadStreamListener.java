@@ -36,15 +36,6 @@ public class LeadStreamListener implements StreamListener<String, ObjectRecord<S
         var streamKey = this.redisStreamProperties.getKey();
         try {
             var leadDto = message.getValue();
-
-            long currentTime = System.currentTimeMillis();
-            long deliveryTime = leadDto.getDeliveryTime();
-
-            if (currentTime < deliveryTime) {
-                reDrive(message);
-                return;
-            }
-
             log.info(append("payload", message), "Receiving lead from: {}", streamKey);
             log.info(append("payload", message), "Mapping lead");
             var lead = LeadStreamListenerMapper.mapToDomain(leadDto);

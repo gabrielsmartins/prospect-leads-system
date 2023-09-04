@@ -10,7 +10,7 @@ import lombok.*;
 @Builder(setterPrefix = "with")
 public class Notification {
 
-    private String email;
-    private String content;
+    private Product product;
+    private InsuranceQuote insuranceQuote;
 
 }

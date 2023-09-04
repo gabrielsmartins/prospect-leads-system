@@ -2,6 +2,7 @@ rootProject.name = 'lead-service'
 
 include ':common'
 include ':application'
+include ':adapters:scheduler'
 include ':adapters:web'
 include ':adapters:persistence'
 include ':adapters:messaging'
@@ -15,4 +16,5 @@ findProject(':adapters:persistence')?.name = 'persistence'
 findProject(':adapters:messaging')?.name = 'messaging'
 findProject(':adapters:streams')?.name = 'streams'
 findProject(':configuration')?.name = 'configuration'
+findProject(':adapters:scheduler')?.name = 'scheduler'
 

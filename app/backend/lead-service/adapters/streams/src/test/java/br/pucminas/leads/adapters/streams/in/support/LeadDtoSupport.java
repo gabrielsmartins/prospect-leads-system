@@ -13,7 +13,6 @@ public class LeadDtoSupport {
     public static LeadDto.LeadDtoBuilder defaultLeadDto() {
         return LeadDto.builder()
                       .withInsuranceQuoteId(UUID.randomUUID())
-                      .withCreatedAt(LocalDateTime.now())
-                      .withDeliveryTime(System.currentTimeMillis());
+                      .withCreatedAt(LocalDateTime.now());
     }
 }

@@ -52,6 +52,7 @@ subprojects {
 		set('awsSdkVersion', "1.12.528")
 		set('dynamoDbLocalVersion', "1.15.0")
 		set('apacheCommonPoolVersion', "2.11.1")
+		set('jobrunrVersion', "6.3.0")
 		set('testcontainersVersion', "1.17.3")
 		set('testcontainersRedisVersion', "1.6.4")
 	}
@@ -63,6 +64,8 @@ subprojects {
 		implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
 		implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 		implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
+		implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+		implementation group: 'org.apache.commons', name: 'commons-pool2', version: apacheCommonPoolVersion
 		annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
 		compileOnly 'org.projectlombok:lombok'
