@@ -13,10 +13,10 @@ public class LeadProducerMapper {
             return null;
         }
         var insuranceQuoteMessage = InsuranceQuoteProducerMapper.mapToMessage(lead.getInsuranceQuote());
-        var productMessage = ProductProducerMapper.mapToMessage(lead.getProduct());
         return LeadProcessed.newBuilder()
                             .setInsuranceQuote(insuranceQuoteMessage)
-                            .setProduct(productMessage)
+                            .setCreatedAt(lead.getCreatedAt())
+                            .setProcessedAt(lead.getProcessedAt())
                             .build();
     }
 }

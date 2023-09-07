@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static br.pucminas.leads.adapters.persistence.support.InsuranceQuoteEntitySupport.defaultInsuranceQuoteEntity;
-import static br.pucminas.leads.adapters.persistence.support.ProductEntitySupport.defaultProductEntity;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class LeadEntitySupport {
@@ -19,7 +18,6 @@ public class LeadEntitySupport {
                    .withSent(false)
                    .withCreatedAt(LocalDateTime.now())
                    .withProcessedAt(LocalDateTime.now())
-                   .withInsuranceQuote(defaultInsuranceQuoteEntity().build())
-                   .withProduct(defaultProductEntity().build());
+                   .withInsuranceQuote(defaultInsuranceQuoteEntity().build());
     }
 }

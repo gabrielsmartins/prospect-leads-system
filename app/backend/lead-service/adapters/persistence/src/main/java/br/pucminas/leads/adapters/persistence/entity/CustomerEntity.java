@@ -1,7 +1,9 @@
 package br.pucminas.leads.adapters.persistence.entity;
 
+import br.pucminas.leads.adapters.persistence.entity.converter.LocalDateConverter;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBDocument;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTypeConverted;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -28,6 +30,7 @@ public class CustomerEntity {
     private String gender;
 
     @DynamoDBAttribute(attributeName="DateOfBirth")
+    @DynamoDBTypeConverted(converter = LocalDateConverter.class)
     private LocalDate dateOfBirth;
 
     @DynamoDBAttribute(attributeName="Email")

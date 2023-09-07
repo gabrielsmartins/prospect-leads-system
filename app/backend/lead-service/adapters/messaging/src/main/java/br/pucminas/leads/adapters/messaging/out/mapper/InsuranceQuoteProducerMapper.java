@@ -13,6 +13,7 @@ public class InsuranceQuoteProducerMapper {
             return null;
         }
         var customerMessage = CustomerMapper.mapToMessage(insuranceQuote.getCustomer());
+        var productMessage = ProductProducerMapper.mapToMessage(insuranceQuote.getProduct());
         return InsuranceQuote.newBuilder()
                              .setId(insuranceQuote.getId())
                              .setType(InsuranceQuoteType.valueOf(insuranceQuote.getType()))
@@ -25,6 +26,7 @@ public class InsuranceQuoteProducerMapper {
                              .setUpdatedAt(insuranceQuote.getUpdatedAt())
                              .setFinishedAt(insuranceQuote.getFinishedAt())
                              .setCustomer(customerMessage)
+                             .setProduct(productMessage)
                              .build();
     }
 
