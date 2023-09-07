@@ -64,7 +64,7 @@ class SendLeadProducerTest {
         var singleRecord = KafkaTestUtils.getSingleRecord(consumer, topic);
 
         assertThat(singleRecord).isNotNull();
-        assertThat(singleRecord.key()).isEqualTo(lead.getInsuranceQuoteId().toString());
+        assertThat(singleRecord.key()).isEqualTo(lead.getInsuranceQuote().getId().toString());
         assertThat(singleRecord.value()).isNotNull();
     }
 

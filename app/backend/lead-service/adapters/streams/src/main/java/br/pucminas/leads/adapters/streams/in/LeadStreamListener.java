@@ -4,6 +4,7 @@ import br.pucminas.leads.adapters.streams.config.RedisStreamProperties;
 import br.pucminas.leads.adapters.streams.in.dto.LeadDto;
 import br.pucminas.leads.adapters.streams.in.mapper.LeadStreamListenerMapper;
 import br.pucminas.leads.application.ports.in.ProcessLeadUseCase;
+import br.pucminas.leads.application.ports.in.ReceiveLeadUseCase;
 import br.pucminas.leads.common.stereotype.StreamAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +30,7 @@ public class LeadStreamListener implements StreamListener<String, ObjectRecord<S
 
     private final RedisStreamProperties redisStreamProperties;
     private final RedisTemplate<String, String> redisTemplate;
-    private final ProcessLeadUseCase useCase;
+    private final ReceiveLeadUseCase useCase;
 
     @Override
     public void onMessage(ObjectRecord<String, LeadDto> message) {
@@ -42,7 +43,7 @@ public class LeadStreamListener implements StreamListener<String, ObjectRecord<S
             log.info(append("payload", lead), "Lead was mapped successfully");
 
             log.info(append("payload", lead), "Processing lead");
-            this.useCase.process(lead);
+            this.useCase.receive(lead);
             log.info(append("payload", message), "Lead was processed successfully");
             acknowledgeAndDelete(message, streamKey);
         } catch (Exception e) {

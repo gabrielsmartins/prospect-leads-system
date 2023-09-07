@@ -17,15 +17,15 @@
             }
           },
           {
-            "name": "insurance_quote_type",
+            "name": "type",
             "type": {
               "type": "enum",
               "name": "InsuranceQuoteType",
               "symbols": [
-                "LIFE",
-                "PET",
-                "ENTERPRISE",
-                "TRAVEL"
+                "L",
+                "P",
+                "E",
+                "T"
               ]
             }
           },
@@ -106,13 +106,25 @@
                   "type": "string"
                 },
                 {
-                  "name": "customer_type",
+                  "name": "type",
                   "type": {
                     "type": "enum",
                     "name": "CustomerType",
                     "symbols": [
-                      "LEGAL",
-                      "NATURAL"
+                      "F",
+                      "J"
+                    ]
+                  }
+                },
+                {
+                  "name": "gender",
+                  "type": {
+                    "type": "enum",
+                    "name": "CustomerGender",
+                    "symbols": [
+                      "M",
+                      "F",
+                      "D"
                     ]
                   }
                 },
@@ -144,7 +156,7 @@
         "name": "Product",
         "fields": [
           {
-            "name":"product_id",
+            "name":"id",
             "type": "int"
           },
           {
@@ -199,7 +211,12 @@
             "name": "coverages",
             "type": {
               "type": "map",
-              "values": "double"
+              "values": {
+                "type": "bytes",
+                "logicalType": "decimal",
+                "precision": 9,
+                "scale": 2
+              }
             }
           },
           {

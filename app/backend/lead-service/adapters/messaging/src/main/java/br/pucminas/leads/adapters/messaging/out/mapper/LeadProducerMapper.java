@@ -12,9 +12,11 @@ public class LeadProducerMapper {
         if (lead == null) {
             return null;
         }
+        var insuranceQuoteMessage = InsuranceQuoteProducerMapper.mapToMessage(lead.getInsuranceQuote());
+        var productMessage = ProductProducerMapper.mapToMessage(lead.getProduct());
         return LeadProcessed.newBuilder()
-                            .setInsuranceQuote(InsuranceQuoteProducerMapper.mapToMessage(lead.getInsuranceQuote()))
-                            .setProduct()
+                            .setInsuranceQuote(insuranceQuoteMessage)
+                            .setProduct(productMessage)
                             .build();
     }
 }

@@ -46,7 +46,7 @@ class LeadPersistenceServiceTest {
 
         when(this.repository.findById(any(UUID.class))).thenReturn(Optional.of(leadEntity));
 
-        var optionalLeadEntity = this.service.findById(leadEntity.getInsuranceQuoteId());
+        var optionalLeadEntity = this.service.findById(leadEntity.getId());
 
         assertThat(optionalLeadEntity).isPresent();
     }

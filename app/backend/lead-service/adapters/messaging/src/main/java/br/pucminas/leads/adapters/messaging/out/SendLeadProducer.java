@@ -32,7 +32,7 @@ public class SendLeadProducer implements SendLeadPort {
         var topic = this.topicProperties.getOutputTopic(TopicProperties.LEAD_PROCESSED);
         var message = MessageBuilder.withPayload(leadProcessed)
                                     .setHeader(KafkaHeaders.TOPIC, topic)
-                                    .setHeader(KafkaHeaders.MESSAGE_KEY, lead.getInsuranceQuoteId().toString())
+                                    .setHeader(KafkaHeaders.MESSAGE_KEY, lead.getInsuranceQuote().getId().toString())
                                     .build();
         log.info(append("message", message), "Sending message");
         kafkaTemplate.send(message)

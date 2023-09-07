@@ -19,7 +19,6 @@ class LeadPersistenceMapperTest {
 
         assertThat(leadEntity).isNotNull();
         assertThat(leadEntity).hasNoNullFieldsOrProperties();
-        assertThat(leadEntity.getInsuranceQuoteId()).isEqualTo(lead.getInsuranceQuoteId());
         assertThat(leadEntity.getCreatedAt()).isEqualTo(lead.getCreatedAt());
         assertThat(leadEntity.getProcessedAt()).isEqualTo(lead.getProcessedAt());
     }
@@ -33,7 +32,6 @@ class LeadPersistenceMapperTest {
 
         assertThat(lead).isNotNull();
         assertThat(lead).hasNoNullFieldsOrProperties();
-        assertThat(lead.getInsuranceQuoteId()).isEqualTo(leadEntity.getInsuranceQuoteId());
         assertThat(lead.getCreatedAt()).isEqualTo(leadEntity.getCreatedAt());
         assertThat(lead.getProcessedAt()).isEqualTo(leadEntity.getProcessedAt());
     }

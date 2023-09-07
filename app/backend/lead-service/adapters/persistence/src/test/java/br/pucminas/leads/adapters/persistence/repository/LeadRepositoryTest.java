@@ -67,7 +67,7 @@ class LeadRepositoryTest {
         var leadEntity = defaultLeadEntity().build();
         var savedLeadEntity = this.repository.save(leadEntity);
 
-        var optionalLeadEntity = this.repository.findById(savedLeadEntity.getInsuranceQuoteId());
+        var optionalLeadEntity = this.repository.findById(savedLeadEntity.getId());
 
         assertThat(optionalLeadEntity).isPresent();
     }

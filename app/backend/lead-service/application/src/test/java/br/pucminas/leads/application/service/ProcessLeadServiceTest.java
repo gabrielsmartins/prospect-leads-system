@@ -1,12 +1,16 @@
 package br.pucminas.leads.application.service;
 
 
+import br.pucminas.leads.application.domain.InsuranceQuote;
+import br.pucminas.leads.application.domain.Lead;
 import br.pucminas.leads.application.ports.out.SaveLeadPort;
 import br.pucminas.leads.application.ports.out.SendLeadPort;
 import br.pucminas.leads.application.service.discount.CompoundDiscountApplier;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static br.pucminas.leads.application.support.LeadSupport.defaultLead;
 import static org.mockito.Mockito.*;
@@ -29,11 +33,13 @@ class ProcessLeadServiceTest {
     @Test
     @DisplayName("Given Lead When Process Then Send Lead")
     public void givenLeadWhenProcessThenSendLead() {
-        var lead = defaultLead().build();
-        this.service.process(lead);
-        verify(this.compoundDiscountApplier, times(1)).apply(lead.getInsuranceQuote());
-        verify(this.sendLeadPort, times(1)).send(lead);
-        verify(this.saveLeadPort, times(1)).save(lead);
+        var leadOne = defaultLead().build();
+        var leadTwo = defaultLead().build();
+        var leads = List.of(leadOne, leadTwo);
+        this.service.process(leads);
+        verify(this.compoundDiscountApplier, times(leads.size())).apply(any(InsuranceQuote.class));
+        verify(this.sendLeadPort, times(leads.size())).send(any(Lead.class));
+        verify(this.saveLeadPort, times(leads.size())).save(any(Lead.class));
     }
 
 }

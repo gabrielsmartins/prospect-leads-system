@@ -1,7 +1,7 @@
-package br.pucminas.leads.application.support;
+package br.pucminas.leads.adapters.persistence.support;
 
 
-import br.pucminas.leads.application.domain.InsuranceQuote;
+import br.pucminas.leads.adapters.persistence.entity.InsuranceQuoteEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
@@ -9,19 +9,19 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static br.pucminas.leads.application.support.CustomerSupport.defaultCustomer;
-import static br.pucminas.leads.application.support.ProductSupport.defaultProduct;
+import static br.pucminas.leads.adapters.persistence.support.CustomerEntitySupport.defaultCustomerEntity;
+import static br.pucminas.leads.adapters.persistence.support.ProductEntitySupport.defaultProductEntity;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class InsuranceQuoteSupport {
+public class InsuranceQuoteEntitySupport {
 
-    public static InsuranceQuote.InsuranceQuoteBuilder defaultInsuranceQuote() {
-        return InsuranceQuote.builder()
+    public static InsuranceQuoteEntity.InsuranceQuoteEntityBuilder defaultInsuranceQuoteEntity() {
+        return InsuranceQuoteEntity.builder()
                 .withId(UUID.randomUUID())
                 .withType("L")
-                .withCustomer(defaultCustomer().build())
+                .withCustomer(defaultCustomerEntity().build())
                 .withProductId(1)
-                .withProduct(defaultProduct().build())
+                .withProduct(defaultProductEntity().build())
                 .withTotalMonthlyPremiumAmount(BigDecimal.TEN)
                 .withTotalCoverageAmount(BigDecimal.TEN)
                 .withCoverages(new LinkedHashMap<>(Map.of("Acidente", BigDecimal.TEN)))

@@ -5,6 +5,7 @@ import br.pucminas.leads.adapters.streams.config.RedisStreamProperties;
 import br.pucminas.leads.adapters.streams.support.RedisContainerSupport;
 import br.pucminas.leads.application.domain.Lead;
 import br.pucminas.leads.application.ports.in.ProcessLeadUseCase;
+import br.pucminas.leads.application.ports.in.ReceiveLeadUseCase;
 import io.lettuce.core.RedisBusyException;
 import io.lettuce.core.RedisCommandExecutionException;
 import lombok.RequiredArgsConstructor;
@@ -51,7 +52,7 @@ class LeadStreamListenerTest extends RedisContainerSupport {
     private final RedisTemplate<String, String> redisTemplate;
 
     @MockBean
-    private ProcessLeadUseCase useCase;
+    private ReceiveLeadUseCase useCase;
 
     @Test
     @DisplayName("Given Message When Receive Then Process")
@@ -65,7 +66,7 @@ class LeadStreamListenerTest extends RedisContainerSupport {
                           .add(record);
 
         await().atMost(Duration.ofSeconds(5))
-               .untilAsserted(() ->  verify(this.useCase, times(1)).process(any(Lead.class)));
+               .untilAsserted(() ->  verify(this.useCase, times(1)).receive(any(Lead.class)));
     }
 
 }

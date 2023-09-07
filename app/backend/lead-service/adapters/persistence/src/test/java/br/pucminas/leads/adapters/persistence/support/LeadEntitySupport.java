@@ -7,14 +7,19 @@ import lombok.AllArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import static br.pucminas.leads.adapters.persistence.support.InsuranceQuoteEntitySupport.defaultInsuranceQuoteEntity;
+import static br.pucminas.leads.adapters.persistence.support.ProductEntitySupport.defaultProductEntity;
+
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class LeadEntitySupport {
 
     public static LeadEntity.LeadEntityBuilder defaultLeadEntity() {
         return LeadEntity.builder()
-                   .withInsuranceQuoteId(UUID.randomUUID())
+                   .withId(UUID.randomUUID())
                    .withSent(false)
                    .withCreatedAt(LocalDateTime.now())
-                   .withProcessedAt(LocalDateTime.now());
+                   .withProcessedAt(LocalDateTime.now())
+                   .withInsuranceQuote(defaultInsuranceQuoteEntity().build())
+                   .withProduct(defaultProductEntity().build());
     }
 }

@@ -16,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProcessLeadService implements ProcessLeadUseCase {
 
-    private final SearchLeadPort searchLeadPort;
     private final CompoundDiscountApplier compoundDiscountApplier;
     private final SendLeadPort sendLeadPort;
     private final SaveLeadPort saveLeadPort;

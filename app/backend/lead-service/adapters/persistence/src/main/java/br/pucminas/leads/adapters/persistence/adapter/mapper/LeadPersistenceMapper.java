@@ -9,8 +9,13 @@ import lombok.AllArgsConstructor;
 public class LeadPersistenceMapper {
 
     public static LeadEntity mapToEntity(Lead lead) {
+        if (lead == null) {
+            return null;
+        }
+        var insuranceQuoteEntity = InsuranceQuotePersistenceMapper.mapToEntity(lead.getInsuranceQuote());
         return LeadEntity.builder()
-                         .withInsuranceQuoteId(lead.getInsuranceQuoteId())
+                         .withId(lead.getId())
+                         .withInsuranceQuote(insuranceQuoteEntity)
                          .withCreatedAt(lead.getCreatedAt())
                          .withProcessedAt(lead.getProcessedAt())
                          .withSent(lead.isSent())
@@ -18,11 +23,16 @@ public class LeadPersistenceMapper {
     }
 
     public static Lead mapToDomain(LeadEntity leadEntity) {
+        if (leadEntity == null) {
+            return null;
+        }
+        var insuranceQuote = InsuranceQuotePersistenceMapper.mapToDomain(leadEntity.getInsuranceQuote());
         return Lead.builder()
-                   .withInsuranceQuoteId(leadEntity.getInsuranceQuoteId())
+                   .withId(leadEntity.getId())
+                   .withInsuranceQuote(insuranceQuote)
                    .withCreatedAt(leadEntity.getCreatedAt())
                    .withProcessedAt(leadEntity.getProcessedAt())
-                   .withSent(leadEntity.isSent())
+                   .withSent(leadEntity.getSent())
                    .build();
     }
 
