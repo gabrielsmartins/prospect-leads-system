@@ -1,7 +1,7 @@
 package br.pucminas.leads.adapters.messaging.out.mapper;
 
-import br.pucminas.notifications.schemas.lead_processed.Category;
-import br.pucminas.notifications.schemas.lead_processed.Product;
+import br.pucminas.leads.schemas.lead_processed.Category;
+import br.pucminas.leads.schemas.lead_processed.Product;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 

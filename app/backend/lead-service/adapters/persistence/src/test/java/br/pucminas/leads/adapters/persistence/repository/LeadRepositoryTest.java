@@ -19,6 +19,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalDateTime;
+
 import static br.pucminas.leads.adapters.persistence.support.LeadEntitySupport.defaultLeadEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -70,6 +72,22 @@ class LeadRepositoryTest {
         var optionalLeadEntity = this.repository.findById(savedLeadEntity.getId());
 
         assertThat(optionalLeadEntity).isPresent();
+    }
+
+    @Test
+    @DisplayName("Given Datetime When Exists Then Return Leads")
+    public void givenDatetimeWhenExistsThenReturnLeads() {
+        var dateTime = LocalDateTime.now();
+
+        var leadEntity = defaultLeadEntity().withCreatedAt(dateTime.minusMinutes(30))
+                                            .withSent(false)
+                                            .build();
+
+        this.repository.save(leadEntity);
+
+        var leads = this.repository.findAllPendingReceivedLessThan(dateTime);
+
+        assertThat(leads).isNotEmpty();
     }
 
 }

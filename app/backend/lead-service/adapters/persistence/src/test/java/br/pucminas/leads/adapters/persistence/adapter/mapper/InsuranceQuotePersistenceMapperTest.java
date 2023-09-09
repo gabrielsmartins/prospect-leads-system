@@ -24,7 +24,7 @@ class InsuranceQuotePersistenceMapperTest {
         assertThat(insuranceQuoteEntity.getTotalCoverageAmount()).isEqualTo(insuranceQuote.getTotalCoverageAmount());
         assertThat(insuranceQuoteEntity.getCoverages()).isEqualTo(insuranceQuote.getCoverages());
         assertThat(insuranceQuoteEntity.getAssistances()).isEqualTo(insuranceQuote.getAssistances());
-        assertThat(insuranceQuoteEntity.getFinished()).isEqualTo(insuranceQuote.isFinished());
+        assertThat(insuranceQuoteEntity.isFinished()).isEqualTo(insuranceQuote.isFinished());
         assertThat(insuranceQuoteEntity.getCreatedAt()).isEqualTo(insuranceQuote.getCreatedAt());
         assertThat(insuranceQuoteEntity.getUpdatedAt()).isEqualTo(insuranceQuote.getUpdatedAt());
         assertThat(insuranceQuoteEntity.getFinishedAt()).isEqualTo(insuranceQuote.getFinishedAt());
@@ -44,7 +44,7 @@ class InsuranceQuotePersistenceMapperTest {
         assertThat(insuranceQuoteEntity.getTotalCoverageAmount()).isEqualTo(insuranceQuote.getTotalCoverageAmount());
         assertThat(insuranceQuoteEntity.getCoverages()).isEqualTo(insuranceQuote.getCoverages());
         assertThat(insuranceQuoteEntity.getAssistances()).isEqualTo(insuranceQuote.getAssistances());
-        assertThat(insuranceQuoteEntity.getFinished()).isEqualTo(insuranceQuote.isFinished());
+        assertThat(insuranceQuoteEntity.isFinished()).isEqualTo(insuranceQuote.isFinished());
         assertThat(insuranceQuoteEntity.getCreatedAt()).isEqualTo(insuranceQuote.getCreatedAt());
         assertThat(insuranceQuoteEntity.getUpdatedAt()).isEqualTo(insuranceQuote.getUpdatedAt());
         assertThat(insuranceQuoteEntity.getFinishedAt()).isEqualTo(insuranceQuote.getFinishedAt());

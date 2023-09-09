@@ -48,7 +48,8 @@ public class InsuranceQuoteEntity {
 
     @DynamoDBAttribute(attributeName="Finished")
     @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.BOOL)
-    private Boolean finished;
+    private boolean finished;
+
     @DynamoDBAttribute(attributeName="CreatedAt")
     @DynamoDBTypeConverted(converter = LocalDateTimeConverter.class)
     private LocalDateTime createdAt;

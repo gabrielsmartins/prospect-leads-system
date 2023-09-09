@@ -28,7 +28,7 @@ public class ProductEntity {
 
     @DynamoDBAttribute(attributeName="Active")
     @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.BOOL)
-    private Boolean active;
+    private boolean active;
 
     @DynamoDBAttribute(attributeName="MaxTotalMonthlyPremiumAmount")
     private BigDecimal maxTotalMonthlyPremiumAmount;

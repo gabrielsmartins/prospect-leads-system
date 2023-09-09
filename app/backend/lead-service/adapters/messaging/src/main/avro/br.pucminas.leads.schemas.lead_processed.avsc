@@ -1,0 +1,268 @@
+{
+  "type":"record",
+  "name":"LeadProcessed",
+  "namespace":"br.pucminas.leads.schemas.lead_processed",
+  "fields":[
+    {
+      "name": "insurance_quote",
+      "type": {
+        "type": "record",
+        "name": "InsuranceQuote",
+        "fields": [
+          {
+            "name": "id",
+            "type": {
+              "type": "string",
+              "logicalType": "uuid"
+            }
+          },
+          {
+            "name": "type",
+            "type": {
+              "type": "enum",
+              "name": "InsuranceQuoteType",
+              "symbols": [
+                "L",
+                "P",
+                "E",
+                "T"
+              ]
+            }
+          },
+          {
+            "name": "total_monthly_premium_amount",
+            "type": {
+              "type": "bytes",
+              "logicalType": "decimal",
+              "precision": 9,
+              "scale": 2
+            }
+          },
+          {
+            "name": "total_coverage_amount",
+            "type": {
+              "type": "bytes",
+              "logicalType": "decimal",
+              "precision": 9,
+              "scale": 2
+            }
+          },
+          {
+            "name": "coverages",
+            "type": {
+              "type": "map",
+              "values": {
+                "type": "bytes",
+                "logicalType": "decimal",
+                "precision": 9,
+                "scale": 2
+              }
+            }
+          },
+          {
+            "name": "assistances",
+            "type": {
+              "type": "array",
+              "items": "string"
+            }
+          },
+          {
+            "name": "finished",
+            "type": "boolean"
+          },
+          {
+            "name": "created_at",
+            "type": {
+              "type": "long",
+              "logicalType": "local-timestamp-millis"
+            }
+          },
+          {
+            "name": "updated_at",
+            "type": {
+              "type": "long",
+              "logicalType": "local-timestamp-millis"
+            }
+          },
+          {
+            "name": "finished_at",
+            "type": {
+              "type": "long",
+              "logicalType": "local-timestamp-millis"
+            }
+          },
+          {
+            "name": "customer",
+            "type": {
+              "type": "record",
+              "name": "Customer",
+              "fields": [
+                {
+                  "name": "document_number",
+                  "type": "string"
+                },
+                {
+                  "name": "name",
+                  "type": "string"
+                },
+                {
+                  "name": "type",
+                  "type": {
+                    "type": "enum",
+                    "name": "CustomerType",
+                    "symbols": [
+                      "F",
+                      "J"
+                    ]
+                  }
+                },
+                {
+                  "name": "gender",
+                  "type": {
+                    "type": "enum",
+                    "name": "CustomerGender",
+                    "symbols": [
+                      "M",
+                      "F",
+                      "D"
+                    ]
+                  }
+                },
+                {
+                  "name": "date_of_birth",
+                  "type": {
+                    "type": "int",
+                    "logicalType": "date"
+                  }
+                },
+                {
+                  "name": "email",
+                  "type": "string"
+                },
+                {
+                  "name": "phone_number",
+                  "type": "int"
+                }
+              ]
+            }
+          },
+          {
+            "name": "product",
+            "type": {
+              "type": "record",
+              "name": "Product",
+              "fields": [
+                {
+                  "name":"id",
+                  "type": "int"
+                },
+                {
+                  "name":"name",
+                  "type": "string"
+                },
+                {
+                  "name": "category",
+                  "type": {
+                    "type": "enum",
+                    "name": "Category",
+                    "symbols": ["LIFE", "PET", "ENTERPRISE", "TRAVEL"]
+                  }
+                },
+                {
+                  "name":"active",
+                  "type": "boolean"
+                },
+                { "name": "max_total_monthly_premium_amount",
+                  "type": {
+                    "type": "bytes",
+                    "logicalType": "decimal",
+                    "precision": 9,
+                    "scale": 2
+                  }
+                },
+                { "name": "min_total_monthly_premium_amount",
+                  "type": {
+                    "type": "bytes",
+                    "logicalType": "decimal",
+                    "precision": 9,
+                    "scale": 2
+                  }
+                },
+                { "name": "suggested_total_monthly_premium_amount",
+                  "type": {
+                    "type": "bytes",
+                    "logicalType": "decimal",
+                    "precision": 9,
+                    "scale": 2
+                  }
+                },
+                { "name": "total_coverage_amount",
+                  "type": {
+                    "type": "bytes",
+                    "logicalType": "decimal",
+                    "precision": 9,
+                    "scale": 2
+                  }
+                },
+                {
+                  "name": "coverages",
+                  "type": {
+                    "type": "map",
+                    "values": {
+                      "type": "bytes",
+                      "logicalType": "decimal",
+                      "precision": 9,
+                      "scale": 2
+                    }
+                  }
+                },
+                {
+                  "name":"assistances",
+                  "type": {
+                    "type": "array",
+                    "items": "string"
+                  }
+                },
+                {
+                  "name":"created_at",
+                  "type": {
+                    "type": "long",
+                    "logicalType": "local-timestamp-millis"
+                  }
+                },
+                {
+                  "name":"updated_at",
+                  "type": {
+                    "type": "long",
+                    "logicalType": "local-timestamp-millis"
+                  }
+                },
+                {
+                  "name":"deleted_at",
+                  "type": {
+                    "type": "long",
+                    "logicalType": "local-timestamp-millis"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name":"created_at",
+      "type": {
+        "type": "long",
+        "logicalType": "local-timestamp-millis"
+      }
+    },
+    {
+      "name":"processed_at",
+      "type": {
+        "type": "long",
+        "logicalType": "local-timestamp-millis"
+      }
+    }
+  ]
+}

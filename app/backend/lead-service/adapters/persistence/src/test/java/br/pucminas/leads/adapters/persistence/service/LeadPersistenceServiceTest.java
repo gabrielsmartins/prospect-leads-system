@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -49,6 +51,19 @@ class LeadPersistenceServiceTest {
         var optionalLeadEntity = this.service.findById(leadEntity.getId());
 
         assertThat(optionalLeadEntity).isPresent();
+    }
+
+    @Test
+    @DisplayName("Given Datetime When Exists Then Return Leads")
+    public void givenDatetimeWhenExistsThenReturnLeads() {
+        var dateTime = LocalDateTime.now();
+
+        var leadEntity = defaultLeadEntity().build();
+        when(this.repository.findAllPendingReceivedLessThan(dateTime)).thenReturn(List.of(leadEntity));
+
+        var leads = this.service.findAllPendingReceivedLessThan(dateTime);
+
+        assertThat(leads).isNotEmpty();
     }
 
 }

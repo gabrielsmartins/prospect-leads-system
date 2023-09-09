@@ -21,7 +21,7 @@ class ProductPersistenceMapperTest {
         assertThat(productEntity.getId()).isEqualTo(product.getId());
         assertThat(productEntity.getName()).isEqualTo(product.getName());
         assertThat(productEntity.getCategory()).isEqualTo(product.getCategory());
-        assertThat(productEntity.getActive()).isEqualTo(product.isActive());
+        assertThat(productEntity.isActive()).isEqualTo(product.isActive());
         assertThat(productEntity.getMaxTotalMonthlyPremiumAmount()).isEqualTo(product.getMaxTotalMonthlyPremiumAmount());
         assertThat(productEntity.getMinTotalMonthlyPremiumAmount()).isEqualTo(product.getMinTotalMonthlyPremiumAmount());
         assertThat(productEntity.getSuggestedTotalMonthlyPremiumAmount()).isEqualTo(product.getSuggestedTotalMonthlyPremiumAmount());
@@ -44,7 +44,7 @@ class ProductPersistenceMapperTest {
         assertThat(product.getId()).isEqualTo(productEntity.getId());
         assertThat(product.getName()).isEqualTo(productEntity.getName());
         assertThat(product.getCategory()).isEqualTo(productEntity.getCategory());
-        assertThat(product.isActive()).isEqualTo(productEntity.getActive());
+        assertThat(product.isActive()).isEqualTo(productEntity.isActive());
         assertThat(product.getMaxTotalMonthlyPremiumAmount()).isEqualTo(productEntity.getMaxTotalMonthlyPremiumAmount());
         assertThat(product.getMinTotalMonthlyPremiumAmount()).isEqualTo(productEntity.getMinTotalMonthlyPremiumAmount());
         assertThat(product.getSuggestedTotalMonthlyPremiumAmount()).isEqualTo(productEntity.getSuggestedTotalMonthlyPremiumAmount());

@@ -1,7 +1,7 @@
 package br.pucminas.leads.adapters.messaging.out.mapper;
 
-import br.pucminas.notifications.schemas.lead_processed.InsuranceQuote;
-import br.pucminas.notifications.schemas.lead_processed.InsuranceQuoteType;
+import br.pucminas.leads.schemas.lead_processed.InsuranceQuote;
+import br.pucminas.leads.schemas.lead_processed.InsuranceQuoteType;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 

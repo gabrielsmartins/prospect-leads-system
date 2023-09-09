@@ -37,7 +37,7 @@ public class ProductPersistenceMapper {
                         .withId(productEntity.getId())
                         .withName(productEntity.getName())
                         .withCategory(productEntity.getCategory())
-                        .withActive(productEntity.getActive())
+                        .withActive(productEntity.isActive())
                         .withMaxTotalMonthlyPremiumAmount(productEntity.getMaxTotalMonthlyPremiumAmount())
                         .withMinTotalMonthlyPremiumAmount(productEntity.getMinTotalMonthlyPremiumAmount())
                         .withSuggestedTotalMonthlyPremiumAmount(productEntity.getSuggestedTotalMonthlyPremiumAmount())

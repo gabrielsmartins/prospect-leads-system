@@ -32,7 +32,7 @@ public class LeadPersistenceMapper {
                    .withInsuranceQuote(insuranceQuote)
                    .withCreatedAt(leadEntity.getCreatedAt())
                    .withProcessedAt(leadEntity.getProcessedAt())
-                   .withSent(leadEntity.getSent())
+                   .withSent(leadEntity.isSent())
                    .build();
     }
 

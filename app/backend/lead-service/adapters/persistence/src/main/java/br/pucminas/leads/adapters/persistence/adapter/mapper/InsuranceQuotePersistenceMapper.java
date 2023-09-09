@@ -44,7 +44,7 @@ public class InsuranceQuotePersistenceMapper {
                             .withAssistances(insuranceQuoteEntity.getAssistances())
                             .withProductId(insuranceQuoteEntity.getProductId())
                             .withProduct(ProductPersistenceMapper.mapToDomain(insuranceQuoteEntity.getProduct()))
-                            .withFinished(insuranceQuoteEntity.getFinished())
+                            .withFinished(insuranceQuoteEntity.isFinished())
                             .withCreatedAt(insuranceQuoteEntity.getCreatedAt())
                             .withUpdatedAt(insuranceQuoteEntity.getUpdatedAt())
                             .withFinishedAt(insuranceQuoteEntity.getFinishedAt())
