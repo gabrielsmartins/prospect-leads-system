@@ -16,13 +16,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProcessLeadService implements ProcessLeadUseCase {
 
+    private final SearchLeadPort searchLeadPort;
     private final CompoundDiscountApplier compoundDiscountApplier;
     private final SendLeadPort sendLeadPort;
     private final SaveLeadPort saveLeadPort;
 
     @Override
-    public void process(List<Lead> leads) {
-       leads.forEach(this::process);
+    public void process() {
+        LocalDateTime datetime = LocalDateTime.now().minusMinutes(30);
+        List<Lead> leads = this.searchLeadPort.findAllPendingReceivedLessThan(datetime);
+        leads.forEach(this::process);
     }
 
     private void process(Lead lead) {

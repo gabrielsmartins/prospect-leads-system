@@ -1,32 +1,29 @@
 package br.pucminas.leads.adapters.scheduler.task;
 
-import br.pucminas.leads.application.domain.Lead;
 import br.pucminas.leads.application.ports.in.ProcessLeadUseCase;
-import br.pucminas.leads.application.ports.out.SearchLeadPort;
 import br.pucminas.leads.common.stereotype.SchedulerAdapter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.jobrunr.scheduling.JobScheduler;
 import org.jobrunr.scheduling.cron.Cron;
-import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.boot.CommandLineRunner;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import static net.logstash.logback.argument.StructuredArguments.kv;
 
 @SchedulerAdapter
 @RequiredArgsConstructor
-public class ProcessLeadTask {
+@Slf4j
+public class ProcessLeadTask implements CommandLineRunner {
 
     private static final String LEAD_JOB = "lead_job";
 
     private final JobScheduler jobScheduler;
-    private final SearchLeadPort searchLeadPort;
     private final ProcessLeadUseCase useCase;
 
-    @Scheduled(fixedRate = 1000L)
-    public void schedule() {
-        var dateTime = LocalDateTime.now().minusMinutes(30);
-        var leads = this.searchLeadPort.findAllPendingReceivedLessThan(dateTime);
-        jobScheduler.scheduleRecurrently(LEAD_JOB, Cron.everyHalfHour(), () -> useCase.process(leads));
+    @Override
+    public void run(String... args) throws Exception {
+        log.info("Scheduling job: {}", kv("job", LEAD_JOB));
+        jobScheduler.scheduleRecurrently(LEAD_JOB, Cron.everyHalfHour(), useCase::process);
+        log.info("Job {} was scheduled successfully", kv("job", LEAD_JOB));
     }
-
 }

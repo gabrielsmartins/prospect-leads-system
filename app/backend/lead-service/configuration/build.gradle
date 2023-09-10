@@ -7,6 +7,7 @@ dependencies {
     implementation project(':adapters:persistence')
     implementation project(':adapters:messaging')
     implementation project(':adapters:streams')
+    implementation project(':adapters:scheduler')
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
@@ -15,6 +16,7 @@ dependencies {
     testImplementation project(':adapters:persistence').sourceSets.test.output
     testImplementation project(':adapters:messaging').sourceSets.test.output
     testImplementation project(':adapters:streams').sourceSets.test.output
+    testImplementation project(':adapters:scheduler').sourceSets.test.output
 }
 
 bootJar {
