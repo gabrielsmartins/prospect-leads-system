@@ -5,7 +5,7 @@ org:
       table-prefix: _jobrunr # allows to set a table prefix (e.g. schema  or schema and tableprefix for all tables. e.g. MYSCHEMA._jobrunr)
       database-name: jobrunr # Override the default database name to use (e.g. use main application database)
       datasource:  # allows to specify a DataSource specifically for JobRunr
-      type: redis-lettuce  # if you have multiple supported storage providers available in your application (e.g. an SQL DataSource and Elasticsearch), it allows to specify which database to choose. Valid values are 'sql', 'mongodb', 'redis-lettuce', 'redis-jedis' and 'elasticsearch'.
+      type:  # if you have multiple supported storage providers available in your application (e.g. an SQL DataSource and Elasticsearch), it allows to specify which database to choose. Valid values are 'sql', 'mongodb', 'redis-lettuce', 'redis-jedis' and 'elasticsearch'.
     jobs:
       default-number-of-retries: 3 #the default number of retries for a failing job
       retry-back-off-time-seed: 5 #the default time seed for the exponential back-off policy.
