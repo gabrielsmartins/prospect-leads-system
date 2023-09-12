@@ -4,4 +4,4 @@ spring:
       uuid-representation: standard
   mongodb:
     embedded:
-      version: 4.0.21
+      version: 3.4.1
