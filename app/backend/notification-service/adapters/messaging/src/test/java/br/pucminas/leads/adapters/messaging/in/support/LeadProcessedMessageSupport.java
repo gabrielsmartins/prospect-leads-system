@@ -25,8 +25,10 @@ public class LeadProcessedMessageSupport {
         return InsuranceQuote.newBuilder()
                              .setId(UUID.randomUUID())
                              .setType(InsuranceQuoteType.LIFE)
+                             .setFinished(true)
                              .setCreatedAt(LocalDateTime.now())
                              .setUpdatedAt(LocalDateTime.now())
+                             .setFinishedAt(LocalDateTime.now())
                              .setAssistances(List.of("Foo"))
                              .setCoverages(Map.of("Foo", BigDecimal.valueOf(1500)))
                              .setTotalCoverageAmount(BigDecimal.valueOf(1500))
@@ -46,6 +48,7 @@ public class LeadProcessedMessageSupport {
                       .setTotalCoverageAmount(BigDecimal.valueOf(1500))
                       .setMaxTotalMonthlyPremiumAmount(BigDecimal.valueOf(5000))
                       .setMinTotalMonthlyPremiumAmount(BigDecimal.valueOf(1500))
+                      .setSuggestedTotalMonthlyPremiumAmount(BigDecimal.valueOf(1700))
                       .setCreatedAt(LocalDateTime.now())
                       .setUpdatedAt(LocalDateTime.now());
     }

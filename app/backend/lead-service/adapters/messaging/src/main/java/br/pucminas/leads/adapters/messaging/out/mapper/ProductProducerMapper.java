@@ -25,7 +25,6 @@ public class ProductProducerMapper {
                       .setAssistances(product.getAssistances())
                       .setCreatedAt(product.getCreatedAt())
                       .setUpdatedAt(product.getUpdatedAt())
-                      .setDeletedAt(product.getDeletedAt())
                       .build();
     }
 }

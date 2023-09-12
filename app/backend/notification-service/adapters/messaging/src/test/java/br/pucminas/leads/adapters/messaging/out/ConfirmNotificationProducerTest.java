@@ -1,13 +1,12 @@
 package br.pucminas.leads.adapters.messaging.out;
 
 import br.pucminas.leads.adapters.messaging.config.TopicProperties;
-
+import io.confluent.kafka.serializers.KafkaAvroDeserializer;
+import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import lombok.RequiredArgsConstructor;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,46 +28,46 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.Collections;
 import java.util.Map;
 
-import static br.pucminas.leads.application.support.LeadSupport.defaultLead;
+import static br.pucminas.leads.application.support.NotificationSupport.defaultNotification;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @EmbeddedKafka(partitions = 1, controlledShutdown = true)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @EnableConfigurationProperties(TopicProperties.class)
-@Import({KafkaAutoConfiguration.class, SendLeadProducer.class})
+@Import({KafkaAutoConfiguration.class, ConfirmNotificationProducer.class})
 @ContextConfiguration(initializers = ConfigDataApplicationContextInitializer.class)
 @ActiveProfiles("test")
-class SendLeadProducerTest {
+class ConfirmNotificationProducerTest {
 
     private final EmbeddedKafkaBroker embeddedKafkaBroker;
     private final TopicProperties topicProperties;
-    private final SendLeadProducer producer;
+    private final ConfirmNotificationProducer producer;
 
     private String topic;
 
     @BeforeEach
     public void setup() {
-        this.topic = this.topicProperties.getOutputTopic(TopicProperties.LEAD_PROCESSED);
+        this.topic = this.topicProperties.getOutputTopic(TopicProperties.NOTIFICATION_EMITTED);
     }
 
     @Test
     @DisplayName("Given Message When Send Then Call Template")
     public void givenMessageWhenSendThenCallTemplate() {
-        var lead = defaultLead().build();
-        this.producer.send(lead);
+        var notification = defaultNotification().build();
+        this.producer.confirm(notification);
 
         var consumer = createConsumer();
 
         var singleRecord = KafkaTestUtils.getSingleRecord(consumer, topic);
 
         assertThat(singleRecord).isNotNull();
-        assertThat(singleRecord.key()).isEqualTo(lead.getInsuranceQuote().getId().toString());
+        assertThat(singleRecord.key()).isEqualTo(notification.getInsuranceQuote().getId().toString());
         assertThat(singleRecord.value()).isNotNull();
     }
 
     private Consumer<String, SpecificRecord> createConsumer() {
-        Map<String, Object> consumerProps = KafkaTestUtils.consumerProps(SendLeadProducerTest.class.getSimpleName(), "true", embeddedKafkaBroker);
+        Map<String, Object> consumerProps = KafkaTestUtils.consumerProps(ConfirmNotificationProducerTest.class.getSimpleName(), "true", embeddedKafkaBroker);
         consumerProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         consumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         consumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());

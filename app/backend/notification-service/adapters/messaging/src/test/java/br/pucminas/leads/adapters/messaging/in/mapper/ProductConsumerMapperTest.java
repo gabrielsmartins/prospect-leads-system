@@ -22,12 +22,12 @@ class ProductConsumerMapperTest {
         assertThat(product.isActive()).isEqualTo(productMessage.getActive());
         assertThat(product.getAssistances()).isEqualTo(productMessage.getAssistances());
         assertThat(product.getCoverages()).isEqualTo(productMessage.getCoverages());
+        assertThat(product.getTotalCoverageAmount()).isEqualTo(productMessage.getTotalCoverageAmount());
         assertThat(product.getMaxTotalMonthlyPremiumAmount()).isEqualTo(productMessage.getMaxTotalMonthlyPremiumAmount());
         assertThat(product.getMinTotalMonthlyPremiumAmount()).isEqualTo(productMessage.getMinTotalMonthlyPremiumAmount());
         assertThat(product.getSuggestedTotalMonthlyPremiumAmount()).isEqualTo(productMessage.getSuggestedTotalMonthlyPremiumAmount());
         assertThat(product.getCreatedAt()).isEqualTo(productMessage.getCreatedAt());
         assertThat(product.getUpdatedAt()).isEqualTo(productMessage.getUpdatedAt());
-        assertThat(product.getDeletedAt()).isEqualTo(productMessage.getDeletedAt());
     }
 
 }

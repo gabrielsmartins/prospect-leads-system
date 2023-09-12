@@ -236,13 +236,6 @@
                     "type": "long",
                     "logicalType": "local-timestamp-millis"
                   }
-                },
-                {
-                  "name":"deleted_at",
-                  "type": {
-                    "type": "long",
-                    "logicalType": "local-timestamp-millis"
-                  }
                 }
               ]
             }

@@ -18,7 +18,7 @@ import static net.logstash.logback.marker.Markers.append;
 
 @MessagingAdapter
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@KafkaListener(topics = "${topics.input.lead-processed}")
+@KafkaListener(topics = "${topic.input.lead-processed}")
 @Slf4j
 public class LeadConsumer {
 

@@ -2,6 +2,7 @@ package br.pucminas.leads.adapters.email;
 
 import br.pucminas.leads.adapters.email.mapper.EmailAdapterMapper;
 import br.pucminas.leads.application.domain.Notification;
+import br.pucminas.leads.application.domain.enums.ChannelEnum;
 import br.pucminas.leads.application.ports.out.SendNotificationPort;
 import br.pucminas.leads.common.EmailAdapter;
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
@@ -26,6 +27,11 @@ public class SendNotificationEmailAdapter implements SendNotificationPort {
         log.info(append("email_request", emailRequest), "Sending e-mail");
         emailService.sendTemplatedEmail(emailRequest);
         log.info(append("email_request", emailRequest), "E-mail was sent successfully");
+    }
+
+    @Override
+    public ChannelEnum getChannel() {
+        return ChannelEnum.E_MAIL;
     }
 
 }

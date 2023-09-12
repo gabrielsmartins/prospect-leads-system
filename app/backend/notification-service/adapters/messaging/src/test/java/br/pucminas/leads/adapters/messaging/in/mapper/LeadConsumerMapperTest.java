@@ -15,7 +15,7 @@ class LeadConsumerMapperTest {
         var lead = LeadConsumerMapper.mapToDomain(leadMessage);
 
         assertThat(lead).isNotNull();
-        assertThat(lead).hasNoNullFieldsOrProperties();
+        assertThat(lead).hasNoNullFieldsOrPropertiesExcept("notifiedAt");
         assertThat(lead.getCreatedAt()).isEqualTo(leadMessage.getCreatedAt());
         assertThat(lead.getProcessedAt()).isEqualTo(leadMessage.getProcessedAt());
     }

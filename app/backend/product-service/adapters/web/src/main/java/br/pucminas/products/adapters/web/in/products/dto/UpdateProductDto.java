@@ -53,7 +53,7 @@ public class    UpdateProductDto {
     @JsonProperty(value = "suggested_total_monthly_premium_amount")
     @NotNull
     @PositiveOrZero
-    private BigDecimal suggestedTotalMonthlyPremiumAmount = BigDecimal.ZERO;
+    private BigDecimal suggestedTotalMonthlyPremiumAmount;
 
     @JsonProperty(value = "total_coverage_amount", access = JsonProperty.Access.READ_ONLY)
     private BigDecimal totalCoverageAmount;

@@ -27,7 +27,6 @@ public class ProductSupport {
                       .withCategory("LIFE")
                       .withCreatedAt(LocalDateTime.now())
                       .withUpdatedAt(LocalDateTime.now())
-                      .withDeletedAt(LocalDateTime.now())
                       .withCoverages(new LinkedHashMap<>(Map.of("Acidente", BigDecimal.TEN)))
                       .withAssistances(new LinkedList<>(List.of("Manutenção")));
     }

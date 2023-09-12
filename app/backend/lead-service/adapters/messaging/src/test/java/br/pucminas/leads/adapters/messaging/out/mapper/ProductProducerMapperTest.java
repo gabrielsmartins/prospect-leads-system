@@ -28,7 +28,6 @@ class ProductProducerMapperTest {
         assertThat(productMessage.getAssistances()).isEqualTo(product.getAssistances());
         assertThat(productMessage.getCreatedAt()).isEqualTo(product.getCreatedAt());
         assertThat(productMessage.getUpdatedAt()).isEqualTo(product.getUpdatedAt());
-        assertThat(productMessage.getDeletedAt()).isEqualTo(product.getDeletedAt());
     }
 
 }

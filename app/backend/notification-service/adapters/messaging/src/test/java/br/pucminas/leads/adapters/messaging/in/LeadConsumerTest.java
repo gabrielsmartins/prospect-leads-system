@@ -19,6 +19,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.kafka.KafkaAutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.ConfigDataApplicationContextInitializer;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
@@ -46,6 +47,7 @@ import static org.mockito.Mockito.verify;
 @Import({ KafkaAutoConfiguration.class, LeadConsumer.class })
 @ContextConfiguration(initializers = ConfigDataApplicationContextInitializer.class)
 @EmbeddedKafka(partitions = 1, controlledShutdown = true)
+@EnableConfigurationProperties(TopicProperties.class)
 class LeadConsumerTest {
 
     private final EmbeddedKafkaBroker embeddedKafkaBroker;

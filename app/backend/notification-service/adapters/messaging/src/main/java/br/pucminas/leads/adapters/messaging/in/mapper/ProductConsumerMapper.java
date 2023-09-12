@@ -18,12 +18,12 @@ public class ProductConsumerMapper {
                       .withAssistances(productMessage.getAssistances())
                       .withCoverages(productMessage.getCoverages())
                       .withCategory(productMessage.getCategory().name())
+                      .withTotalCoverageAmount(productMessage.getTotalCoverageAmount())
                       .withMinTotalMonthlyPremiumAmount(productMessage.getMinTotalMonthlyPremiumAmount())
                       .withMaxTotalMonthlyPremiumAmount(productMessage.getMaxTotalMonthlyPremiumAmount())
                       .withSuggestedTotalMonthlyPremiumAmount(productMessage.getSuggestedTotalMonthlyPremiumAmount())
                       .withCreatedAt(productMessage.getCreatedAt())
                       .withUpdatedAt(productMessage.getUpdatedAt())
-                      .withDeletedAt(productMessage.getDeletedAt())
                       .build();
     }
 }

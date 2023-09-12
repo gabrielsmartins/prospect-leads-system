@@ -103,13 +103,3 @@ eureka:
   client:
     enabled: true
     register-with-eureka: true
-
-logging:
-  level:
-    org:
-      springframework:
-        web:
-          reactive:
-            function:
-              client:
-                ExchangeFunctions: TRACE

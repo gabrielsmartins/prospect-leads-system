@@ -9,7 +9,6 @@ spring:
       pool:
         enabled: true
 
-
 redis:
   streams:
     key: event:leads

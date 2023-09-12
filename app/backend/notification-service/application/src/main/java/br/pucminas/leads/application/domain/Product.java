@@ -33,7 +33,6 @@ public class Product {
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private LocalDateTime deletedAt;
 
     public Integer addCoverage(String coverage, BigDecimal amount) {
         this.coverages.put(coverage, amount);

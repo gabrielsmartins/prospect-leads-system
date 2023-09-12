@@ -24,6 +24,7 @@ repositories {
 ext {
 	set('springBootAdminVersion', "2.7.4")
 	set('springCloudVersion', "2021.0.7")
+	set('logstashVersion', "7.4")
 }
 
 dependencies {
@@ -35,6 +36,8 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version: logstashVersion
 }
 
 dependencyManagement {
