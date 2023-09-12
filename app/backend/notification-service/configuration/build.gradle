@@ -4,11 +4,15 @@ dependencies {
     implementation project(':common')
     implementation project(':application')
     implementation project(':adapters:messaging')
+    implementation project(':adapters:email')
+    implementation project(':adapters:whatsapp')
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     testImplementation project(':application').sourceSets.test.output
     testImplementation project(':adapters:messaging').sourceSets.test.output
+    testImplementation project(':adapters:email').sourceSets.test.output
+    testImplementation project(':adapters:whatsapp').sourceSets.test.output
 }
 
 bootJar {

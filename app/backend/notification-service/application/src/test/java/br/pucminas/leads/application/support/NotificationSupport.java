@@ -4,18 +4,18 @@ import br.pucminas.leads.application.domain.Notification;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 
-import static br.pucminas.leads.application.support.CustomerSupport.defaultCustomer;
+import java.time.LocalDateTime;
+
 import static br.pucminas.leads.application.support.InsuranceQuoteSupport.defaultInsuranceQuote;
-import static br.pucminas.leads.application.support.ProductSupport.defaultProduct;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class NotificationSupport {
 
     public static Notification.NotificationBuilder defaultNotification() {
         return Notification.builder()
-                .withCustomer(defaultCustomer().build())
-                .withProduct(defaultProduct().build())
-                .withInsuranceQuote(defaultInsuranceQuote().build());
+                .withInsuranceQuote(defaultInsuranceQuote().build())
+                .withCreatedAt(LocalDateTime.now())
+                .withProcessedAt(LocalDateTime.now());
     }
 
 }

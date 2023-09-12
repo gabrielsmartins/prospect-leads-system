@@ -17,6 +17,12 @@ spring:
     trace-id128: true
     opentracing:
       enabled: true
+  cloud:
+    aws:
+      ses:
+        enabled: true
+        endpoint: http://localhost:4566
+        region: sa-east-1
   kafka:
     bootstrap-servers: localhost:9092
     properties:
@@ -51,9 +57,9 @@ redis:
 
 topic:
   input:
-    notification-emitted: notification-emitted
-  output:
     lead-processed: lead-processed
+  output:
+    notification-emitted: notification-emitted
 
 management:
   endpoint:

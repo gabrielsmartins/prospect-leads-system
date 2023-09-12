@@ -35,7 +35,7 @@ public class UpdateProductDto {
 
     @JsonProperty(value = "category")
     @NotNull
-    private CategoryEnumDto category;
+    private String category;
 
     @JsonProperty(value = "min_total_monthly_premium_amount")
     private BigDecimal minTotalMonthlyPremiumAmount;

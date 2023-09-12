@@ -17,7 +17,6 @@ public class InsuranceQuote {
     private UUID id;
     private String type;
     private Customer customer;
-    private Integer productId;
     private Product product;
     private BigDecimal totalMonthlyPremiumAmount;
     private BigDecimal totalCoverageAmount;

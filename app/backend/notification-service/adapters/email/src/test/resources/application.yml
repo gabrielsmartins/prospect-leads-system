@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    aws:
+      ses:
+        enabled: true
+        endpoint: http://localhost:4566
+        region: sa-east-1

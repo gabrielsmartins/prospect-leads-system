@@ -19,7 +19,6 @@ public class InsuranceQuoteSupport {
                 .withId(UUID.randomUUID())
                 .withType("L")
                 .withCustomer(CustomerSupport.defaultCustomer().build())
-                .withProductId(1)
                 .withProduct(defaultProduct().build())
                 .withTotalMonthlyPremiumAmount(BigDecimal.TEN)
                 .withTotalCoverageAmount(BigDecimal.TEN)

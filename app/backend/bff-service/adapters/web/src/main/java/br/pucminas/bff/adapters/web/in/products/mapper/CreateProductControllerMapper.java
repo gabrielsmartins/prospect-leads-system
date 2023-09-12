@@ -1,6 +1,5 @@
 package br.pucminas.bff.adapters.web.in.products.mapper;
 
-import br.pucminas.bff.adapters.web.in.products.dto.CategoryEnumDto;
 import br.pucminas.bff.adapters.web.in.products.dto.CreateProductDto;
 import br.pucminas.bff.application.domain.Product;
 import lombok.AccessLevel;
@@ -17,7 +16,7 @@ public class CreateProductControllerMapper {
                                .withId(product.getId())
                                .withName(product.getName())
                                .withActive(product.isActive())
-                               .withCategory(CategoryEnumDto.fromDescription(product.getCategory()))
+                               .withCategory(product.getCategory())
                                .withTotalCoverageAmount(product.getTotalCoverageAmount())
                                .withMinTotalMonthlyPremiumAmount(product.getMinTotalMonthlyPremiumAmount())
                                .withMaxTotalMonthlyPremiumAmount(product.getMaxTotalMonthlyPremiumAmount())
@@ -35,7 +34,7 @@ public class CreateProductControllerMapper {
         var product = Product.builder()
                              .withId(productDto.getId())
                              .withName(productDto.getName())
-                             .withCategory(productDto.getCategory().getDescription())
+                             .withCategory(productDto.getCategory())
                              .withMinTotalMonthlyPremiumAmount(productDto.getMinTotalMonthlyPremiumAmount())
                              .withMaxTotalMonthlyPremiumAmount(productDto.getMaxTotalMonthlyPremiumAmount())
                              .withSuggestedTotalMonthlyPremiumAmount(productDto.getSuggestedTotalMonthlyPremiumAmount())

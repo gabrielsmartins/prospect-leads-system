@@ -18,7 +18,7 @@ public class InsuranceQuoteSupport {
     public static InsuranceQuote.InsuranceQuoteBuilder defaultInsuranceQuote() {
         return InsuranceQuote.builder()
                 .withId(UUID.randomUUID())
-                .withType("L")
+                .withType("LIFE")
                 .withCustomer(defaultCustomer().build())
                 .withProductId(1)
                 .withProduct(defaultProduct().build())

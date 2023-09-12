@@ -1,7 +1,7 @@
 {
   "type":"record",
   "name":"LeadProcessed",
-  "namespace":"br.pucminas.notifications.schemas.lead_processed",
+  "namespace":"br.pucminas.leads.schemas.lead_processed",
   "fields":[
     {
       "name": "insurance_quote",
@@ -22,10 +22,10 @@
               "type": "enum",
               "name": "InsuranceQuoteType",
               "symbols": [
-                "L",
-                "P",
-                "E",
-                "T"
+                "LIFE",
+                "PET",
+                "ENTERPRISE",
+                "TRAVEL"
               ]
             }
           },

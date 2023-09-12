@@ -22,10 +22,10 @@
               "type": "enum",
               "name": "InsuranceQuoteType",
               "symbols": [
-                "L",
-                "P",
-                "E",
-                "T"
+                "LIFE",
+                "PET",
+                "ENTERPRISE",
+                "TRAVEL"
               ]
             }
           },

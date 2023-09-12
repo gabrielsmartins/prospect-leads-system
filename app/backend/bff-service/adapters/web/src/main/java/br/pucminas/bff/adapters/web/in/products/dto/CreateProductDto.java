@@ -36,7 +36,7 @@ public class CreateProductDto {
 
     @JsonProperty(value = "category")
     @NotNull
-    private CategoryEnumDto category;
+    private String category;
 
     @JsonProperty(value = "min_total_monthly_premium_amount")
     @NotNull

@@ -1,6 +1,5 @@
 package br.pucminas.bff.adapters.web.in.products.mapper;
 
-import br.pucminas.bff.adapters.web.in.products.dto.CategoryEnumDto;
 import br.pucminas.bff.adapters.web.in.products.dto.SearchProductDto;
 import br.pucminas.bff.application.domain.Product;
 import lombok.AccessLevel;
@@ -17,7 +16,7 @@ public class SearchProductControllerMapper {
                         .withId(product.getId())
                         .withName(product.getName())
                         .withActive(product.isActive())
-                        .withCategory(CategoryEnumDto.fromDescription(product.getCategory()))
+                        .withCategory(product.getCategory())
                         .withTotalCoverageAmount(product.getTotalCoverageAmount())
                         .withMinTotalMonthlyPremiumAmount(product.getMinTotalMonthlyPremiumAmount())
                         .withMaxTotalMonthlyPremiumAmount(product.getMaxTotalMonthlyPremiumAmount())

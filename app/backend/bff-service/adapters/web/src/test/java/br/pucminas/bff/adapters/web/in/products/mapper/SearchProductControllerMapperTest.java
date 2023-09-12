@@ -20,7 +20,7 @@ class SearchProductControllerMapperTest {
         assertThat(productDto.getId()).isEqualTo(product.getId());
         assertThat(productDto.getName()).isEqualTo(product.getName());
         assertThat(productDto.getActive()).isEqualTo(product.isActive());
-        assertThat(productDto.getCategory().getDescription()).isEqualTo(product.getCategory());
+        assertThat(productDto.getCategory()).isEqualTo(product.getCategory());
         assertThat(productDto.getMinTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getMinTotalMonthlyPremiumAmount());
         assertThat(productDto.getMaxTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getMaxTotalMonthlyPremiumAmount());
         assertThat(productDto.getSuggestedTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getSuggestedTotalMonthlyPremiumAmount());

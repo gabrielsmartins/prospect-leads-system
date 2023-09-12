@@ -52,7 +52,6 @@ class SendLeadProducerTest {
         this.topic = this.topicProperties.getOutputTopic(TopicProperties.LEAD_PROCESSED);
     }
 
-
     @Test
     @DisplayName("Given Message When Send Then Call Template")
     public void givenMessageWhenSendThenCallTemplate() {
@@ -79,6 +78,5 @@ class SendLeadProducerTest {
         consumer.subscribe(Collections.singleton(topic));
         return consumer;
     }
-
 
 }

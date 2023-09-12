@@ -1,7 +1,6 @@
 package br.pucminas.bff.adapters.web.in.support;
 
 
-import br.pucminas.bff.adapters.web.in.products.dto.CategoryEnumDto;
 import br.pucminas.bff.adapters.web.in.products.dto.CreateProductDto;
 import br.pucminas.bff.adapters.web.in.products.dto.UpdateProductDto;
 import lombok.AccessLevel;
@@ -22,7 +21,7 @@ public class ProductDtoSupport {
                                .withId(1)
                                .withName("Seguro Vida Individual")
                                .withActive(true)
-                               .withCategory(CategoryEnumDto.LIFE)
+                               .withCategory("LIFE")
                                .withMinTotalMonthlyPremiumAmount(BigDecimal.TEN)
                                .withMaxTotalMonthlyPremiumAmount(BigDecimal.valueOf(120))
                                .withSuggestedTotalMonthlyPremiumAmount(BigDecimal.TEN)
@@ -37,7 +36,7 @@ public class ProductDtoSupport {
                                .withId(1)
                                .withName("Seguro Vida Individual")
                                .withActive(true)
-                               .withCategory(CategoryEnumDto.LIFE)
+                               .withCategory("LIFE")
                                .withMinTotalMonthlyPremiumAmount(BigDecimal.TEN)
                                .withMaxTotalMonthlyPremiumAmount(BigDecimal.valueOf(120))
                                .withSuggestedTotalMonthlyPremiumAmount(BigDecimal.TEN)

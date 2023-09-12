@@ -21,7 +21,7 @@ class CreateProductControllerMapperTest {
         assertThat(productDto).hasNoNullFieldsOrPropertiesExcept("updatedAt", "deletedAt");
         assertThat(productDto.getId()).isEqualTo(product.getId());
         assertThat(productDto.getName()).isEqualTo(product.getName());
-        assertThat(productDto.getCategory().getDescription()).isEqualTo(product.getCategory());
+        assertThat(productDto.getCategory()).isEqualTo(product.getCategory());
         assertThat(productDto.getMinTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getMinTotalMonthlyPremiumAmount());
         assertThat(productDto.getMaxTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getMaxTotalMonthlyPremiumAmount());
         assertThat(productDto.getSuggestedTotalMonthlyPremiumAmount()).isEqualByComparingTo(product.getSuggestedTotalMonthlyPremiumAmount());
@@ -41,7 +41,7 @@ class CreateProductControllerMapperTest {
         assertThat(product).isNotNull();
         assertThat(product).hasNoNullFieldsOrPropertiesExcept("createdAt", "updatedAt", "deletedAt");
         assertThat(product.getName()).isEqualTo(productDto.getName());
-        assertThat(product.getCategory()).isEqualTo(productDto.getCategory().getDescription());
+        assertThat(product.getCategory()).isEqualTo(productDto.getCategory());
         assertThat(product.getMinTotalMonthlyPremiumAmount()).isEqualByComparingTo(productDto.getMinTotalMonthlyPremiumAmount());
         assertThat(product.getMaxTotalMonthlyPremiumAmount()).isEqualByComparingTo(productDto.getMaxTotalMonthlyPremiumAmount());
         assertThat(product.getSuggestedTotalMonthlyPremiumAmount()).isEqualByComparingTo(productDto.getSuggestedTotalMonthlyPremiumAmount());
