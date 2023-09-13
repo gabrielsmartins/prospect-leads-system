@@ -6,7 +6,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("test")
-public class LeadServiceApplicationTest {
+public class NotificationServiceApplicationTest {
 
     @Test
     void contextLoads() {

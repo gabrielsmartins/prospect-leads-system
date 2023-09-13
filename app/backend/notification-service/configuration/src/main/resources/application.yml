@@ -23,6 +23,9 @@ spring:
         enabled: true
         endpoint: http://localhost:4566
         region: sa-east-1
+        credentials:
+          access-key: localstack
+          secret-key: localstack
   kafka:
     bootstrap-servers: localhost:9092
     properties:
@@ -77,12 +80,3 @@ eureka:
     enabled: true
     register-with-eureka: true
 
-logging:
-  level:
-    org:
-      springframework:
-        web:
-          reactive:
-            function:
-              client:
-                ExchangeFunctions: TRACE
