@@ -24,6 +24,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { SearchProductComponent } from './products/component/search-product/search-product.component';
 import { ProductDetailComponent } from './products/component/product-detail/product-detail.component';
 import { SideNavComponent } from './shared/side-nav/side-nav.component';
+import { CreateInsuranceQuoteComponent } from './insurance_quotes/component/create-insurance-quote/create-insurance-quote.component';
+import { SearchInsuranceQuoteComponent } from './insurance_quotes/component/search-insurance-quote/search-insurance-quote.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { SideNavComponent } from './shared/side-nav/side-nav.component';
     AddProductComponent,
     SearchProductComponent,
     ProductDetailComponent,
-    SideNavComponent
+    SideNavComponent,
+    CreateInsuranceQuoteComponent,
+    SearchInsuranceQuoteComponent
   ],
   imports: [
     BrowserModule,
