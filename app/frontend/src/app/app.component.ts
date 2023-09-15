@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   template: '<app-side-nav></app-side-nav>'
 })
 export class AppComponent {
-  title = 'gui';
+  title = 'Seguros';
 }

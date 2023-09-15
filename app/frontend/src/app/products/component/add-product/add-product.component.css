@@ -1,17 +1,13 @@
-.form-element {
-  width: 500px;
+mat-card-header{
+  background: #ff0000;
+  padding: 5px;
+  color:white;
 }
 
-.add-product-container {
-  padding: 20px;
+mat-card-content{
+  padding: 10px;
 }
 
-.btn-create {
-  display: flex; 
-  justify-content: center;
-}
-
-.centered-select {
-  display: flex;
-  justify-content: center;
+mat-card{
+  padding:0;
 }
