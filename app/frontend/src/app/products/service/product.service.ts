@@ -15,7 +15,10 @@ export class ProductService {
   create(product: Product) : Observable<Product> {
     const headers = new HttpHeaders({
       'Content-Type':  'application/json',
-      'Accept' : 'application/json'
+      'Accept' : 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': '*'
     });
     const url = environment.product_endpoint;
     return this.httpClient.post(url, product, {headers})
@@ -25,7 +28,10 @@ export class ProductService {
   update(id: number, product: Product) : Observable<Product> {
     const headers = new HttpHeaders({
       'Content-Type':  'application/json',
-      'Accept' : 'application/json'
+      'Accept' : 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': '*'
     });
     let url = `${environment.product_endpoint}/${id}`;
     return this.httpClient.put(url, product, {headers})
@@ -35,7 +41,10 @@ export class ProductService {
   findAll(): Observable<Product[]> {
     const headers = new HttpHeaders({
         'Content-Type':  'application/json',
-        'Accept' : 'application/json'
+        'Accept' : 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Methods': '*'
     });
     return this.httpClient.get(environment.product_endpoint, {headers})
                           .pipe(map((data: any) => data.map((item: any) => ProductServiceMapper.mapToModel(data)) ));
@@ -44,7 +53,10 @@ export class ProductService {
   findById(id: number) : Observable<Product | undefined> {
     const headers = new HttpHeaders({
       'Content-Type':  'application/json',
-      'Accept' : 'application/json'
+      'Accept' : 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': '*'
     });
     let url = `${environment.product_endpoint}/${id}`;
     return this.httpClient.get(url, {headers})

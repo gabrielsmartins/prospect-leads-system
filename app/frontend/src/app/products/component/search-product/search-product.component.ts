@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { Product } from '../../model/product.model';
 import { ProductService } from '../../service/product.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-search-product',

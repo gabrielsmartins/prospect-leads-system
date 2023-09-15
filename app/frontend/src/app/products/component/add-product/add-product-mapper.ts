@@ -1,4 +1,4 @@
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 import { Product } from "../../model/product.model"
 
 export class AddProductMapper {
