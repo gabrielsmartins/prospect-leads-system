@@ -10,13 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
+
 import static br.pucminas.products.adapters.web.config.ControllerRoutes.PRODUCT_ROUTE;
 import static br.pucminas.products.application.support.ProductSupport.defaultProduct;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -46,6 +52,18 @@ class SearchProductControllerTest {
                     .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .header(HttpHeaders.ACCEPT,MediaType.APPLICATION_JSON_VALUE))
                     .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Given Pageable When Exist Then Return Products")
+    public void givenPageableWhenExistThenReturnProducts() throws Exception {
+        var product = defaultProduct().build();
+        when(this.useCase.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(List.of(product), PageRequest.of(0, 30), 1));
+
+        this.mockMvc.perform(get(PRODUCT_ROUTE)
+                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .header(HttpHeaders.ACCEPT,MediaType.APPLICATION_JSON_VALUE))
+                     .andExpect(status().isOk());
     }
 
 }

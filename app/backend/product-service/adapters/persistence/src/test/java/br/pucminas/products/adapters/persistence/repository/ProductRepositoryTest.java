@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ActiveProfiles;
 
 import static br.pucminas.products.adapters.persistence.support.ProductEntitySupport.defaultProductEntity;
@@ -45,6 +46,21 @@ class ProductRepositoryTest extends DatabaseContainer {
         var optionalProductEntity = this.repository.findById(productEntity.getId());
 
         assertThat(optionalProductEntity).isPresent();
+    }
+
+    @Test
+    @DisplayName("Given Pageable When Exist Then Return Products")
+    public void givenPageableWhenExistThenReturnProducts() {
+        var productEntity = defaultProductEntity()
+                .withId(null)
+                .build();
+
+        this.repository.save(productEntity);
+
+        var pageRequest = PageRequest.of(1, 30);
+        var page = this.repository.findAll(pageRequest);
+
+        assertThat(page).isNotNull();
     }
 
 }

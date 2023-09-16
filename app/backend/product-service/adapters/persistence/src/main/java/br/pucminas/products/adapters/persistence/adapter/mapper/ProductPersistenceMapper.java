@@ -5,6 +5,10 @@ import br.pucminas.products.adapters.persistence.entity.ProductEntity;
 import br.pucminas.products.application.domain.Product;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+
+import java.util.stream.Collectors;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class ProductPersistenceMapper {
@@ -49,6 +53,17 @@ public class ProductPersistenceMapper {
         productEntity.getCoverages().forEach(product::addCoverage);
         productEntity.getAssistances().forEach(product::addAssistance);
         return product;
+    }
+
+    public static Page<Product> mapToDomain(Page<ProductEntity> pageEntity){
+        if (pageEntity == null) {
+            return null;
+        }
+        var products = pageEntity.getContent()
+                                 .stream()
+                                 .map(ProductPersistenceMapper::mapToDomain)
+                                 .collect(Collectors.toList());
+        return new PageImpl<>(products, pageEntity.getPageable(), pageEntity.getTotalElements());
     }
 
 }

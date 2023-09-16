@@ -22,13 +22,11 @@ export class ProductService {
       'Access-Control-Allow-Methods': '*'
     });
     const url = environment.product_endpoint;
-    const body = JSON.stringify(product);
-    console.log("body", body);
     return this.httpClient.post(url, product, {headers})
                           .pipe(map((data : any) =>  ProductServiceMapper.mapToModel(data)));
   }
 
-  update(id: number, product: Product) : Observable<Product> {
+  update(product: Product) : Observable<Product> {
     const headers = new HttpHeaders({
       'Content-Type':  'application/json',
       'Accept' : 'application/json',
@@ -36,6 +34,7 @@ export class ProductService {
       'Access-Control-Allow-Headers': '*',
       'Access-Control-Allow-Methods': '*'
     });
+    let id = product.id;
     let url = `${environment.product_endpoint}/${id}`;
     return this.httpClient.put(url, product, {headers})
                           .pipe(map((data : any) =>  ProductServiceMapper.mapToModel(data)));
@@ -49,8 +48,10 @@ export class ProductService {
         'Access-Control-Allow-Headers': '*',
         'Access-Control-Allow-Methods': '*'
     });
+    console.log("Searchin products");
     return this.httpClient.get(environment.product_endpoint, {headers})
-                          .pipe(map((data: any) => data.map((item: any) => ProductServiceMapper.mapToModel(data)) ));
+                          .pipe(map( (page: any) => page.data.map((item: any) => 
+                                      ProductServiceMapper.mapToModel(item)) ));
   }
 
   findById(id: number) : Observable<Product | undefined> {

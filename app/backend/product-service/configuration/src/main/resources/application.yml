@@ -29,6 +29,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
+  data:
+    web:
+      pageable:
+        default-page-size: 30
+        page-parameter: page
+        size-parameter: page_size
 
 management:
   endpoint:

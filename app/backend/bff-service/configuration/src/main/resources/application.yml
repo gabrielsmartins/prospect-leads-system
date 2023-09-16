@@ -18,6 +18,7 @@ spring:
     opentracing:
       enabled: true
 
+
 redis:
   streams:
     key: event:leads

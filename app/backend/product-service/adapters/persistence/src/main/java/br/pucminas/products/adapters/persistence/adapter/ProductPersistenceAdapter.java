@@ -4,16 +4,22 @@ import br.pucminas.products.adapters.persistence.adapter.mapper.ProductPersisten
 import br.pucminas.products.adapters.persistence.service.IProductPersistenceService;
 import br.pucminas.products.application.domain.Product;
 import br.pucminas.products.application.ports.out.SaveProductPort;
+import br.pucminas.products.application.ports.out.SearchProductPort;
 import br.pucminas.products.common.stereotype.PersistenceAdapter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
+import java.util.Optional;
+
+import static net.logstash.logback.argument.StructuredArguments.kv;
 import static net.logstash.logback.marker.Markers.append;
 
 @PersistenceAdapter
 @RequiredArgsConstructor
 @Slf4j
-public class SaveProductPersistenceAdapter implements SaveProductPort {
+public class ProductPersistenceAdapter implements SaveProductPort, SearchProductPort {
 
     private final IProductPersistenceService service;
 
@@ -36,6 +42,25 @@ public class SaveProductPersistenceAdapter implements SaveProductPort {
         product.setUpdatedAt(createdProduct.getUpdatedAt());
         product.setDeletedAt(createdProduct.getDeletedAt());
         return createdProduct;
+    }
+
+    @Override
+    public Page<Product> findAll(Pageable pageable) {
+        log.info("Searching all products");
+        var pageEntity = this.service.findAll(pageable);
+        log.info(append("products", pageEntity), "Products were found successfully");
+
+        log.info(append("products", pageEntity), "Mapping product entities");
+        var page = ProductPersistenceMapper.mapToDomain(pageEntity);
+        log.info(append("products", page), "Products were mapped successfully");
+        return page;
+    }
+
+    @Override
+    public Optional<Product> findById(Integer id) {
+        log.info("Searching product by id :{}", kv("id", id));
+        return this.service.findById(id)
+                           .map(ProductPersistenceMapper::mapToDomain);
     }
 
 }

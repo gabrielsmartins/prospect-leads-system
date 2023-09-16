@@ -4,6 +4,7 @@
   import { Category } from '../../model/category.model';
   import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
   import { AddProductMapper } from './add-product-mapper';
+import { SuccessDialogService } from '../../../shared/dialog/success-dialog/service/success-dialog.service';
 
   @Component({
     selector: 'app-add-product',
@@ -15,7 +16,7 @@
     form: FormGroup;
     categories = Object.values(Category);
 
-    constructor(private service: ProductService, private router: Router, private formBuilder: FormBuilder) { 
+    constructor(private service: ProductService, private router: Router, private formBuilder: FormBuilder, private successDialogService: SuccessDialogService) { 
       this.form = this.formBuilder.group({
         name: ['', Validators.required],
         category: ['', Validators.required],
@@ -70,10 +71,9 @@
 
     onSubmit() {
       let product = AddProductMapper.mapToModel(this.form);
-      console.log(product);
-      console.log("Form", this.form);
       this.service.create(product)
                   .subscribe(() => {
+                    this.successDialogService.openDialog('Produto criado com sucesso', 201);
                     this.router.navigate(["/products"]);
                   })
     }

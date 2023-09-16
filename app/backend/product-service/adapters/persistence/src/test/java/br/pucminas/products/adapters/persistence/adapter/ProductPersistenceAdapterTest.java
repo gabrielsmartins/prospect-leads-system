@@ -1,8 +1,7 @@
-package br.pucminas.products.adapters.persistence.service;
-
+package br.pucminas.products.adapters.persistence.adapter;
 
 import br.pucminas.products.adapters.persistence.entity.ProductEntity;
-import br.pucminas.products.adapters.persistence.repository.ProductRepository;
+import br.pucminas.products.adapters.persistence.service.IProductPersistenceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,31 +13,32 @@ import java.util.List;
 import java.util.Optional;
 
 import static br.pucminas.products.adapters.persistence.support.ProductEntitySupport.defaultProductEntity;
+import static br.pucminas.products.application.support.ProductSupport.defaultProduct;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class ProductPersistenceServiceTest {
+class ProductPersistenceAdapterTest {
 
-    private ProductPersistenceService service;
-    private ProductRepository repository;
+    private ProductPersistenceAdapter adapter;
+    private IProductPersistenceService service;
 
     @BeforeEach
     public void setup() {
-        this.repository = mock(ProductRepository.class);
-        this.service = new ProductPersistenceService(this.repository);
+        this.service = mock(IProductPersistenceService.class);
+        this.adapter = new ProductPersistenceAdapter(this.service);
     }
 
     @Test
     @DisplayName("Given Product When Save Then Return Saved Product")
     public void givenProductWhenSaveThenReturnSavedProduct() {
-        var productEntity = defaultProductEntity().build();
+        var product = defaultProduct().build();
 
-        when(this.repository.save(any(ProductEntity.class))).thenAnswer(invocation -> invocation.getArgument(0));
+        when(this.service.save(any(ProductEntity.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
-        var savedProductEntity = this.service.save(productEntity);
+        var savedProductEntity = this.adapter.save(product);
 
         assertThat(savedProductEntity).isNotNull();
     }
@@ -48,12 +48,12 @@ class ProductPersistenceServiceTest {
     public void givenIdWhenExistsThenReturnExistingProduct() {
         var productEntity = defaultProductEntity().build();
 
-        when(this.repository.findById(anyInt())).thenReturn(Optional.of(productEntity));
+        when(this.service.findById(anyInt())).thenReturn(Optional.of(productEntity));
 
         var id = 1;
-        var optionalProductEntity = this.service.findById(id);
+        var optionalProduct = this.adapter.findById(id);
 
-        assertThat(optionalProductEntity).isPresent();
+        assertThat(optionalProduct).isPresent();
     }
 
     @Test
@@ -63,11 +63,10 @@ class ProductPersistenceServiceTest {
 
         var pageRequest = PageRequest.of(1, 30);
         var pageable = new PageImpl<>(List.of(productEntity), pageRequest, 1);
-        when(this.repository.findAll(any(Pageable.class))).thenReturn(pageable);
+        when(this.service.findAll(any(Pageable.class))).thenReturn(pageable);
 
-        var page = this.service.findAll(pageRequest);
+        var page = this.adapter.findAll(pageRequest);
 
         assertThat(page).isNotNull();
     }
-
 }

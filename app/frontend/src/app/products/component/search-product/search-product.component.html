@@ -24,17 +24,17 @@
    
       <ng-container matColumnDef="createdAt">
           <th mat-header-cell *matHeaderCellDef>Data Criação</th>
-          <td mat-cell *matCellDef="let product">{{product.createAt | date:'yyyy-MM-ddTHH:mm:ss.sssZ':'UTC'}}</td>
+          <td mat-cell *matCellDef="let product">{{product.created_at | date:'yyyy-MM-ddTHH:mm:ss.sssZ':'UTC'}}</td>
       </ng-container>
 
       <ng-container matColumnDef="updatedAt">
         <th mat-header-cell *matHeaderCellDef>Data Atualização</th>
-        <td mat-cell *matCellDef="let product">{{product.updatedAt | date:'yyyy-MM-ddTHH:mm:ss.sssZ':'UTC'}}</td>
+        <td mat-cell *matCellDef="let product">{{product.updated_at | date:'yyyy-MM-ddTHH:mm:ss.sssZ':'UTC'}}</td>
       </ng-container>
 
       <ng-container matColumnDef="deletedAt">
         <th mat-header-cell *matHeaderCellDef>Data Exclusão</th>
-        <td mat-cell *matCellDef="let product">{{product.deletedAt | date:'yyyy-MM-ddTHH:mm:ss.sssZ':'UTC'}}</td>
+        <td mat-cell *matCellDef="let product">{{product.deleted_at | date:'yyyy-MM-ddTHH:mm:ss.sssZ':'UTC'}}</td>
       </ng-container>
 
       <ng-container matColumnDef="detail">

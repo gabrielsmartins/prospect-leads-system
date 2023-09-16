@@ -5,6 +5,8 @@ import br.pucminas.bff.application.ports.in.products.SearchProductUseCase;
 import br.pucminas.bff.application.ports.out.products.SearchProductPort;
 import br.pucminas.bff.common.stereotype.UseCase;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import reactor.core.publisher.Mono;
 
 @UseCase
@@ -12,6 +14,11 @@ import reactor.core.publisher.Mono;
 public class SearchProductService implements SearchProductUseCase {
 
     private final SearchProductPort port;
+
+    @Override
+    public Mono<Page<Product>> findAll(Pageable pageable) {
+        return this.port.findAll(pageable);
+    }
 
     @Override
     public Mono<Product> findById(Integer id) {

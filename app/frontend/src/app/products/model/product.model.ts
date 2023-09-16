@@ -20,7 +20,7 @@ export class Product {
         return {
             id: this.id,
             name: this.name,
-            category : this.category,
+            category : this.category as string,
             active : this.active,
             min_total_monthly_premium_amount : this.min_total_monthly_premium_amount,
             max_total_monthly_premium_amount : this.max_total_monthly_premium_amount,

@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandler, Injectable, NgZone } from '@angular/core';
-import { ErrorDialogService } from 'src/app/shared/errors/error-dialog/service/error-dialog.service';
+import { ErrorDialogService } from 'src/app/shared/dialog/error-dialog/service/error-dialog.service';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {

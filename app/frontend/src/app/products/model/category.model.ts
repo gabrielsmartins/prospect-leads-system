@@ -1,6 +1,6 @@
 export enum Category {
-    LIFE = "Vida",
-    PET = "Pet",
-    ENTERPRISE = "Empresarial",
-    TRAVEL = "Viagem"
+    LIFE = "LIFE",
+    PET = "PET",
+    ENTERPRISE = "ENTERPRISE",
+    TRAVEL = "TRAVEL"
 }

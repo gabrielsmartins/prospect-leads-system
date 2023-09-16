@@ -41,6 +41,7 @@ subprojects {
 	ext {
 		set('springBootVersion', "2.7.13")
 		set('springCloudVersion', "2021.0.7")
+		set('springDataCommonsVersion', "2.7.16")
 		set('logstashVersion', "7.4")
 		set('assertJVersion', "3.24.2")
 		set('mockitoVersion', "5.4.0")
@@ -54,6 +55,8 @@ subprojects {
 		implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 		implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 		annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+		implementation group: 'org.springframework.data', name: 'spring-data-commons', version: springDataCommonsVersion
+
 
 		compileOnly 'org.projectlombok:lombok'
 		testCompileOnly 'org.projectlombok:lombok'
