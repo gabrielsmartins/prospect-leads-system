@@ -23,9 +23,11 @@ export class ProductDetailComponent implements OnInit {
     name: '',
     active: true,
     category: undefined,
-    createdAt: new Date(),
-    updatedAt: undefined,
-    deletedAt: undefined,
+    created_at: new Date(),
+    updated_at: undefined,
+    deleted_at: undefined,
+    coverages:  new Map(),
+    assistances: new Array()
   };
 
   ngOnInit(): void {
@@ -43,11 +45,11 @@ export class ProductDetailComponent implements OnInit {
   }
 
   update() : void {
-    this.productForm.updatedAt = new Date();
+    this.productForm.updated_at = new Date();
   }
 
   delete() : void {
-    this.productForm.deletedAt = new Date();
+    this.productForm.deleted_at = new Date();
   }
 
 }

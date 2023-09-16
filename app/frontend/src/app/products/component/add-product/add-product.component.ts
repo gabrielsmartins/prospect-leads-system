@@ -10,7 +10,7 @@
     templateUrl: './add-product.component.html',
     styleUrls: ['./add-product.component.css']
   })
-  export class AddProductComponent implements OnInit{
+  export class AddProductComponent implements OnInit {
 
     form: FormGroup;
     categories = Object.values(Category);
@@ -22,8 +22,8 @@
         max_total_monthly_premium_amount: ['', Validators.required],
         min_total_monthly_premium_amount: ['', Validators.required],
         suggested_total_monthly_premium_amount: ['', Validators.required],
-        coverages: this.formBuilder.array([new FormControl()]),
-        assistances: this.formBuilder.array([new FormControl()])
+        coverages: this.formBuilder.array([this.newCoverage()]),
+        assistances: this.formBuilder.array([this.newAssitance()])
       });
     }
 
@@ -38,17 +38,30 @@
     get assistances(): FormArray {
       return this.form.get('assistances') as FormArray;
     }
+
+    newCoverage() : FormGroup {
+      return this.formBuilder.group({
+                  key: ['', Validators.required],
+                  value: ['', Validators.required]
+                });
+    }
   
     addCoverage(): void {
-      this.coverages.push(new FormControl());
+      this.coverages.push(this.newCoverage());
     }
   
     removeCoverage(index: number): void {
       this.coverages.removeAt(index);
     }
 
+    newAssitance() : FormGroup {
+      return this.formBuilder.group({
+                assistance: ['', Validators.required]
+              });
+    }
+
     addAssistance(): void {
-      this.assistances.push(new FormControl());
+      this.assistances.push(this.newAssitance());
     }
   
     removeAssistance(index: number): void {
@@ -57,6 +70,8 @@
 
     onSubmit() {
       let product = AddProductMapper.mapToModel(this.form);
+      console.log(product);
+      console.log("Form", this.form);
       this.service.create(product)
                   .subscribe(() => {
                     this.router.navigate(["/products"]);

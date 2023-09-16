@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { Product } from '../model/product.model';
 import { ProductServiceMapper } from './product.service.mapper';
 import { environment } from 'src/environments/environment';
+import { snakeCase } from 'snake-case';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,8 @@ export class ProductService {
       'Access-Control-Allow-Methods': '*'
     });
     const url = environment.product_endpoint;
+    const body = JSON.stringify(product);
+    console.log("body", body);
     return this.httpClient.post(url, product, {headers})
                           .pipe(map((data : any) =>  ProductServiceMapper.mapToModel(data)));
   }

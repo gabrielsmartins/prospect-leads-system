@@ -8,14 +8,14 @@ export class ProductServiceMapper {
         product.name = data.name;
         product.category = data.category;
         product.active = data.active;
-        product.minTotalMonthlyPremiumAmount = data.minTotalMonthlyPremiumAmount;
-        product.maxTotalMonthlyPremiumAmount = data.maxTotalMonthlyPremiumAmount;
-        product.suggestedTotalMonthlyPremiumAmount = data.suggestedTotalMonthlyPremiumAmount;
-        product.totalCoverageAmount = data.totalCoverageAmount;
+        product.min_total_monthly_premium_amount = data.min_total_monthly_premium_amount;
+        product.max_total_monthly_premium_amount = data.max_total_monthly_premium_amount;
+        product.suggested_total_monthly_premium_amount = data.suggested_total_monthly_premium_amount;
+        product.total_coverage_amount = data.total_coverage_amount;
         product.coverages = data.coverages;
-        product.createdAt = data.createdAt;
-        product.updatedAt = data.updatedAt;
-        product.deletedAt = data.deletedAt;
+        product.created_at = data.created_at;
+        product.updated_at = data.updated_at;
+        product.deleted_at = data.deleted_at;
         return product;
     }
 

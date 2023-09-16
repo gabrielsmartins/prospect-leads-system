@@ -20,7 +20,8 @@ export class GlobalErrorHandler implements ErrorHandler {
         error?.status
       )
     );
-
-    console.error('Error from global error handler', error);
+    if (error != undefined && error != null) {
+      console.error('Error from global error handler', error);
+    }
   }
 }
