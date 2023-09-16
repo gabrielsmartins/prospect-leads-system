@@ -15,6 +15,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CurrencyMaskModule } from 'ng2-currency-mask';
+
 
 @NgModule({
   exports: [
@@ -28,6 +30,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatTableModule,
     MatFormFieldModule,
     MatInputModule,
+    CurrencyMaskModule,
     MatCardModule,
     MatSelectModule,
     MatButtonModule,

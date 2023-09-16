@@ -4,7 +4,7 @@
       <mat-card-title>Novo Produto</mat-card-title>
     </mat-card-header>
 
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
 
       <mat-card>
         <mat-card-content class="mat-form-field-wrapper">
@@ -26,15 +26,15 @@
         <mat-card-content>
           <mat-form-field appearance="outline" class="form-element">
             <mat-label>Máximo Preço Mensal Sugerido</mat-label>
-            <input type="number" matInput formControlName="max_total_monthly_premium_amount" required />
+            <input currencyMask matInput formControlName="max_total_monthly_premium_amount" required />
           </mat-form-field>
           <mat-form-field appearance="outline" class="form-element">
             <mat-label>Mínimo Preço Mensal Sugerido</mat-label>
-            <input type="number" matInput formControlName="min_total_monthly_premium_amount" required />
+            <input currencyMask matInput formControlName="min_total_monthly_premium_amount" required />
           </mat-form-field>
           <mat-form-field appearance="outline" class="form-element">
             <mat-label>Preço Mensal Sugerido</mat-label>
-            <input type="number" matInput formControlName="suggested_total_monthly_premium_amount" required />
+            <input currencyMask matInput formControlName="suggested_total_monthly_premium_amount" required />
           </mat-form-field>
         </mat-card-content>
       </mat-card>
@@ -49,12 +49,12 @@
                   <!-- <mat-hint align="start">{{form.controls['key'].value?.length || 0}}/256</mat-hint> -->
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="form-element">
-                  <input type="number" matInput formControlName="value" placeholder="Valor" required>
+                  <input currencyMask matInput formControlName="value" placeholder="Valor" required>
                 </mat-form-field>
-                <button mat-mini-fab (click)="addCoverage()" color="primary">
+                <button mat-mini-fab (click)="addCoverage()" color="primary" type="button">
                   <mat-icon class="add-course-btn">add</mat-icon>
                 </button>
-                <button mat-icon-button (click)="removeCoverage(i)" color="primary">
+                <button mat-icon-button (click)="removeCoverage(i)" color="primary" type="button">
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
@@ -72,10 +72,10 @@
                   <input matInput formControlName="assistance" placeholder="Assistência" required>
                  <!-- <mat-hint align="start">{{form.controls['assistance'].value?.length || 0}}/256</mat-hint> -->
                 </mat-form-field>
-                <button mat-mini-fab (click)="addAssistance()" color="primary">
+                <button mat-mini-fab (click)="addAssistance()" color="primary" type="button">
                   <mat-icon class="add-course-btn">add</mat-icon>
                 </button>
-                <button mat-icon-button (click)="removeAssistance(i)" color="primary">
+                <button mat-icon-button (click)="removeAssistance(i)" color="primary" type="button">
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
