@@ -18,18 +18,8 @@ export class ProductDetailComponent implements OnInit {
 
   product: Product | undefined;    
   
-  productForm: Product = {
-    id : undefined,
-    name: '',
-    active: true,
-    category: undefined,
-    created_at: new Date(),
-    updated_at: undefined,
-    deleted_at: undefined,
-    coverages:  new Map(),
-    assistances: new Array()
-  };
-
+  productForm: Product = new Product();
+  
   ngOnInit(): void {
     this.findById();
   }
