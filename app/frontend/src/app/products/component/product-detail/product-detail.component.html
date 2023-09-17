@@ -1,31 +1,93 @@
-<div class="container product-detail-container">
-    <div>
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{product?.id}} - {{product?.name}}</mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="form" novalidate>
+
       <mat-card>
-        <h3 style="text-align: center">{{product?.id}} - {{product?.name}}</h3>
-        <!--
-        <div>
-          <mat-form-field [disabled]=true appearance="outline" class="form-element">
+        <mat-card-content class="mat-form-field-wrapper">
+          <mat-form-field appearance="outline" class="form-element">
             <mat-label>Nome</mat-label>
-            <input matInput  [(ngModel)] ="product.name" />
+            <input matInput formControlName="name" class="form-element flex-fill" required [ngModel]="product?.name">
+            <mat-hint align="start">{{form.controls['name'].value?.length || 0}}/256</mat-hint>
           </mat-form-field>
-        </div>
-        -->
-   
-        <!--
-        <div>
-          <mat-form-field>
+          <mat-form-field appearance="outline" class="form-element">
             <mat-label>Categoria</mat-label>
-            <mat-select disabled=true [(ngModel)]="product.category">
-              <mat-option *ngFor="let category in categories" [value]="category">category</mat-option>
+            <mat-select formControlName="category" [ngModel]="product?.category">
+              <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
             </mat-select>
           </mat-form-field>
-        </div>
-      -->
-
-        <div>
-            <button mat-raised-button color="primary" (click)="update()">Salvar</button>
-            <button mat-raised-button color="primary" (click)="delete()">Excluir</button>
-        </div>
+        </mat-card-content>
       </mat-card>
-    </div>
-  </div>
+
+      <mat-card>
+        <mat-card-content>
+          <mat-form-field appearance="outline" class="form-element">
+            <mat-label>Máximo Preço Mensal Sugerido</mat-label>
+            <input currencyMask matInput formControlName="max_total_monthly_premium_amount" required [ngModel]="product?.max_total_monthly_premium_amount"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="form-element">
+            <mat-label>Mínimo Preço Mensal Sugerido</mat-label>
+            <input currencyMask matInput formControlName="min_total_monthly_premium_amount" required [ngModel]="product?.min_total_monthly_premium_amount"/>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="form-element">
+            <mat-label>Preço Mensal Sugerido</mat-label>
+            <input currencyMask matInput formControlName="suggested_total_monthly_premium_amount" required [ngModel]="product?.suggested_total_monthly_premium_amount"/>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-content>
+          <div class="form-column" formArrayName="coverages">
+            <div *ngFor="let coverage of coverages.controls; let i = index">
+              <div [formGroupName]="i">
+                <mat-form-field appearance="outline" class="form-element">
+                  <input matInput formControlName="key" placeholder="Cobertura" required>
+                  <!-- <mat-hint align="start">{{form.controls['key'].value?.length || 0}}/256</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-element">
+                  <input currencyMask matInput formControlName="value" placeholder="Valor" required>
+                </mat-form-field>
+                <button mat-mini-fab (click)="addCoverage()" color="primary" type="button">
+                  <mat-icon class="add-course-btn">add</mat-icon>
+                </button>
+                <button mat-icon-button (click)="removeCoverage(i)" color="primary" type="button">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-content>
+          <div class="form-column" formArrayName="assistances">
+            <div *ngFor="let assistance of assistances.controls; let i = index">
+              <div [formGroupName]="i">
+                <mat-form-field appearance="outline" class="form-element">
+                  <input matInput formControlName="assistance" placeholder="Assistência" required>
+                  <!-- <mat-hint align="start">{{form.controls['assistance'].value?.length || 0}}/256</mat-hint> -->
+                </mat-form-field>
+                <button mat-mini-fab (click)="addAssistance()" color="primary" type="button">
+                  <mat-icon class="add-course-btn">add</mat-icon>
+                </button>
+                <button mat-icon-button (click)="removeAssistance(i)" color="primary" type="button">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <div>
+        <button mat-raised-button color="primary" (click)="update()">Salvar</button>
+        <button mat-raised-button color="primary" (click)="delete()">Excluir</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

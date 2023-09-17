@@ -12,6 +12,7 @@ export class ProductServiceMapper {
         product.max_total_monthly_premium_amount = data.max_total_monthly_premium_amount;
         product.suggested_total_monthly_premium_amount = data.suggested_total_monthly_premium_amount;
         product.total_coverage_amount = data.total_coverage_amount;
+        product.assistances = data.assistances;
         product.coverages = data.coverages;
         product.created_at = data.created_at;
         product.updated_at = data.updated_at;

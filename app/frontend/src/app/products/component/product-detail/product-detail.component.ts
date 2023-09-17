@@ -17,7 +17,7 @@ import { ProductDetailMapper } from './product-detail-mapper';
 export class ProductDetailComponent implements OnInit {
 
   form: FormGroup;
-  product: Product | undefined; 
+  product: Product | undefined;
   categories = Object.values(Category);
 
   constructor(private route: ActivatedRoute, private service: ProductService, private location: Location, private router: Router, private formBuilder: FormBuilder, private successDialogService: SuccessDialogService) {
@@ -36,6 +36,42 @@ export class ProductDetailComponent implements OnInit {
     this.findById();
   }
 
+  private fillAssistances(): void {
+    const productAssistances = this.product?.assistances || [];
+
+    while (this.assistances.length) {
+      this.assistances.removeAt(0);
+    }
+
+    for (const assistance of productAssistances) {
+      this.addAssistance();
+      const lastIndex = this.assistances.length - 1;
+      this.assistances.at(lastIndex).patchValue({ assistance });
+    }
+  }
+
+  private fillCoverages(): void {
+    console.log(this.product);
+    const coverageFormArray = this.product?.coverages ? this.mapCoveragesToFormArray(this.product.coverages) : [];
+    this.coverages.clear();
+    coverageFormArray.forEach((coverageGroup) => {
+      this.coverages.push(coverageGroup);
+    });
+  }
+
+  private mapCoveragesToFormArray(coverages: Map<string, number>): FormGroup[] {
+    const coverageFormArray: FormGroup[] = [];
+    for (const [key, value] of Object.entries(coverages)) {
+      const coverageGroup = this.formBuilder.group({
+        key: [key, Validators.required],
+        value: [value, Validators.required],
+      });
+      coverageFormArray.push(coverageGroup);
+    }
+    return coverageFormArray;
+  }
+
+
   get coverages(): FormArray {
     return this.form.get('coverages') as FormArray;
   }
@@ -44,61 +80,66 @@ export class ProductDetailComponent implements OnInit {
     return this.form.get('assistances') as FormArray;
   }
 
-  newCoverage() : FormGroup {
+  private newCoverage(): FormGroup {
     return this.formBuilder.group({
-                key: ['', Validators.required],
-                value: ['', Validators.required]
-              });
+      key: ['', Validators.required],
+      value: ['', Validators.required]
+    });
   }
 
-  addCoverage(): void {
+  public addCoverage(): void {
     this.coverages.push(this.newCoverage());
   }
 
-  removeCoverage(index: number): void {
+  public removeCoverage(index: number): void {
     this.coverages.removeAt(index);
   }
 
-  newAssitance() : FormGroup {
+  public newAssitance(): FormGroup {
     return this.formBuilder.group({
-              assistance: ['', Validators.required]
-            });
+      assistance: ['', Validators.required]
+    });
   }
 
-  addAssistance(): void {
+  public addAssistance(): void {
     this.assistances.push(this.newAssitance());
   }
 
-  removeAssistance(index: number): void {
+  public removeAssistance(index: number): void {
     this.assistances.removeAt(index);
   }
 
-  findById() {
+  private findById() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.service.findById(id)
-                .subscribe(product => this.product = product);
+      .subscribe(product => {
+        console.log(product);
+        this.product = product;
+        this.fillAssistances();
+        this.fillCoverages();
+      });
   }
 
-  goBack() : void {
+  goBack(): void {
     this.location.back();
   }
 
-  update() : void {
+  update(): void {
     let product = ProductDetailMapper.mapToModel(this.form);
-      this.service.update(product)
-                  .subscribe(() => {
-                    this.successDialogService.openDialog('Produto alterado com sucesso', 204);
-                    this.router.navigate(["/products"]);
-                  })
+    this.service.update(product)
+      .subscribe(() => {
+        this.successDialogService.openDialog('Produto alterado com sucesso', 204);
+        this.router.navigate(["/products"]);
+      })
   }
 
-  delete() : void {
+  delete(): void {
     let product = ProductDetailMapper.mapToModel(this.form);
-      this.service.create(product)
-                  .subscribe(() => {
-                    this.successDialogService.openDialog('Produto excluído com sucesso', 204);
-                    this.router.navigate(["/products"]);
-                  })
+    this.service.create(product)
+      .subscribe(() => {
+        this.successDialogService.openDialog('Produto excluído com sucesso', 204);
+        this.router.navigate(["/products"]);
+      })
   }
 
 }
