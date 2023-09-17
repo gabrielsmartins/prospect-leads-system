@@ -40,6 +40,20 @@ export class ProductService {
                           .pipe(map((data : any) =>  ProductServiceMapper.mapToModel(data)));
   }
 
+  delete(id: number) : void {
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Accept' : 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': '*'
+    });
+    console.log("Deleting product", id);
+    let url = `${environment.product_endpoint}/${id}`;
+    this.httpClient.delete(url, {headers})
+                   .subscribe(data => console.log(`Product ${id} deleted successfully`));
+  }
+
   findAll(): Observable<Product[]> {
     const headers = new HttpHeaders({
         'Content-Type':  'application/json',
@@ -48,7 +62,6 @@ export class ProductService {
         'Access-Control-Allow-Headers': '*',
         'Access-Control-Allow-Methods': '*'
     });
-    console.log("Searchin products");
     return this.httpClient.get(environment.product_endpoint, {headers})
                           .pipe(map( (page: any) => page.data.map((item: any) => 
                                       ProductServiceMapper.mapToModel(item)) ));

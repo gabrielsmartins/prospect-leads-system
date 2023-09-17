@@ -1,10 +1,21 @@
 <div class="container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>{{product?.id}} - {{product?.name}}</mat-card-title>
+      <mat-card-title>
+        <h3>Detalhe Produto: {{product?.id}} - {{product?.name}}</h3>
+      </mat-card-title>
     </mat-card-header>
 
     <form [formGroup]="form" novalidate>
+
+      <mat-card>
+        <mat-card-content class="mat-form-field-wrapper">
+          <mat-form-field appearance="outline" class="form-element">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="id" class="form-element flex-fill" required [ngModel]="product?.id">
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
 
       <mat-card>
         <mat-card-content class="mat-form-field-wrapper">
@@ -26,15 +37,18 @@
         <mat-card-content>
           <mat-form-field appearance="outline" class="form-element">
             <mat-label>Máximo Preço Mensal Sugerido</mat-label>
-            <input currencyMask matInput formControlName="max_total_monthly_premium_amount" required [ngModel]="product?.max_total_monthly_premium_amount"/>
+            <input currencyMask matInput formControlName="max_total_monthly_premium_amount" required
+              [ngModel]="product?.max_total_monthly_premium_amount" />
           </mat-form-field>
           <mat-form-field appearance="outline" class="form-element">
             <mat-label>Mínimo Preço Mensal Sugerido</mat-label>
-            <input currencyMask matInput formControlName="min_total_monthly_premium_amount" required [ngModel]="product?.min_total_monthly_premium_amount"/>
+            <input currencyMask matInput formControlName="min_total_monthly_premium_amount" required
+              [ngModel]="product?.min_total_monthly_premium_amount" />
           </mat-form-field>
           <mat-form-field appearance="outline" class="form-element">
             <mat-label>Preço Mensal Sugerido</mat-label>
-            <input currencyMask matInput formControlName="suggested_total_monthly_premium_amount" required [ngModel]="product?.suggested_total_monthly_premium_amount"/>
+            <input currencyMask matInput formControlName="suggested_total_monthly_premium_amount" required
+              [ngModel]="product?.suggested_total_monthly_premium_amount" />
           </mat-form-field>
         </mat-card-content>
       </mat-card>
@@ -46,7 +60,7 @@
               <div [formGroupName]="i">
                 <mat-form-field appearance="outline" class="form-element">
                   <input matInput formControlName="key" placeholder="Cobertura" required>
-                  <!-- <mat-hint align="start">{{form.controls['key'].value?.length || 0}}/256</mat-hint> -->
+                  <mat-hint align="start">{{coverages.controls[i].get('key')?.value?.length || 0}}/256</mat-hint>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="form-element">
                   <input currencyMask matInput formControlName="value" placeholder="Valor" required>
@@ -70,7 +84,8 @@
               <div [formGroupName]="i">
                 <mat-form-field appearance="outline" class="form-element">
                   <input matInput formControlName="assistance" placeholder="Assistência" required>
-                  <!-- <mat-hint align="start">{{form.controls['assistance'].value?.length || 0}}/256</mat-hint> -->
+                  <mat-hint align="start">{{assistances.controls[i].get('assistance')?.value?.length ||
+                    0}}/256</mat-hint>
                 </mat-form-field>
                 <button mat-mini-fab (click)="addAssistance()" color="primary" type="button">
                   <mat-icon class="add-course-btn">add</mat-icon>
@@ -84,7 +99,7 @@
         </mat-card-content>
       </mat-card>
 
-      <div>
+      <div class="centered-buttons">
         <button mat-raised-button color="primary" (click)="update()">Salvar</button>
         <button mat-raised-button color="primary" (click)="delete()">Excluir</button>
       </div>

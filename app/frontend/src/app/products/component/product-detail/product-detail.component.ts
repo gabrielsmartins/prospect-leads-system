@@ -22,6 +22,7 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private service: ProductService, private location: Location, private router: Router, private formBuilder: FormBuilder, private successDialogService: SuccessDialogService) {
     this.form = this.formBuilder.group({
+      id: [{ value: '', disabled: true }, Validators.required],
       name: ['', Validators.required],
       category: ['', Validators.required],
       max_total_monthly_premium_amount: ['', Validators.required],
@@ -51,7 +52,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   private fillCoverages(): void {
-    console.log(this.product);
     const coverageFormArray = this.product?.coverages ? this.mapCoveragesToFormArray(this.product.coverages) : [];
     this.coverages.clear();
     coverageFormArray.forEach((coverageGroup) => {
@@ -113,18 +113,17 @@ export class ProductDetailComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.service.findById(id)
       .subscribe(product => {
-        console.log(product);
         this.product = product;
         this.fillAssistances();
         this.fillCoverages();
       });
   }
 
-  goBack(): void {
+  public goBack(): void {
     this.location.back();
   }
 
-  update(): void {
+  public update(): void {
     let product = ProductDetailMapper.mapToModel(this.form);
     this.service.update(product)
       .subscribe(() => {
@@ -133,13 +132,17 @@ export class ProductDetailComponent implements OnInit {
       })
   }
 
-  delete(): void {
+  public delete(): void {
     let product = ProductDetailMapper.mapToModel(this.form);
-    this.service.create(product)
-      .subscribe(() => {
-        this.successDialogService.openDialog('Produto excluído com sucesso', 204);
-        this.router.navigate(["/products"]);
-      })
+    const id = product.id;
+    console.log("ID", id);
+    if (id) {
+      this.service.delete(id);
+      this.successDialogService.openDialog('Produto excluído com sucesso', 204);
+    } else {
+      this.successDialogService.openDialog('Produto não informado', 204);
+    }
+    this.router.navigate(["/products"]);
   }
 
 }
