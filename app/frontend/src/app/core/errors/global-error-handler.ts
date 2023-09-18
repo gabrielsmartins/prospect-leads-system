@@ -10,9 +10,9 @@ export class GlobalErrorHandler implements ErrorHandler {
   ) {}
 
   handleError(error: any) {
-    // Check if it's an error from an HTTP response
+    console.error('Error from global error handler', error);
     if (!(error instanceof HttpErrorResponse)) {
-      error = error.rejection; // get the error object
+      error = error.rejection;
     }
     this.zone.run(() =>
       this.errorDialogService.openDialog(

@@ -2,7 +2,7 @@ import { FormArray, FormGroup } from "@angular/forms";
 import { Product } from "../../model/product.model"
 import { Category } from '../../model/category.model';
 
-export class AddProductMapper {
+export class CreateProductMapper {
 
     public static mapToModel(form: FormGroup) : Product{
         let product = new Product();
