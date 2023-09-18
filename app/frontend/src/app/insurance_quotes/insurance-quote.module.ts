@@ -4,9 +4,10 @@ import { SearchInsuranceQuoteComponent } from "./component/search-insurance-quot
 import { SharedModule } from "../shared/shared.module";
 import { AppRoutingModule } from "../app-routing.module";
 import { InsuranceQuoteService } from "./service/insurance-quote.service";
+import { InsuranceQuoteDetailComponent } from './component/insurance-quote-detail/insurance-quote-detail.component';
 
 @NgModule({
-    declarations : [CreateInsuranceQuoteComponent, SearchInsuranceQuoteComponent],
+    declarations : [CreateInsuranceQuoteComponent, SearchInsuranceQuoteComponent, InsuranceQuoteDetailComponent],
     imports : [AppRoutingModule, SharedModule],
     providers : [InsuranceQuoteService]
 })

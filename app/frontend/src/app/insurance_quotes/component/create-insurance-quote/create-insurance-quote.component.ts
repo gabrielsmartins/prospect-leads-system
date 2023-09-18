@@ -7,6 +7,7 @@ import { Product } from 'src/app/products/model/product.model';
 import { InsuranceQuote } from '../../model/insurance-quote.model';
 import { ProductService } from '../../../products/service/product.service';
 import { filter, map } from 'rxjs';
+import { CreateInsuranceQuoteMapper } from './create-insurance-quote-mapper';
 
 @Component({
   selector: 'app-create-insurance-quote',
@@ -18,7 +19,7 @@ export class CreateInsuranceQuoteComponent implements OnInit {
   form: FormGroup;
   products: Array<Product> = new Array();
 
-  constructor(private productService: ProductService, private insuranceQuoteService: InsuranceQuoteService, private router: Router, private formBuilder: FormBuilder, private successDialogService: SuccessDialogService) { 
+  constructor(private productService: ProductService, private insuranceQuoteService: InsuranceQuoteService, private router: Router, private formBuilder: FormBuilder) { 
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       product: ['', Validators.required],
@@ -33,14 +34,19 @@ export class CreateInsuranceQuoteComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.findAll()
-        .pipe(map((products : Product[]) => products.filter(product => product.active)))
-        .subscribe(products =>  {
-          this.products = products;
-    });
+                       .pipe(map((products : Product[]) => products.filter(product => product.active)))
+                       .subscribe(products =>  {
+                         this.products = products;
+                        });
   }
 
   onSubmit() : void {
-    this.successDialogService.openDialog("Calculando", 200);
+    let insuranceQuote = CreateInsuranceQuoteMapper.mapToModel(this.form);
+    this.insuranceQuoteService.create(insuranceQuote)
+                               .subscribe(createdInsuranceQuote => {
+                                  let id = createdInsuranceQuote.id;
+                                  this.router.navigate([`/insurance-quote-simulation/${id}`]);
+                               }); 
   }
   
 }

@@ -1,9 +1,9 @@
 export class Customer {
-    documentNumber?: string;
+    document_number?: string;
     name?: string;
     type?: string;
     gender?: string;
-    dateOfBirth?: Date;
+    date_of_birth?: Date;
     email?: string;
-    phoneNumber?: number;
+    phone_number?: number;
 }

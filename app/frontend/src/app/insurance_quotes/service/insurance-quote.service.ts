@@ -25,4 +25,32 @@ export class InsuranceQuoteService {
                           .pipe(map((data : any) =>  InsuranceQuoteServiceMapper.mapToModel(data)));
   }
 
+  update(insuranceQuote: InsuranceQuote) : Observable<InsuranceQuote> {
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Accept' : 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': '*'
+    });
+    let id = insuranceQuote.id;
+    let url = `${environment.insurance_quote_endpoint}/${id}`;
+    return this.httpClient.put(url, insuranceQuote, {headers})
+                          .pipe(map((data : any) =>  InsuranceQuoteServiceMapper.mapToModel(data)));
+  }
+
+  findById(id: string) : Observable<InsuranceQuote> {
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Accept' : 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': '*'
+    });
+    let url = `${environment.insurance_quote_endpoint}/${id}`;
+    return this.httpClient.get(url, {headers})
+                          .pipe(map((data : any) =>  InsuranceQuoteServiceMapper.mapToModel(data)));
+  }
+
+
 }

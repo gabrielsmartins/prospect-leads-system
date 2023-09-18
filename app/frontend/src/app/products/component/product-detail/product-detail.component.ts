@@ -34,7 +34,13 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.findById();
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.service.findById(id)
+      .subscribe(product => {
+        this.product = product;
+        this.fillAssistances();
+        this.fillCoverages();
+      });
   }
 
   private fillAssistances(): void {
@@ -107,16 +113,6 @@ export class ProductDetailComponent implements OnInit {
 
   public removeAssistance(index: number): void {
     this.assistances.removeAt(index);
-  }
-
-  private findById() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.service.findById(id)
-      .subscribe(product => {
-        this.product = product;
-        this.fillAssistances();
-        this.fillCoverages();
-      });
   }
 
   public goBack(): void {

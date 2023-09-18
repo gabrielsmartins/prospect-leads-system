@@ -5,12 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { SearchProductComponent } from './products/component/search-product/search-product.component';
 import { ProductDetailComponent } from './products/component/product-detail/product-detail.component';
 import { CreateInsuranceQuoteComponent } from './insurance_quotes/component/create-insurance-quote/create-insurance-quote.component';
+import { InsuranceQuoteDetailComponent } from './insurance_quotes/component/insurance-quote-detail/insurance-quote-detail.component';
 
 const routes: Routes = [
   { path: 'create-product', component: CreateProductComponent},
   { path: 'products', component: SearchProductComponent},
   { path: 'products/:id', component: ProductDetailComponent},
   { path: 'insurance-quote-simulation', component: CreateInsuranceQuoteComponent},
+  { path: 'insurance-quote-simulation/:id', component: InsuranceQuoteDetailComponent},
   { path: '', redirectTo: '/products', pathMatch: 'full' },
 ];
 
