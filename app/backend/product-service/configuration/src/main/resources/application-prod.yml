@@ -8,5 +8,4 @@ eureka:
   client:
     enabled: true
     register-with-eureka: true
-    service-url:
-      default-zone: service-discovery.up.railway.app
+    eureka-server-d-n-s-name: service-discovery.up.railway.app
