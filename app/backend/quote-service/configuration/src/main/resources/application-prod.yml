@@ -6,12 +6,18 @@ spring:
       database: quotes
       username: root
       password: mongodb
+  boot:
+    admin:
+      client:
+        url: https://service-discovery.up.railway.app/admin
 
 eureka:
   client:
     enabled: true
     register-with-eureka: true
+    serviceUrl:
+      defaultZone: https://service-discovery.up.railway.app/eureka/
 
 webservice:
   products:
-    url: http://localhost:8080/products/v1
+    url: https://prospect-leads-product-service.up.railway.app/products/v1
