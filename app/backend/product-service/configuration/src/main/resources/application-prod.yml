@@ -9,4 +9,4 @@ eureka:
     enabled: true
     register-with-eureka: true
     service-url:
-      default-zone: service-discovery.up.railway.app/eureka
+      default-zone: service-discovery.up.railway.app
