@@ -1,5 +1,8 @@
+server:
+  port: ${PORT:8080}
+
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/productdb
+    url: ${JDBC_DATABASE_URL:}
     username: postgres
     password: postgres
