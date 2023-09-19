@@ -53,6 +53,7 @@ subprojects {
 		implementation 'org.springframework.boot:spring-boot-starter-actuator'
 		implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
 		implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+		implementation 'de.codecentric:spring-boot-admin-starter-client'
 		implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 		annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 		implementation group: 'org.springframework.data', name: 'spring-data-commons', version: springDataCommonsVersion

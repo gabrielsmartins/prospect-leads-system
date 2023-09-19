@@ -8,3 +8,4 @@ eureka:
   client:
     enabled: false
     register-with-eureka: false
+    should-enforce-registration-at-init: false

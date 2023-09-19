@@ -1,6 +1,9 @@
 spring:
   application:
     name: service-discovery
+  boot:
+    admin:
+      context-path: admin
 
 server:
     port: 8761
