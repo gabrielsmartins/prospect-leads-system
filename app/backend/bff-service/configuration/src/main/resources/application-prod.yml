@@ -1,21 +1,28 @@
 spring:
   redis:
-    password: redis
-    port: 6379
-    host: localhost
+    username: ${REDISUSER}
+    password: ${REDISPASSWORD}
+    port: ${REDISPORT}
+    host: ${REDISHOST}
     ssl: false
     jedis:
       pool:
         enabled: true
+  boot:
+    admin:
+      client:
+        url: https://service-discovery.up.railway.app/admin
 
 eureka:
   client:
     enabled: true
     register-with-eureka: true
+    serviceUrl:
+      defaultZone: https://service-discovery.up.railway.app/eureka/
 
 
 webservice:
   products:
-    url: http://localhost:8080/products/v1
+    url: https://prospect-leads-product-service.up.railway.app/products/v1
   quotes:
-    url: http://localhost:8083/insurance_quotes/v1
+    url: https://prospect-leads-lead-service.up.railway.app/insurance_quotes/v1
