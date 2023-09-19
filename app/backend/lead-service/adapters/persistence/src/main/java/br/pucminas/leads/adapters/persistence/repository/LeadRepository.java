@@ -30,10 +30,10 @@ public class LeadRepository {
     public List<LeadEntity> findAllPendingReceivedLessThan(LocalDateTime dateTime) {
         Map<String, AttributeValue> values = new HashMap<>();
         values.put(":CreatedAt", new AttributeValue().withS(dateTime.format(DateTimeFormatter.ISO_DATE_TIME)));
-        values.put(":Sent", new AttributeValue().withBOOL(false));
+        values.put(":Finished", new AttributeValue().withBOOL(false));
         var expression = new DynamoDBScanExpression()
                                 .withConsistentRead(false)
-                                .withFilterExpression("CreatedAt <= :CreatedAt AND Sent = :Sent")
+                                .withFilterExpression("CreatedAt <= :CreatedAt AND Finished = :Finished")
                                 .withExpressionAttributeValues(values);
         return this.dynamoDBMapper.scan(LeadEntity.class, expression);
     }

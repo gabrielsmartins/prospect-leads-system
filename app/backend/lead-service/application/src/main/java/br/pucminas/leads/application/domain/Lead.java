@@ -15,8 +15,9 @@ public class Lead {
 
     private UUID id;
     private InsuranceQuote insuranceQuote;
+    private boolean finished;
+    private LocalDateTime finishedAt;
     private LocalDateTime createdAt;
     private LocalDateTime processedAt;
-    private boolean sent;
 
 }

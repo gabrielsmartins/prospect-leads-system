@@ -1,8 +1,7 @@
 package br.pucminas.leads.adapters.messaging.in;
 
 import br.pucminas.leads.adapters.messaging.config.TopicProperties;
-import br.pucminas.leads.application.domain.Notification;
-import br.pucminas.leads.application.ports.in.SendNotificationUseCase;
+import br.pucminas.leads.application.ports.in.FinishLeadUseCase;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializerConfig;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +34,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import static br.pucminas.leads.adapters.messaging.in.support.LeadProcessedMessageSupport.defaultLeadProcessedMessage;
+import static br.pucminas.leads.adapters.messaging.support.NotificationMessageSupport.defaultNotificationEmittedMessage;
 import static org.awaitility.Awaitility.waitAtMost;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -44,17 +43,17 @@ import static org.mockito.Mockito.verify;
 @ExtendWith(SpringExtension.class)
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @ActiveProfiles("test")
-@Import({ KafkaAutoConfiguration.class, LeadConsumer.class })
+@Import({ KafkaAutoConfiguration.class, NotificationConsumer.class })
 @ContextConfiguration(initializers = ConfigDataApplicationContextInitializer.class)
 @EmbeddedKafka(partitions = 1, controlledShutdown = true)
 @EnableConfigurationProperties(TopicProperties.class)
-class LeadConsumerTest {
+class NotificationConsumerTest {
 
     private final EmbeddedKafkaBroker embeddedKafkaBroker;
     private final TopicProperties topicProperties;
 
     @MockBean
-    private SendNotificationUseCase useCase;
+    private FinishLeadUseCase useCase;
 
     private AutoCloseable closeable;
     private String topic;
@@ -62,7 +61,7 @@ class LeadConsumerTest {
     @BeforeEach
     public void setup(){
         this.closeable = MockitoAnnotations.openMocks(this);
-        this.topic = this.topicProperties.getInputTopic(TopicProperties.LEAD_PROCESSED);
+        this.topic = this.topicProperties.getInputTopic(TopicProperties.NOTIFICATION_EMITTED);
     }
 
     @AfterEach
@@ -73,7 +72,7 @@ class LeadConsumerTest {
     @Test
     @DisplayName("Given Message When Receive Then Send Notification")
     public void givenMessageWhenReceiveThenSendNotification() {
-        var message = defaultLeadProcessedMessage().build();
+        var message = defaultNotificationEmittedMessage().build();
         Producer<String, SpecificRecord> producer = createProducer();
 
         producer.send(new ProducerRecord<>(topic, UUID.randomUUID().toString(), message));
@@ -81,7 +80,7 @@ class LeadConsumerTest {
         producer.close();
 
         waitAtMost(20, TimeUnit.SECONDS).untilAsserted(() -> {
-            verify(useCase, times(1)).send(any(Notification.class));
+            verify(useCase, times(1)).finish(any(UUID.class));
         });
     }
 

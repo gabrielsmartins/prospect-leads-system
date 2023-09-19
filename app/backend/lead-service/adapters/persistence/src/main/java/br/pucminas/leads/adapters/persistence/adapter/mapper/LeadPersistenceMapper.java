@@ -18,7 +18,8 @@ public class LeadPersistenceMapper {
                          .withInsuranceQuote(insuranceQuoteEntity)
                          .withCreatedAt(lead.getCreatedAt())
                          .withProcessedAt(lead.getProcessedAt())
-                         .withSent(lead.isSent())
+                         .withFinished(lead.isFinished())
+                         .withFinishedAt(lead.getFinishedAt())
                          .build();
     }
 
@@ -32,7 +33,8 @@ public class LeadPersistenceMapper {
                    .withInsuranceQuote(insuranceQuote)
                    .withCreatedAt(leadEntity.getCreatedAt())
                    .withProcessedAt(leadEntity.getProcessedAt())
-                   .withSent(leadEntity.isSent())
+                   .withFinished(leadEntity.isFinished())
+                   .withFinishedAt(leadEntity.getFinishedAt())
                    .build();
     }
 

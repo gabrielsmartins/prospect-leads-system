@@ -16,9 +16,10 @@ public class LeadSupport {
         return Lead.builder()
                    .withId(UUID.randomUUID())
                    .withInsuranceQuote(defaultInsuranceQuote().build())
-                   .withSent(false)
+                   .withFinished(false)
                    .withCreatedAt(LocalDateTime.now())
-                   .withProcessedAt(LocalDateTime.now());
+                   .withProcessedAt(LocalDateTime.now())
+                   .withFinishedAt(LocalDateTime.now());
     }
 
 }

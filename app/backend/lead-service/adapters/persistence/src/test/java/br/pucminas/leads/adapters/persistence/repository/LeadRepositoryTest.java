@@ -80,7 +80,7 @@ class LeadRepositoryTest {
         var dateTime = LocalDateTime.now();
 
         var leadEntity = defaultLeadEntity().withCreatedAt(dateTime.minusMinutes(30))
-                                            .withSent(false)
+                                            .withFinished(false)
                                             .build();
 
         this.repository.save(leadEntity);

@@ -32,7 +32,7 @@ public class ProcessLeadService implements ProcessLeadUseCase {
         this.compoundDiscountApplier.apply(lead.getInsuranceQuote());
         lead.setProcessedAt(LocalDateTime.now());
         this.sendLeadPort.send(lead);
-        lead.setSent(true);
+        lead.setFinished(true);
         this.saveLeadPort.save(lead);
     }
 

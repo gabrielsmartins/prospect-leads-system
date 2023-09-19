@@ -34,6 +34,7 @@ class LeadPersistenceMapperTest {
         assertThat(lead).hasNoNullFieldsOrProperties();
         assertThat(lead.getCreatedAt()).isEqualTo(leadEntity.getCreatedAt());
         assertThat(lead.getProcessedAt()).isEqualTo(leadEntity.getProcessedAt());
+        assertThat(lead.getFinishedAt()).isEqualTo(leadEntity.getFinishedAt());
     }
 
 }

@@ -28,9 +28,13 @@ public class LeadEntity {
     @DynamoDBTypeConverted(converter = LocalDateTimeConverter.class)
     private LocalDateTime processedAt;
 
-    @DynamoDBAttribute(attributeName = "Sent")
+    @DynamoDBAttribute(attributeName="FinishedAt")
+    @DynamoDBTypeConverted(converter = LocalDateTimeConverter.class)
+    private LocalDateTime finishedAt;
+
+    @DynamoDBAttribute(attributeName = "Finished")
     @DynamoDBTyped(DynamoDBMapperFieldModel.DynamoDBAttributeType.BOOL)
-    private boolean sent;
+    private boolean finished;
 
     @DynamoDBAttribute(attributeName="InsuranceQuote")
     private InsuranceQuoteEntity insuranceQuote;

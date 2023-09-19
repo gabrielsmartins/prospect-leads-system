@@ -15,9 +15,10 @@ public class LeadEntitySupport {
     public static LeadEntity.LeadEntityBuilder defaultLeadEntity() {
         return LeadEntity.builder()
                    .withId(UUID.randomUUID())
-                   .withSent(false)
+                   .withFinished(false)
                    .withCreatedAt(LocalDateTime.now())
                    .withProcessedAt(LocalDateTime.now())
+                   .withFinishedAt(LocalDateTime.now())
                    .withInsuranceQuote(defaultInsuranceQuoteEntity().build());
     }
 }
