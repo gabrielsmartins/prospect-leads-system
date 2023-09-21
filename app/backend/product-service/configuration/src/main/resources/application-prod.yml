@@ -10,6 +10,8 @@ spring:
 
 
 eureka:
+  instance:
+    hostname: https://prospect-leads-product-service.up.railway.app
   client:
     enabled: true
     register-with-eureka: true

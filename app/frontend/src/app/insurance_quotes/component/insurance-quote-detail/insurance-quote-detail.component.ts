@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SuccessDialogService } from 'src/app/shared/dialog/success-dialog/service/success-dialog.service';
 import { map } from 'rxjs';
 import { InsuranceQuote } from '../../model/insurance-quote.model';
+import { Product } from 'src/app/products/model/product.model';
+import { ProductService } from 'src/app/products/service/product.service';
 
 @Component({
   selector: 'app-insurance-quote-detail',
@@ -15,8 +17,9 @@ export class InsuranceQuoteDetailComponent {
 
   form: FormGroup;
   insuranceQuote?: InsuranceQuote;
+  product?: Product;
 
-  constructor(private route: ActivatedRoute, private service: InsuranceQuoteService, private router: Router, private formBuilder: FormBuilder, private successDialogService: SuccessDialogService) { 
+  constructor(private route: ActivatedRoute, private productService: ProductService, private insuranceQuoteService: InsuranceQuoteService, private router: Router, private formBuilder: FormBuilder, private successDialogService: SuccessDialogService) { 
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       product: ['', Validators.required],
@@ -31,15 +34,21 @@ export class InsuranceQuoteDetailComponent {
 
   ngOnInit(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
-    this.service.findById(id)
-                .subscribe(insuranceQuote => this.insuranceQuote = insuranceQuote);
+    this.insuranceQuoteService.findById(id)
+                              .subscribe(insuranceQuote => {
+                                this.insuranceQuote = insuranceQuote;
+                                if (insuranceQuote.product_id) {
+                                  this.productService.findById(insuranceQuote.product_id)
+                                      .subscribe(product => this.product = product)
+                                }
+                              });
   }
 
   onSubmit() : void {
     if (this.insuranceQuote) {
       this.insuranceQuote.finished = true;
       this.insuranceQuote.finished_at = new Date();
-      this.service.update(this.insuranceQuote)
+      this.insuranceQuoteService.update(this.insuranceQuote)
         .subscribe(() => {
           this.successDialogService.openDialog('Seguro contrato com sucesso', 200);
           this.router.navigate(["/insurance-quote-simulation"]);

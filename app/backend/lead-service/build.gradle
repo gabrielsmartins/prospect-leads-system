@@ -43,6 +43,7 @@ subprojects {
 	ext {
 		set('springBootVersion', "2.7.13")
 		set('springCloudVersion', "2021.0.7")
+		set('springAdminVersion', "2.7.11")
 		set('avroVersion', "1.11.2")
 		set('confluentVersion', "7.4.0")
 		set('logstashVersion', "7.4")
@@ -63,6 +64,7 @@ subprojects {
 		implementation 'org.springframework.boot:spring-boot-starter-actuator'
 		implementation 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
 		implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+		implementation "de.codecentric:spring-boot-admin-starter-client:${springAdminVersion}"
 		implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
 		implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 		implementation group: 'org.apache.commons', name: 'commons-pool2', version: apacheCommonPoolVersion

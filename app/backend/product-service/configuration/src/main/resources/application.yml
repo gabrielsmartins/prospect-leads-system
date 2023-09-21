@@ -49,5 +49,5 @@ management:
 
 eureka:
   client:
-    enabled: true
-    register-with-eureka: true
+    enabled: false
+    register-with-eureka: false

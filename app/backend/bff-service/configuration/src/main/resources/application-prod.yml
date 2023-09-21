@@ -5,7 +5,7 @@ spring:
     port: ${REDISPORT}
     host: ${REDISHOST}
     ssl: false
-    jedis:
+    lettuce:
       pool:
         enabled: true
   boot:
@@ -14,6 +14,8 @@ spring:
         url: https://service-discovery.up.railway.app/admin
 
 eureka:
+  instance:
+    hostname: https://prospect-leads-bff-service.up.railway.app
   client:
     enabled: true
     register-with-eureka: true

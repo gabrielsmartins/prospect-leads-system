@@ -12,11 +12,14 @@ spring:
         url: https://service-discovery.up.railway.app/admin
 
 eureka:
+  instance:
+    hostname: https://prospect-leads-quote-service.up.railway.app
   client:
     enabled: true
     register-with-eureka: true
     serviceUrl:
       defaultZone: https://service-discovery.up.railway.app/eureka/
+
 
 webservice:
   products:

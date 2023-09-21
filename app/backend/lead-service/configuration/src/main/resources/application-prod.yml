@@ -1,12 +1,26 @@
 spring:
   redis:
-    password: redis
-    port: 6379
-    host: localhost
+    username: ${REDISUSER}
+    password: ${REDISPASSWORD}
+    port: ${REDISPORT}
+    host: ${REDISHOST}
     ssl: false
-    jedis:
+    lettuce:
       pool:
         enabled: true
+  boot:
+    admin:
+      client:
+        url: https://service-discovery.up.railway.app/admin
+
+eureka:
+  instance:
+    hostname: https://prospect-leads-lead-service.up.railway.app
+  client:
+    enabled: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: https://service-discovery.up.railway.app/eureka/
 
 aws:
   dynamodb:
@@ -16,13 +30,8 @@ aws:
       access-key: foo
       secret-key: bar
 
-eureka:
-  client:
-    enabled: true
-    register-with-eureka: true
-
 webservice:
   products:
-    url: http://localhost:8080/products/v1
+    url: https://prospect-leads-product-service.up.railway.app/products/v1
   quotes:
-    url: http://localhost:8083/insurance_quotes/v1
+    url: https://quote-service-production.up.railway.app/insurance_quotes/v1
