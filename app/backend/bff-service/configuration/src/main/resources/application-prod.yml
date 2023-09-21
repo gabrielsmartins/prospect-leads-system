@@ -15,7 +15,7 @@ spring:
 
 eureka:
   instance:
-    hostname: https://prospect-leads-bff-service.up.railway.app
+    hostname: prospect-leads-bff-service.up.railway.app
   client:
     enabled: true
     register-with-eureka: true
