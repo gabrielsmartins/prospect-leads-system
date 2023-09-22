@@ -15,7 +15,7 @@ spring:
 
 eureka:
   instance:
-    hostname: prospect-leads-lead-service.up.railway.app
+    prefer-ip-address: true
   client:
     enabled: true
     register-with-eureka: true
