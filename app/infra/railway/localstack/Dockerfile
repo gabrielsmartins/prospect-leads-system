@@ -3,7 +3,7 @@ FROM localstack/localstack:2.1.0
 RUN pip install awscli
 
 ENV DEFAULT_REGION=sa-east-1
-ENV HOSTNAME=localhost
+ENV HOSTNAME=localstack
 ENV DOCKER_HOST=unix:///var/run/docker.sock
 
 EXPOSE 53
@@ -18,7 +18,7 @@ RUN aws configure set aws_access_key_id default_access_key --profile=localstack 
         --attribute-definitions AttributeName=Id,AttributeType=S \
         --key-schema AttributeName=Id,KeyType=HASH \
         --billing-mode PAY_PER_REQUEST \
-        --endpoint http://localhost:4566 \
+        --endpoint localstack:4566 \
         --region sa-east-1 \
         --profile=localstack
 
