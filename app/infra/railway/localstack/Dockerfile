@@ -1,4 +1,3 @@
-# Use uma imagem base do Python
 FROM localstack/localstack:2.1.0
 
 COPY ./aws-scripts/ /etc/localstack/init/ready.d
