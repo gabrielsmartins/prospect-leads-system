@@ -21,6 +21,7 @@ export class InsuranceQuoteService {
       'Access-Control-Allow-Methods': '*'
     });
     const url = environment.insurance_quote_endpoint;
+    console.log(insuranceQuote);
     return this.httpClient.post(url, insuranceQuote, {headers})
                           .pipe(map((data : any) =>  InsuranceQuoteServiceMapper.mapToModel(data)));
   }

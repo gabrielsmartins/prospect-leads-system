@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InsuranceQuoteService } from '../../service/insurance-quote.service';
 import { Router } from '@angular/router';
@@ -8,6 +8,7 @@ import { InsuranceQuote } from '../../model/insurance-quote.model';
 import { ProductService } from '../../../products/service/product.service';
 import { filter, map } from 'rxjs';
 import { CreateInsuranceQuoteMapper } from './create-insurance-quote-mapper';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-create-insurance-quote',
@@ -39,6 +40,7 @@ export class CreateInsuranceQuoteComponent implements OnInit {
                          this.products = products;
                         });
   }
+
 
   onSubmit() : void {
     let insuranceQuote = CreateInsuranceQuoteMapper.mapToModel(this.form);

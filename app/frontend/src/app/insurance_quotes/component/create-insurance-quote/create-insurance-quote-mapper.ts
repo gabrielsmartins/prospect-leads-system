@@ -1,6 +1,7 @@
 import { FormGroup } from "@angular/forms";
 import { InsuranceQuote } from '../../model/insurance-quote.model';
 import { Customer } from "../../model/customer.model";
+import * as moment from "moment";
 
 export class CreateInsuranceQuoteMapper {
 
@@ -13,7 +14,9 @@ export class CreateInsuranceQuoteMapper {
         customer.document_number = form.get('document_number')?.value;
         customer.type = form.get('person_type')?.value;
         customer.gender = form.get('gender')?.value;
-        customer.date_of_birth = form.get('date_of_birth')?.value;
+        let dateOfBirth = form.get('date_of_birth')?.value;
+        const inputDate = moment(dateOfBirth._i, 'DD/MM/YYYY');
+        customer.date_of_birth = inputDate.format('YYYY-MM-DD');
         customer.email = form.get('e_mail')?.value;
         customer.phone_number = form.get('phone_number')?.value;
         insuranceQuote.customer = customer

@@ -6,7 +6,7 @@ export class Customer {
     name?: string;
     type?: CustomerType;
     gender?: CustomerGender;
-    date_of_birth?: Date;
+    date_of_birth?: string;
     email?: string;
     phone_number?: number;
 }
