@@ -24,7 +24,7 @@ eureka:
 
 aws:
   dynamodb:
-    endpoint: http://localhost:4566
+    endpoint: dynamodb.railway.internal:8000
     region: sa-east-1
     credentials:
       access-key: foo
