@@ -11,16 +11,16 @@ spring:
   boot:
     admin:
       client:
-        url: https://service-discovery.up.railway.app/admin
+        url: https://service-discovery.railway.internal/admin
 
 eureka:
   instance:
-    hostname: prospect-leads-bff-service.up.railway.app
+    hostname: prospect-leads-bff-service.railway.internal
   client:
     enabled: true
     register-with-eureka: true
     serviceUrl:
-      defaultZone: https://service-discovery.up.railway.app/eureka/
+      defaultZone: https://service-discovery.railway.internal/eureka/
 
 
 webservice:
