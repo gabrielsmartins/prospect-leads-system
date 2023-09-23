@@ -1,4 +1,4 @@
-package br.gasmartins.leads;
+package br.pucminas.servicediscovery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

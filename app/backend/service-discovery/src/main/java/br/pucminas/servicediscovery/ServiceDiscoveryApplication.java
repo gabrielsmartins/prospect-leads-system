@@ -1,4 +1,4 @@
-package br.gasmartins.leads;
+package br.pucminas.servicediscovery;
 
 import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
