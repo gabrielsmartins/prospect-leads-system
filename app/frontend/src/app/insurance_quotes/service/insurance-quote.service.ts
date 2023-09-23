@@ -36,7 +36,7 @@ export class InsuranceQuoteService {
     });
     let id = insuranceQuote.id;
     let url = `${environment.insurance_quote_endpoint}/${id}`;
-    return this.httpClient.put(url, insuranceQuote, {headers})
+    return this.httpClient.patch(url, insuranceQuote, {headers})
                           .pipe(map((data : any) =>  InsuranceQuoteServiceMapper.mapToModel(data)));
   }
 

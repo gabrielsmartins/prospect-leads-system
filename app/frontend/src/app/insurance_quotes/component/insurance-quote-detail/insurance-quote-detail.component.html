@@ -1,87 +1,134 @@
 <div class="container">
-    <mat-card>
-      <mat-card-header>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h3>Revisão Cotação</h3>
+      </mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+      <mat-card>
+        <mat-card-content class="mat-form-field-wrapper">
+          <mat-form-field appearance="outline" class="form-element">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="document_number" class="form-element flex-fill"
+              [ngModel]="insuranceQuote?.id" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-element">
+            <mat-label>Produto</mat-label>
+            <mat-select formControlName="product" [ngModel]="selectedProduct?.id">
+              <mat-option *ngFor="let product of products" [value]="product.id">{{ product.id }} - {{ product.name
+                }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
         <mat-card-title>
-          <h3>Revisão Cotação</h3>
+          <h4><strong>Coberturas</strong></h4>
         </mat-card-title>
-      </mat-card-header>
-  
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-  
-        <mat-card>
-          <mat-card-content class="mat-form-field-wrapper">
-            <mat-form-field appearance="outline" class="form-element">
-              <mat-label>ID</mat-label>
-              <input matInput formControlName="document_number" class="form-element flex-fill" [ngModel]="insuranceQuote?.id" required>
-            </mat-form-field>
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let coverage of selectedProduct?.coverages | keyvalue">
+              <td>{{coverage.key}}</td>
+              <td>{{coverage.value}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
 
-            <mat-form-field appearance="outline" class="form-element">
-              <mat-label>Produto</mat-label>
-              <mat-select formControlName="product">
-                <mat-option [value]="product?.id">{{ product?.id }} - {{ product?.name }}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </mat-card-content>
-        </mat-card>
-      
-        <mat-card>
-          <mat-card-content>
-            <mat-radio-group formControlName="person_type">
-              <mat-label>Tipo Pessoa</mat-label>
-               <mat-radio-button [value]="insuranceQuote?.customer?.type">{{ insuranceQuote?.customer?.type }}</mat-radio-button>
-            </mat-radio-group>
-            <mat-form-field appearance="outline" class="form-element">
-              <mat-label>Documento</mat-label>
-              <input matInput formControlName="document_number" class="form-element flex-fill" [ngModel]="insuranceQuote?.customer?.document_number" required>
-            </mat-form-field>
-            </mat-card-content> 
-          </mat-card>
+      <mat-card>
+        <mat-card-title>
+          <h4><strong>Assistências</strong></h4>
+        </mat-card-title>
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let assistance of selectedProduct?.assistances">
+              <td>{{assistance}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-card>
 
-          <mat-card>
-            <mat-card-content>
-              <mat-form-field appearance="outline" class="form-element">
-                <mat-label>Nome</mat-label>
-                <input matInput formControlName="name" class="form-element flex-fill" [ngModel]="insuranceQuote?.customer?.name" required>
-                <mat-hint align="start">{{form.controls['name'].value?.length || 0}}/256</mat-hint>
-              </mat-form-field>
-            </mat-card-content> 
-          </mat-card>
+      <mat-card>
+        <mat-card-content>
+          <mat-radio-group formControlName="person_type" [ngModel]="insuranceQuote?.customer?.type">
+            <mat-label>Tipo Pessoa</mat-label>
+            <mat-radio-button [value]="'F'">Física</mat-radio-button>
+            <mat-radio-button [value]="'J'">Jurídica</mat-radio-button>
+          </mat-radio-group>
+          <mat-form-field appearance="outline" class="form-element">
+            <mat-label>Documento</mat-label>
+            <input matInput formControlName="document_number" class="form-element flex-fill"
+              [ngModel]="insuranceQuote?.customer?.document_number" required>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
 
-          <mat-card>
-            <mat-card-content>
-              <mat-radio-group formControlName="gender">
-                <mat-label>Sexo</mat-label>
-                 <mat-radio-button [value]="insuranceQuote?.customer?.gender">Masculino</mat-radio-button>
-             </mat-radio-group>
+      <mat-card>
+        <mat-card-content>
+          <mat-form-field appearance="outline" class="form-element">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="name" class="form-element flex-fill"
+              [ngModel]="insuranceQuote?.customer?.name" required>
+            <mat-hint align="start">{{form.controls['name'].value?.length || 0}}/256</mat-hint>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
 
-              <mat-form-field appearance="outline" class="form-element">
-                <mat-label>Data de Nascimento</mat-label>
-                <input matInput formControlName="date_of_birth" [matDatepicker]="picker" [ngModel]="insuranceQuote?.customer?.date_of_birth"  required>
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>   
-          </mat-card-content>
-        </mat-card>
+      <mat-card>
+        <mat-card-content>
+          <mat-radio-group formControlName="gender" [ngModel]="insuranceQuote?.customer?.gender">
+            <mat-label>Sexo</mat-label>
+            <mat-radio-button [value]="'M'">Masculino</mat-radio-button>
+            <mat-radio-button [value]="'F'">Feminino</mat-radio-button>
+          </mat-radio-group>
 
-        <mat-card>
-          <mat-card-content>
-            <mat-form-field appearance="outline" class="form-element">
-              <mat-label>E-mail</mat-label>
-              <input matInput formControlName="e_mail" class="form-element flex-fill" [ngModel]="insuranceQuote?.customer?.email" [email]="true" required>
-            </mat-form-field>
+          <mat-form-field appearance="outline" class="form-element">
+            <mat-label>Data de Nascimento</mat-label>
+            <input matInput formControlName="date_of_birth" [matDatepicker]="picker"
+              [ngModel]="insuranceQuote?.customer?.date_of_birth" required>
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
 
-            <mat-form-field appearance="outline" class="form-element">
-              <mat-label>Telefone</mat-label>
-              <input matInput formControlName="phone_number" class="form-element flex-fill" [ngModel]="insuranceQuote?.customer?.phone_number" [email]="true" required>
-            </mat-form-field>  
-          </mat-card-content>
-        </mat-card>
-  
-        <div class="centered-buttons">
-          <button mat-raised-button color="primary" type="submit">Aceitar</button>
-        </div>
-     
-      </form>
-    </mat-card>
-  </div>
+      <mat-card>
+        <mat-card-content>
+          <mat-form-field appearance="outline" class="form-element">
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="e_mail" class="form-element flex-fill"
+              [ngModel]="insuranceQuote?.customer?.email" [email]="true" required>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="form-element">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="phone_number" class="form-element flex-fill"
+              [ngModel]="insuranceQuote?.customer?.phone_number" [email]="true" required>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+
+      <div class="centered-buttons">
+        <button mat-raised-button color="primary" type="submit">Aceitar</button>
+      </div>
+
+    </form>
+  </mat-card>
+</div>

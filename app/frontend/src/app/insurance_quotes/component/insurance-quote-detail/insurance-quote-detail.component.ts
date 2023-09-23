@@ -17,29 +17,35 @@ export class InsuranceQuoteDetailComponent {
 
   form: FormGroup;
   insuranceQuote?: InsuranceQuote;
-  product?: Product;
+  products: Array<Product> = new Array();
+  selectedProduct?: Product;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService, private insuranceQuoteService: InsuranceQuoteService, private router: Router, private formBuilder: FormBuilder, private successDialogService: SuccessDialogService) { 
+  constructor(private route: ActivatedRoute, private productService: ProductService, private insuranceQuoteService: InsuranceQuoteService, private router: Router, private formBuilder: FormBuilder, private successDialogService: SuccessDialogService) {
     this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      product: ['', Validators.required],
-      document_number: ['', Validators.required],
-      person_type: ['', Validators.required],
-      gender: ['', Validators.required],
-      date_of_birth: ['', Validators.required],
-      e_mail: ['', Validators.required],
-      phone_number: ['', Validators.required]
+      name: [{ value: '', disabled: true }, Validators.required],
+      product: [{ value: this.selectedProduct, disabled: true }, Validators.required],
+      document_number: [{ value: '', disabled: true }, Validators.required],
+      person_type: [{ value: '', disabled: true }, Validators.required],
+      gender: [{ value: '', disabled: true }, Validators.required],
+      date_of_birth: [{ value: '', disabled: true }, Validators.required],
+      e_mail: [{ value: '', disabled: true }, Validators.required],
+      phone_number: [{ value: '', disabled: true }, Validators.required]
     });
   }
 
   ngOnInit(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
+    this.productService.findAll()
+                       .pipe(map((products : Product[]) => products.filter(product => product.active)))
+                       .subscribe(products =>  {
+                          this.products = products;
+                       });
     this.insuranceQuoteService.findById(id)
                               .subscribe(insuranceQuote => {
                                 this.insuranceQuote = insuranceQuote;
                                 if (insuranceQuote.product_id) {
                                   this.productService.findById(insuranceQuote.product_id)
-                                      .subscribe(product => this.product = product)
+                                      .subscribe(product => this.selectedProduct = product)
                                 }
                               });
   }
@@ -51,9 +57,9 @@ export class InsuranceQuoteDetailComponent {
       this.insuranceQuoteService.update(this.insuranceQuote)
         .subscribe(() => {
           this.successDialogService.openDialog('Seguro contrato com sucesso', 200);
-          this.router.navigate(["/insurance-quote-simulation"]);
+          this.router.navigate(["/create-insurance-quote-simulation"]);
         })
     }
   }
-  
+
 }
