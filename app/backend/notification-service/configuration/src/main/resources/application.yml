@@ -64,6 +64,13 @@ topic:
   output:
     notification-emitted: notification-emitted
 
+cloud:
+  aws:
+    stack:
+      enabled: false
+    region:
+      static: sa-east-1
+
 management:
   endpoint:
     metrics:

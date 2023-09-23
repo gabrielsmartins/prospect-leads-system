@@ -1,9 +1,11 @@
 package br.pucminas.leads.adapters.email.config;
 
 import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
+import com.amazonaws.services.simpleemail.model.AmazonSimpleEmailServiceException;
 import com.amazonaws.services.simpleemail.model.CreateTemplateRequest;
 import com.amazonaws.services.simpleemail.model.Template;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Configuration
 @RequiredArgsConstructor
+@Slf4j
 public class AwsSesTemplateConfiguration {
 
     public static final String TEMPLATE = "OfferTemplate";
@@ -21,14 +24,18 @@ public class AwsSesTemplateConfiguration {
 
     @PostConstruct
     public void init() {
-        var template = new Template();
-        template.setTemplateName(TEMPLATE);
-        template.setSubjectPart("Olá {{customer_name}}");
-        template.setHtmlPart(this.getResourceFileAsString("templates/template.html"));
+        try {
+            var template = new Template();
+            template.setTemplateName(TEMPLATE);
+            template.setSubjectPart("Olá {{customer_name}}");
+            template.setHtmlPart(this.getResourceFileAsString("templates/template.html"));
 
-        var request = new CreateTemplateRequest();
-        request.setTemplate(template);
-        emailService.createTemplate(request);
+            var request = new CreateTemplateRequest();
+            request.setTemplate(template);
+            emailService.createTemplate(request);
+        } catch (AmazonSimpleEmailServiceException ex) {
+            log.warn("Template already exists", ex);
+        }
     }
 
     private String getResourceFileAsString(String fileName) {
