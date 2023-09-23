@@ -18,6 +18,7 @@ spring:
 eureka:
   instance:
     health-check-url: https://prospect-leads-product-service.up.railway.app/actuator/health
+    hostname: prospect-leads-product-service.up.railway.app
   client:
     enabled: true
     register-with-eureka: true
