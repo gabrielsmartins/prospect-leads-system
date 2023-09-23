@@ -38,4 +38,4 @@ webservice:
   products:
     url: https://prospect-leads-product-service.up.railway.app/products/v1
   quotes:
-    url: https://quote-service-production.up.railway.app/insurance_quotes/v1
+    url: https://prospect-leads-quote-service.up.railway.app/insurance_quotes/v1
