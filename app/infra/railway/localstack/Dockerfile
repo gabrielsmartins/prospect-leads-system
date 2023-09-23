@@ -6,6 +6,7 @@ ENV DEFAULT_REGION=sa-east-1
 ENV HOSTNAME=localstack
 ENV DOCKER_HOST=unix:///var/run/docker.sock
 
+RUN chmod +x ready.d/init.sh
 COPY aws-scripts/ /etc/localstack/init/ready.d/
 
 EXPOSE 53
