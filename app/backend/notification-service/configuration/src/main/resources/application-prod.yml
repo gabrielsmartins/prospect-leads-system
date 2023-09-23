@@ -1,33 +1,19 @@
 spring:
-  redis:
-    username: ${REDISUSER}
-    password: ${REDISPASSWORD}
-    port: ${REDISPORT}
-    host: ${REDISHOST}
-    ssl: false
-    lettuce:
-      pool:
-        enabled: true
   kafka:
     bootstrap-servers: kafka.railway.internal:29092
     properties:
-      schema.registry.url: http://schema-registry.railway.internal:8081      
-
-aws:
-  dynamodb:
-    endpoint: http://localhost:4566
-    region: sa-east-1
-    credentials:
-      access-key: foo
-      secret-key: bar
+      schema.registry.url: http://schema-registry.railway.internal:8081
+  boot:
+    admin:
+      client:
+        url: https://service-discovery.up.railway.app/admin/
 
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     enabled: true
     register-with-eureka: true
+    serviceUrl:
+      defaultZone: https://service-discovery.up.railway.app/eureka/
 
-webservice:
-  quotes:
-    url: http://localhost:8080/insurance_quotes/v1
-  products:
-    url: http://localhost:8080/products/v1
