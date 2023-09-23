@@ -1,4 +1,10 @@
 spring:
+  cloud:
+    aws:
+      ses:
+        enabled: true
+        endpoint: http://localstack:4566
+        region: sa-east-1
   kafka:
     bootstrap-servers: kafka.railway.internal:29092
     properties:
