@@ -7,6 +7,3 @@ ENV ZOOKEEPER_TICK_TIME 2000
 
 # Porta que será exposta
 EXPOSE 2181
-
-# Comando para iniciar o ZooKeeper
-CMD ["sh", "-c", "/etc/confluent/docker/run"]
