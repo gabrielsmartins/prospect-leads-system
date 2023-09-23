@@ -17,7 +17,7 @@ spring:
 
 eureka:
   instance:
-    prefer-ip-address: true
+    health-check-url: https://prospect-leads-product-service.up.railway.app/actuator/health
   client:
     enabled: true
     register-with-eureka: true
