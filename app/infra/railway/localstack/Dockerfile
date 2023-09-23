@@ -6,9 +6,7 @@ ENV DEFAULT_REGION=sa-east-1
 ENV HOSTNAME=localstack
 ENV DOCKER_HOST=unix:///var/run/docker.sock
 
-COPY dynamodb.sh /etc/localstack/init/ready.d/
-
-RUN chmod +x /etc/localstack/init/ready.d/dynamodb.sh
+COPY aws-scripts/ /etc/localstack/init/ready.d/
 
 EXPOSE 53
 EXPOSE 443
