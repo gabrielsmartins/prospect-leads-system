@@ -12,6 +12,8 @@ spring:
     admin:
       client:
         url: https://service-discovery.up.railway.app/admin/
+        instance:
+          service-url: https://service-discovery.up.railway.app/admin/
 
 eureka:
   instance:
