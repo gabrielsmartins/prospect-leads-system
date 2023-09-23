@@ -11,7 +11,7 @@ spring:
   boot:
     admin:
       client:
-        url: https://service-discovery.up.railway.app/admin
+        url: https://service-discovery.up.railway.app/admin/
   kafka:
     bootstrap-servers: kafka.railway.internal:29092
     properties:
