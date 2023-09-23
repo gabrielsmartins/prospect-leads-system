@@ -1,12 +1,17 @@
 spring:
   redis:
-    password: redis
-    port: 6379
-    host: localhost
+    username: ${REDISUSER}
+    password: ${REDISPASSWORD}
+    port: ${REDISPORT}
+    host: ${REDISHOST}
     ssl: false
-    jedis:
+    lettuce:
       pool:
         enabled: true
+  kafka:
+    bootstrap-servers: kafka.railway.internal:9092
+    properties:
+      schema.registry.url: http://schema-registry.railway.internal:8081      
 
 aws:
   dynamodb:
