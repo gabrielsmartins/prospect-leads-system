@@ -25,7 +25,7 @@ public class CreateProductController {
 
     private final CreateProductUseCase useCase;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<CreateProductDto> create(@RequestBody @Valid CreateProductDto productDto){
         log.info(append("product", productDto), "Mapping product");

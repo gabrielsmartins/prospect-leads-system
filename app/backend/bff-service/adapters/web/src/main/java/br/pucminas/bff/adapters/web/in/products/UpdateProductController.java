@@ -26,7 +26,7 @@ public class UpdateProductController {
 
     private final UpdateProductUseCase useCase;
 
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Mono<UpdateProductDto> update(@PathVariable("id") Integer id, @RequestBody @Valid UpdateProductDto productDto){
         log.info(append("product", productDto), "Mapping product");

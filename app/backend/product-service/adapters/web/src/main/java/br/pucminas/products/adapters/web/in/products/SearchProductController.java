@@ -26,7 +26,7 @@ public class SearchProductController {
 
     private final SearchProductUseCase useCase;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<PageDto<SearchProductDto>> findAll(Pageable pageable) {
         log.info(append("pageable", pageable), "Searching all products");
         var page = this.useCase.findAll(pageable);
@@ -38,7 +38,7 @@ public class SearchProductController {
         return new ResponseEntity<>(pageDto, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<SearchProductDto> findById(@PathVariable("id") Integer id) {
         log.info(append("id", id), "Searching product by id");
         var product = this.useCase.findById(id);
