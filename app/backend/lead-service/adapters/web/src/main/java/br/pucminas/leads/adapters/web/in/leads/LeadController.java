@@ -26,7 +26,7 @@ public class LeadController {
 
     private final SearchLeadUseCase useCase;
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LeadDto> findById(@PathVariable("id") UUID id) {
         log.info("Searching lead by id: {}", id);
         var lead = this.useCase.findById(id);

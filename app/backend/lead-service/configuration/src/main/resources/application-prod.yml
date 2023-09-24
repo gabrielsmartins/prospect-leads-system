@@ -11,9 +11,10 @@ spring:
   boot:
     admin:
       client:
-        url: http://service-discovery.railway.internal:8761/admin/
+        url: http://service-discovery.railway.internal:8761/admin
         instance:
-          service-url: http://service-discovery.railway.internal:8761/admin/
+          management-base-url: http://service-discovery.railway.internal:8761/admin
+          service-url: http://service-discovery.railway.internal:8761/admin
   kafka:
     bootstrap-servers: kafka.railway.internal:29092
     properties:

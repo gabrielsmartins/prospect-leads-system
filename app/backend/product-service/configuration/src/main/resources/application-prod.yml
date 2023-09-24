@@ -6,9 +6,10 @@ spring:
   boot:
     admin:
       client:
-        url: http://service-discovery.railway.internal/admin/
+        url: http://service-discovery.railway.internal:8761/admin
         instance:
-          service-url: http://service-discovery.railway.internal/admin/
+          management-base-url: http://service-discovery.railway.internal:8761/admin
+          service-url: http://service-discovery.railway.internal:8761/admin
 
 eureka:
   instance:
