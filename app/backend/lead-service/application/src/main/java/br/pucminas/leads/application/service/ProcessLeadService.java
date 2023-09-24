@@ -22,7 +22,7 @@ public class ProcessLeadService implements ProcessLeadUseCase {
 
     @Override
     public void process() {
-        LocalDateTime datetime = LocalDateTime.now().minusMinutes(30);
+        LocalDateTime datetime = LocalDateTime.now().minusMinutes(3);
         var leads = this.searchLeadPort.findAllPendingReceivedLessThan(datetime);
         leads.forEach(this::process);
     }

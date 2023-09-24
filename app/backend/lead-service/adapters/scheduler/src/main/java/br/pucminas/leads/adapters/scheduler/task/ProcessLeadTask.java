@@ -23,7 +23,7 @@ public class ProcessLeadTask implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("Scheduling job: {}", kv("job", LEAD_JOB));
-        jobScheduler.scheduleRecurrently(LEAD_JOB, Cron.every5minutes(), useCase::process);
+        jobScheduler.scheduleRecurrently(LEAD_JOB, Cron.everyHalfHour(), useCase::process);
         log.info("Job {} was scheduled successfully", kv("job", LEAD_JOB));
     }
 }
