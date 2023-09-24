@@ -6,8 +6,6 @@ ENV DOCKER_HOST "unix:///var/run/docker.sock"
 
 COPY ./aws-scripts/init.sh /etc/localstack/init/ready.d/init.sh
 
-RUN localstack config show
-
 EXPOSE 4566
 EXPOSE 4510-4559
 
