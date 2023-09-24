@@ -3,20 +3,19 @@ version: "3.8"
 services:
   localstack:
     container_name: localstack
-    image: localstack/localstack:1.4.0
+    image: localstack/localstack:latest
     ports:
-      - "127.0.0.1:53:53"                # only required for Pro (DNS)
-      - "127.0.0.1:53:53/udp"            # only required for Pro (DNS)
-      - "127.0.0.1:443:443"              # only required for Pro (LocalStack HTTPS Edge Proxy)
       - "127.0.0.1:4510-4559:4510-4559"  # external service port range
       - "127.0.0.1:4566:4566"            # LocalStack Edge Proxy
     environment:
       - DEBUG=0
       - DOCKER_HOST=unix:///var/run/docker.sock
-      - HOSTNAME_EXTERNAL=localstack
+      - LOCALSTACK_HOST=localstack
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - ./aws-scripts/:/docker-entrypoint-initaws.d/
+      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
+      #- "./aws-scripts/:/etc/localstack/init/ready.d/"
+      - "./aws-scripts/init.sh:/etc/localstack/init/ready.d/init.sh"
       
   postgres:
     image: postgres
@@ -49,6 +48,7 @@ services:
     command: redis-server --requirepass redis
     ports:
       - 6379:6379
+  
   redisinsight:
     image: docker.io/redislabs/redisinsight:latest
     container_name: redisinsight
