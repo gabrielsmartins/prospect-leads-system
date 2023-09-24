@@ -3,7 +3,7 @@ version: "3.8"
 services:
   localstack:
     container_name: localstack
-    image: localstack/localstack:latest
+    image: localstack/localstack:2.0.2
     ports:
       - "127.0.0.1:4510-4559:4510-4559"  # external service port range
       - "127.0.0.1:4566:4566"            # LocalStack Edge Proxy
@@ -13,8 +13,6 @@ services:
       - LOCALSTACK_HOST=localstack
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "${LOCALSTACK_VOLUME_DIR:-./volume}:/var/lib/localstack"
-      #- "./aws-scripts/:/etc/localstack/init/ready.d/"
       - "./aws-scripts/init.sh:/etc/localstack/init/ready.d/init.sh"
       
   postgres:
