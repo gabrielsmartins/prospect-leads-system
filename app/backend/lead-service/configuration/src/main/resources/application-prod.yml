@@ -30,7 +30,7 @@ eureka:
 
 aws:
   dynamodb:
-    endpoint: http://localstack.railway.internal:4566
+    endpoint: http://localstack-production.up.railway.app
     region: sa-east-1
     credentials:
       access-key: foo
