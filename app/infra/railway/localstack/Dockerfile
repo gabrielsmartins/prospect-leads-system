@@ -1,7 +1,7 @@
 FROM localstack/localstack:1.4.0
 
 ENV DEBUG 0
-ENV DEFAULT_REGION "sa-east-1"
+ENV AWS_DEFAULT_REGION "sa-east-1"
 ENV HOSTNAME_EXTERNAL "localstack.railway.internal"
 ENV DOCKER_HOST "unix:///var/run/docker.sock"
 
