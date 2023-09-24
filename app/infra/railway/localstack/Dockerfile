@@ -4,7 +4,7 @@ ENV DEBUG 0
 ENV LOCALSTACK_HOST "localstack.railway.internal"
 ENV DOCKER_HOST "unix:///var/run/docker.sock"
 
-COPY ./aws-scripts/init.sh /docker-entrypoint-initaws.d/init.sh
+COPY ./aws-scripts/init.sh /etc/localstack/init/ready.d/init.sh
 
 EXPOSE 4566
 EXPOSE 4510-4559
