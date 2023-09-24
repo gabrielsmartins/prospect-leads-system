@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'products/:id', component: ProductDetailComponent},
   { path: 'create-insurance-quote-simulation', component: CreateInsuranceQuoteComponent},
   { path: 'insurance-quote-simulation/:id', component: InsuranceQuoteDetailComponent},
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
+  { path: '', redirectTo: '/create-insurance-quote-simulation', pathMatch: 'full' },
 ];
 
 @NgModule({
