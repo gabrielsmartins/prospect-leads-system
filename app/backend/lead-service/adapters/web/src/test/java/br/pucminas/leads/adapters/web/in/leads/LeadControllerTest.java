@@ -15,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
 import java.util.UUID;
 
 import static br.pucminas.leads.adapters.web.config.ControllerRoutes.LEAD_ROUTE;
@@ -36,6 +37,18 @@ class LeadControllerTest {
     private SearchLeadUseCase useCase;
 
     @Test
+    @DisplayName("Given Leads When Exists Then Return Leads")
+    public void givenLeadsWhenExistsThenReturnLeads() throws Exception {
+        var product = defaultLead().build();
+        when(this.useCase.findAll()).thenReturn(List.of(product));
+
+        this.mockMvc.perform(get(LEAD_ROUTE)
+                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .header(HttpHeaders.ACCEPT,MediaType.APPLICATION_JSON_VALUE))
+                    .andExpect(status().isOk());
+    }
+
+    @Test
     @DisplayName("Given Id When Exists Then Return Existing Lead")
     public void givenIdWhenExistsThenReturnExistingLead() throws Exception {
         var product = defaultLead().build();
@@ -45,7 +58,7 @@ class LeadControllerTest {
         this.mockMvc.perform(get(LEAD_ROUTE + "/{id}", id)
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                         .header(HttpHeaders.ACCEPT,MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(status().isOk());
+                    .andExpect(status().isOk());
     }
 
 }

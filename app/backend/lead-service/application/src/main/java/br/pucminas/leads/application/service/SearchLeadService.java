@@ -7,6 +7,7 @@ import br.pucminas.leads.application.ports.out.SearchLeadPort;
 import br.pucminas.leads.common.stereotype.UseCase;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @UseCase
@@ -18,6 +19,11 @@ public class SearchLeadService implements SearchLeadUseCase {
     public Lead findById(UUID id) {
         return this.port.findById(id)
                         .orElseThrow(() -> new LeadNotFoundException(String.format("Lead %s not found", id)));
+    }
+
+    @Override
+    public List<Lead> findAll() {
+        return this.port.findAll();
     }
 
 }

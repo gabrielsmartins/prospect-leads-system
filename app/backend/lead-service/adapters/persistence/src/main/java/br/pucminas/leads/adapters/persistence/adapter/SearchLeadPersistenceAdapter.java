@@ -27,8 +27,28 @@ public class SearchLeadPersistenceAdapter implements SearchLeadPort {
     @Override
     public Optional<Lead> findById(UUID id) {
         log.info("Searching lead by id {}", kv("id", id));
-        return this.service.findById(id)
-                           .map(LeadPersistenceMapper::mapToDomain);
+        var optionalLeadEntity = this.service.findById(id);
+        if (optionalLeadEntity.isEmpty()) {
+            log.warn("Lead {} not found", kv("id", id));
+            return Optional.empty();
+        }
+        var leadEntity = optionalLeadEntity.get();
+        log.info(append("lead", leadEntity), "Lead was found successfully");
+
+        log.info(append("lead", leadEntity), "Mapping lead");
+        var lead = LeadPersistenceMapper.mapToDomain(leadEntity);
+        log.info(append("lead", lead), "Lead was mapped successfully");
+        return Optional.of(lead);
+    }
+
+    @Override
+    public List<Lead> findAll() {
+        return this.service.findAll()
+                           .stream()
+                           .peek(leadEntity -> log.info(append("lead", leadEntity), "Mapping lead"))
+                           .map(LeadPersistenceMapper::mapToDomain)
+                           .peek(lead -> log.info(append("lead", lead), "Lead was mapped successfully"))
+                           .collect(Collectors.toList());
     }
 
     @Override

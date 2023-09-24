@@ -27,6 +27,11 @@ public class LeadRepository {
         return Optional.ofNullable(leadEntity);
     }
 
+    public List<LeadEntity> findAll() {
+        var expression = new DynamoDBScanExpression();
+        return this.dynamoDBMapper.scan(LeadEntity.class, expression);
+    }
+
     public List<LeadEntity> findAllPendingReceivedLessThan(LocalDateTime dateTime) {
         Map<String, AttributeValue> values = new HashMap<>();
         values.put(":CreatedAt", new AttributeValue().withS(dateTime.format(DateTimeFormatter.ISO_DATE_TIME)));

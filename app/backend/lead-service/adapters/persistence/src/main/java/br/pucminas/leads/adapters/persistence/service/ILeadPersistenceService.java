@@ -10,6 +10,7 @@ import java.util.UUID;
 public interface ILeadPersistenceService {
 
     LeadEntity save(LeadEntity leadEntity);
+    List<LeadEntity> findAll();
 
     Optional<LeadEntity> findById(UUID id);
 

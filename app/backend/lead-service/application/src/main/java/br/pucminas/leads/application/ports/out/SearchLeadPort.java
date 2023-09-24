@@ -11,6 +11,8 @@ public interface SearchLeadPort {
 
     Optional<Lead> findById(UUID id);
 
+    List<Lead> findAll();
+
     List<Lead> findAllPendingReceivedLessThan(LocalDateTime dateTime);
 
 }

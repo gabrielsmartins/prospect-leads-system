@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -48,6 +49,18 @@ class SearchLeadServiceTest {
         var id = UUID.randomUUID();
         assertThatThrownBy(() -> this.service.findById(id))
                 .isInstanceOf(LeadNotFoundException.class);
+    }
+
+    @Test
+    @DisplayName("Given Pageable When Exists Then Return Leads")
+    public void givenPageableWhenExistsThenReturnLeads() {
+        var leadMock = defaultLead().build();
+
+        when(this.port.findAll()).thenReturn(List.of(leadMock));
+
+        var leads = this.service.findAll();
+
+        assertThat(leads).isNotEmpty();
     }
 
 }

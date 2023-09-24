@@ -22,6 +22,11 @@ public class LeadPersistenceService implements ILeadPersistenceService {
     }
 
     @Override
+    public List<LeadEntity> findAll() {
+        return this.repository.findAll();
+    }
+
+    @Override
     public Optional<LeadEntity> findById(UUID id) {
         return this.repository.findById(id);
     }

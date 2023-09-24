@@ -10,7 +10,6 @@ import br.pucminas.leads.common.stereotype.UseCase;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @UseCase
 @RequiredArgsConstructor
@@ -24,7 +23,7 @@ public class ProcessLeadService implements ProcessLeadUseCase {
     @Override
     public void process() {
         LocalDateTime datetime = LocalDateTime.now().minusMinutes(30);
-        List<Lead> leads = this.searchLeadPort.findAllPendingReceivedLessThan(datetime);
+        var leads = this.searchLeadPort.findAllPendingReceivedLessThan(datetime);
         leads.forEach(this::process);
     }
 

@@ -41,6 +41,17 @@ class SearchLeadPersistenceAdapterTest {
     }
 
     @Test
+    @DisplayName("Given Leads When Exist Then Return Leads")
+    public void givenLeadsWhenExistThenReturnLeads() {
+        var leadEntity = defaultLeadEntity().build();
+        when(this.service.findAll()).thenReturn(List.of(leadEntity));
+
+        var leads = this.adapter.findAll();
+
+        assertThat(leads).isNotEmpty();
+    }
+
+    @Test
     @DisplayName("Given Datetime When Exists Then Return Leads")
     public void givenDatetimeWhenExistsThenReturnLeads() {
         var dateTime = LocalDateTime.now();

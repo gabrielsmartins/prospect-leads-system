@@ -75,6 +75,18 @@ class LeadRepositoryTest {
     }
 
     @Test
+    @DisplayName("Given Leads When Exist Then Return Leads")
+    public void givenLeadsWhenExistThenReturnLeads() {
+        var leadEntity = defaultLeadEntity().build();
+
+        this.repository.save(leadEntity);
+
+        var leads = this.repository.findAll();
+
+        assertThat(leads).isNotEmpty();
+    }
+
+    @Test
     @DisplayName("Given Datetime When Exists Then Return Leads")
     public void givenDatetimeWhenExistsThenReturnLeads() {
         var dateTime = LocalDateTime.now();

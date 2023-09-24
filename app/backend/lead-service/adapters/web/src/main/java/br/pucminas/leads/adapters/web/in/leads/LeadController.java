@@ -1,5 +1,6 @@
 package br.pucminas.leads.adapters.web.in.leads;
 
+import br.pucminas.leads.adapters.web.in.leads.dto.LeadDataDto;
 import br.pucminas.leads.adapters.web.in.leads.dto.LeadDto;
 import br.pucminas.leads.adapters.web.in.leads.mapper.LeadControllerMapper;
 import br.pucminas.leads.application.ports.in.SearchLeadUseCase;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static br.pucminas.leads.adapters.web.config.ControllerRoutes.LEAD_ROUTE;
 import static net.logstash.logback.marker.Markers.append;
@@ -25,6 +27,20 @@ import static net.logstash.logback.marker.Markers.append;
 public class LeadController {
 
     private final SearchLeadUseCase useCase;
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<LeadDataDto> findAll() {
+        log.info("Searching all leads");
+        var leads = this.useCase.findAll();
+        log.info(append("leads", leads), "Leads were found successfully");
+
+        log.info(append("leads", leads), "Mapping leads");
+        var leadsDto = leads.stream()
+                            .map(LeadControllerMapper::mapToDto)
+                            .collect(Collectors.toList());
+        log.info(append("leads", leadsDto), "Leads were mapped successfully");
+        return new ResponseEntity<>(new LeadDataDto(leadsDto), HttpStatus.OK);
+    }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LeadDto> findById(@PathVariable("id") UUID id) {
