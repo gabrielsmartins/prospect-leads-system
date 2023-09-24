@@ -17,4 +17,4 @@ eureka:
     enabled: true
     register-with-eureka: true
     serviceUrl:
-      defaultZone: http://service-discovery.railway.internal/eureka/
+      defaultZone: http://service-discovery.railway.internal:8761/eureka/
