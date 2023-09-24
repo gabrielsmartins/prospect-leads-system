@@ -5,6 +5,7 @@ import br.pucminas.products.application.ports.in.DeleteProductUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class DeleteProductController {
 
     private final DeleteProductUseCase useCase;
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreateProductDto> delete(@PathVariable("id") Integer id) {
         log.info(append("id", id), "Deleting product by id");
         this.useCase.delete(id);

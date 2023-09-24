@@ -2,6 +2,10 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     implementation 'org.springframework.cloud:spring-cloud-contract-wiremock'
 
+    implementation "org.springdoc:springdoc-openapi-ui:${springDocVersion}"
+    implementation "org.springdoc:springdoc-openapi-data-rest:${springDocVersion}"
+    //implementation "org.springdoc:springdoc-openapi-security:${springDocVersion}"
+
     implementation project(':common')
     implementation project(':application')
 

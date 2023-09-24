@@ -4,10 +4,12 @@ import br.pucminas.bff.adapters.web.in.advice.dto.ErrorDto;
 import br.pucminas.bff.adapters.web.in.advice.dto.ErrorDto.ErrorFieldDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.bind.support.WebExchangeBindException;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import static net.logstash.logback.marker.Markers.append;
 
@@ -32,6 +34,17 @@ public class ExceptionHandlerController {
             errorDTO.addField(errorFieldDTO);
         });
         return errorDTO;
+    }
+
+    @ExceptionHandler(WebClientResponseException.class)
+    public ResponseEntity<ErrorDto> handleWebClientResponseException(WebClientResponseException ex) {
+        log.error(append("exception", ex), "Error processing request");
+        var statusCode = ex.getStatusCode();
+        var errorDto =  ErrorDto.builder()
+                                .withCode(statusCode.value())
+                                .withMessage(ex.getMessage())
+                                .build();
+        return new ResponseEntity<>(errorDto, statusCode);
     }
 
 

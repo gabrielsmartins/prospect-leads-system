@@ -36,6 +36,12 @@ spring:
         page-parameter: page
         size-parameter: page_size
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
+
 management:
   endpoint:
     metrics:

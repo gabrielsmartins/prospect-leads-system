@@ -4,6 +4,8 @@ package br.pucminas.bff.adapters.web.in.quotes;
 import br.pucminas.bff.adapters.web.in.quotes.dto.UpdateInsuranceQuoteDto;
 import br.pucminas.bff.adapters.web.in.quotes.mapper.UpdateInsuranceQuoteControllerMapper;
 import br.pucminas.bff.application.ports.in.quotes.UpdateInsuranceQuoteUseCase;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -24,10 +26,12 @@ import static net.logstash.logback.marker.Markers.append;
 @RequiredArgsConstructor
 @Validated
 @Slf4j
+@Tag(name = "insurance quotes", description = "Insurance Quotes API")
 public class UpdateInsuranceQuoteController {
 
     private final UpdateInsuranceQuoteUseCase useCase;
 
+    @Operation(description = "Update Insurance Quote")
     @PatchMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Mono<UpdateInsuranceQuoteDto> update(@PathVariable("id") UUID id, @RequestBody @Valid UpdateInsuranceQuoteDto quoteDto){

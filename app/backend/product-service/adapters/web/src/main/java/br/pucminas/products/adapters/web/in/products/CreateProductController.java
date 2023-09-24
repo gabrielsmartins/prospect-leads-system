@@ -5,6 +5,7 @@ import br.pucminas.products.adapters.web.in.products.mapper.CreateProductControl
 import br.pucminas.products.application.ports.in.CreateProductUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +28,7 @@ public class CreateProductController {
 
     private final CreateProductUseCase useCase;
 
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CreateProductDto> create(@RequestBody @Valid CreateProductDto productDto) {
         log.info(append("product", productDto), "Mapping product");
         var product = CreateProductControllerMapper.mapToDomain(productDto);

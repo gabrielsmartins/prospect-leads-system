@@ -4,6 +4,10 @@ dependencies {
     //implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    implementation "org.springdoc:springdoc-openapi-ui:${springDocVersion}"
+    implementation "org.springdoc:springdoc-openapi-data-rest:${springDocVersion}"
+    //implementation "org.springdoc:springdoc-openapi-security:${springDocVersion}"
+
     testImplementation 'org.springframework.security:spring-security-test'
 
     api project(':common')

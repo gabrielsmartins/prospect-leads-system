@@ -88,6 +88,12 @@ org:
     miscellaneous:
       allow-anonymous-data-usage: false #this sends the amount of succeeded jobs for marketing purposes
 
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
+
 management:
   endpoint:
     metrics:

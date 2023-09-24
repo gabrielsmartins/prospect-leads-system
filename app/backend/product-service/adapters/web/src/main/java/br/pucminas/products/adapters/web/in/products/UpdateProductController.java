@@ -7,6 +7,7 @@ import br.pucminas.products.application.ports.in.UpdateProductUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class UpdateProductController {
 
     private final UpdateProductUseCase useCase;
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UpdateProductDto> update(@PathVariable("id") Integer id, @RequestBody @Valid UpdateProductDto productDto) {
         log.info(append("id", id), "Updating product by id");
 

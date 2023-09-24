@@ -47,7 +47,6 @@ class UpdateInsuranceQuoteWebAdapterTest {
     @Test
     @DisplayName("Given Insurance Quote When Update Then Return Updated Insurance Quote")
     public void givenInsuranceQuoteWhenUpdateThenReturnUpdatedInsuranceQuote() throws JsonProcessingException {
-
         var quoteDto = defaultUpdateInsuranceQuoteDto().build();
         var body = this.objectMapper.writeValueAsString(quoteDto);
 
