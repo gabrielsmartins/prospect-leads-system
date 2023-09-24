@@ -12,9 +12,9 @@ spring:
   boot:
     admin:
       client:
-        url: https://service-discovery.up.railway.app/admin/
+        url: http://service-discovery.railway.internal:8761/admin/
         instance:
-          service-url: https://service-discovery.up.railway.app/admin/
+          service-url: http://service-discovery.railway.internal:8761/admin/
 
 eureka:
   instance:
@@ -23,5 +23,5 @@ eureka:
     enabled: true
     register-with-eureka: true
     serviceUrl:
-      defaultZone: https://service-discovery.up.railway.app/eureka/
+      defaultZone: http://service-discovery.railway.internal:8761/eureka/
 
