@@ -8,3 +8,4 @@ COPY ./aws-scripts/init.sh /etc/localstack/init/ready.d/init.sh
 
 EXPOSE 4566
 EXPOSE 4510-4559
+
