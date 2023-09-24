@@ -23,6 +23,8 @@ spring:
 eureka:
   instance:
     hostname: prospect-leads-lead-service.railway.internal
+    lease-expiration-duration-in-seconds: 60
+    lease-renewal-interval-in-seconds: 30
   client:
     enabled: true
     register-with-eureka: true
