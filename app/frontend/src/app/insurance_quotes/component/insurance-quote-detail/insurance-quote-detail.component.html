@@ -19,50 +19,56 @@
           <mat-form-field appearance="outline" class="form-element">
             <mat-label>Produto</mat-label>
             <mat-select formControlName="product" [ngModel]="selectedProduct?.id">
-              <mat-option *ngFor="let product of products" [value]="product.id">{{ product.id }} - {{ product.name
-                }}</mat-option>
+              <mat-option *ngFor="let product of products" [value]="product.id">{{ product.id }} - {{ product.name }}</mat-option>
             </mat-select>
           </mat-form-field>
         </mat-card-content>
       </mat-card>
 
-      <mat-card>
-        <mat-card-title>
-          <h4><strong>Coberturas</strong></h4>
-        </mat-card-title>
-        <table class="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>Descrição</th>
-              <th>Valor</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let coverage of selectedProduct?.coverages | keyvalue">
-              <td>{{coverage.key}}</td>
-              <td>{{coverage.value}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </mat-card>
-
-      <mat-card>
-        <mat-card-title>
-          <h4><strong>Assistências</strong></h4>
-        </mat-card-title>
-        <table class="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>Descrição</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let assistance of selectedProduct?.assistances">
-              <td>{{assistance}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </mat-card>
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Coberturas</mat-panel-title>
+            <mat-panel-description>
+              Clique para visualizar
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let coverage of selectedProduct?.coverages | keyvalue">
+                <td>{{coverage.key}}</td>
+                <td>R$ {{coverage.value}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>Assistências</mat-panel-title>
+            <mat-panel-description>
+              Clique para visualizar
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <table class="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Descrição</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let assistance of selectedProduct?.assistances">
+                <td>{{assistance}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-expansion-panel>
+      </mat-accordion>
 
       <mat-card>
         <mat-card-content>
