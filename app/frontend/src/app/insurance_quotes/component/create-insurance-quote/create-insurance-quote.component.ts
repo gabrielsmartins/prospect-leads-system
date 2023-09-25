@@ -19,8 +19,10 @@ export class CreateInsuranceQuoteComponent implements OnInit {
 
   form: FormGroup;
   products: Array<Product> = new Array();
+  panelOpenState = false;
+  selectedProduct: any;
 
-  constructor(private productService: ProductService, private insuranceQuoteService: InsuranceQuoteService, private router: Router, private formBuilder: FormBuilder) { 
+  constructor(private productService: ProductService, private insuranceQuoteService: InsuranceQuoteService, private router: Router, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       product: ['', Validators.required],
@@ -48,7 +50,13 @@ export class CreateInsuranceQuoteComponent implements OnInit {
                                .subscribe(createdInsuranceQuote => {
                                   let id = createdInsuranceQuote.id;
                                   this.router.navigate([`/insurance-quote-simulation/${id}`]);
-                               }); 
+                               });
   }
-  
+
+  onProductSelectionChange(): void {
+    if (this.selectedProduct) {
+      console.log("Selected product", this.selectedProduct);
+    }
+  }
+
 }

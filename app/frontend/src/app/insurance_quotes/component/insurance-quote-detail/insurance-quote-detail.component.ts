@@ -19,6 +19,7 @@ export class InsuranceQuoteDetailComponent {
   insuranceQuote?: InsuranceQuote;
   products: Array<Product> = new Array();
   selectedProduct?: Product;
+  panelOpenState = false;
 
   constructor(private route: ActivatedRoute, private productService: ProductService, private insuranceQuoteService: InsuranceQuoteService, private router: Router, private formBuilder: FormBuilder, private successDialogService: SuccessDialogService) {
     this.form = this.formBuilder.group({
