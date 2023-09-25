@@ -80,6 +80,7 @@ subprojects {
 		testImplementation group: 'org.assertj', name: 'assertj-core', version: assertJVersion
 		testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
 		testImplementation 'org.testcontainers:junit-jupiter'
+		testImplementation "org.testcontainers:localstack"
 		testImplementation group: 'org.awaitility', name: 'awaitility', version: awaitilityVersion
 		testImplementation group: 'com.redis.testcontainers', name: 'testcontainers-redis', version: testcontainersRedisVersion
 	}
