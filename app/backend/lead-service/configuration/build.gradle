@@ -9,6 +9,7 @@ dependencies {
     implementation project(':adapters:streams')
     implementation project(':adapters:scheduler')
 
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     testImplementation project(':application').sourceSets.test.output

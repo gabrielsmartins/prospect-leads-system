@@ -6,6 +6,7 @@ dependencies {
     implementation project(':adapters:messaging')
     implementation project(':adapters:email')
     implementation project(':adapters:whatsapp')
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
