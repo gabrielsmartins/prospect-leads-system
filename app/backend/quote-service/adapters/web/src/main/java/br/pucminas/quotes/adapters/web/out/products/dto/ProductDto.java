@@ -42,7 +42,7 @@ public class ProductDto {
     @JsonProperty(value = "suggested_total_monthly_premium_amount")
     private BigDecimal suggestedTotalMonthlyPremiumAmount;
 
-    @JsonProperty(value = "total_coverage_amount", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "total_coverage_amount")
     private BigDecimal totalCoverageAmount;
 
     @JsonProperty(value = "coverages")
@@ -53,15 +53,15 @@ public class ProductDto {
     @Builder.Default
     private final List<String> assistances = new LinkedList<>();
 
-    @JsonProperty(value = "created_at", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "created_at")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime createdAt;
 
-    @JsonProperty(value = "updated_at", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "updated_at")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime updatedAt;
 
-    @JsonProperty(value = "deleted_at", access = JsonProperty.Access.READ_ONLY)
+    @JsonProperty(value = "deleted_at")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
     private LocalDateTime deletedAt;
 
