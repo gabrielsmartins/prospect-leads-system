@@ -11,9 +11,10 @@ services:
       - DEBUG=0
       - DOCKER_HOST=unix:///var/run/docker.sock
       - LOCALSTACK_HOST=localstack
+      - SMTP_HOST=smtp:1025
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "./aws-scripts/init.sh:/etc/localstack/init/ready.d/init.sh"
+      - "./aws-scripts/:/etc/localstack/init/ready.d/"
       
   postgres:
     image: postgres

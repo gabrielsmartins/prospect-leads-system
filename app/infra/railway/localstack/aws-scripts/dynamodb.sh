@@ -1,5 +1,4 @@
 #!/bin/bash
-echo "########### Creating profile ###########"
 table="Leads"
 echo "########### Creating DynamoDB ${table} Table ###########"
 
