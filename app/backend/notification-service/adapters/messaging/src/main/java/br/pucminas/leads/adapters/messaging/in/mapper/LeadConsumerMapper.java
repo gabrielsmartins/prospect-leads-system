@@ -13,6 +13,7 @@ public class LeadConsumerMapper {
             return null;
         }
         return Notification.builder()
+                           .withId(leadProcessed.getId())
                            .withInsuranceQuote(InsuranceQuoteConsumerMapper.mapToDomain(leadProcessed.getInsuranceQuote()))
                            .withCreatedAt(leadProcessed.getCreatedAt())
                            .withProcessedAt(leadProcessed.getProcessedAt())

@@ -16,6 +16,7 @@ public class LeadProcessedMessageSupport {
 
     public static LeadProcessed.Builder defaultLeadProcessedMessage() {
         return LeadProcessed.newBuilder()
+                .setId(UUID.randomUUID())
                 .setInsuranceQuote(defaultInsuranceQuoteMessage().build())
                 .setCreatedAt(LocalDateTime.now())
                 .setProcessedAt(LocalDateTime.now());

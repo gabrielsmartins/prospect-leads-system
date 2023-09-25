@@ -4,6 +4,13 @@
   "namespace":"br.pucminas.leads.schemas.lead_processed",
   "fields":[
     {
+      "name": "id",
+      "type": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
       "name": "insurance_quote",
       "type": {
         "type": "record",

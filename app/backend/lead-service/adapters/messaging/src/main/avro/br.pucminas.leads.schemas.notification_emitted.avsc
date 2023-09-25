@@ -4,7 +4,7 @@
   "namespace":"br.pucminas.leads.schemas.notification_emitted",
   "fields":[
     {
-      "name": "insurance_quote_id",
+      "name": "lead_id",
       "type": {
         "type": "string",
         "logicalType": "uuid"

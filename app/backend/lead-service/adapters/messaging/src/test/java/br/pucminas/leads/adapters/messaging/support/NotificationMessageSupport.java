@@ -14,7 +14,7 @@ public class NotificationMessageSupport {
 
     public static NotificationEmitted.Builder defaultNotificationEmittedMessage() {
         return NotificationEmitted.newBuilder()
-                .setInsuranceQuoteId(UUID.randomUUID())
+                .setLeadId(UUID.randomUUID())
                 .setNotifiedAt(LocalDateTime.now())
                 .setChannels(List.of(Channel.values()));
     }

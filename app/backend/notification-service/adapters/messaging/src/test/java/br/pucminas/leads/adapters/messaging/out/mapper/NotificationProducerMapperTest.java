@@ -18,7 +18,7 @@ class NotificationProducerMapperTest {
 
         assertThat(message).isNotNull();
         assertThat(message).hasNoNullFieldsOrProperties();
-        assertThat(message.getInsuranceQuoteId()).isEqualTo(notification.getInsuranceQuote().getId());
+        assertThat(message.getLeadId()).isEqualTo(notification.getId());
         assertThat(message.getNotifiedAt()).isEqualTo(notification.getNotifiedAt());
         assertThat(message.getChannels().size()).isEqualTo(notification.getChannels().size());
     }

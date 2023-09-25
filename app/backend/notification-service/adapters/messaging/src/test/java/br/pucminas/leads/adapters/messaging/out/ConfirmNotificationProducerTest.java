@@ -62,7 +62,7 @@ class ConfirmNotificationProducerTest {
         var singleRecord = KafkaTestUtils.getSingleRecord(consumer, topic);
 
         assertThat(singleRecord).isNotNull();
-        assertThat(singleRecord.key()).isEqualTo(notification.getInsuranceQuote().getId().toString());
+        assertThat(singleRecord.key()).isEqualTo(notification.getId().toString());
         assertThat(singleRecord.value()).isNotNull();
     }
 

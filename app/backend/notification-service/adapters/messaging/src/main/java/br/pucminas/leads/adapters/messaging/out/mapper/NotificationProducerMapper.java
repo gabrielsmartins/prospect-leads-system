@@ -20,7 +20,7 @@ public class NotificationProducerMapper {
                                    .map(channel -> Channel.valueOf(channel.name()))
                                    .collect(Collectors.toList());
         return NotificationEmitted.newBuilder()
-                                  .setInsuranceQuoteId(notification.getInsuranceQuote().getId())
+                                  .setLeadId(notification.getId())
                                   .setNotifiedAt(notification.getNotifiedAt())
                                   .setChannels(channels)
                                   .build();

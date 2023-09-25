@@ -27,7 +27,7 @@ public class NotificationConsumer {
     public void consume(@Headers MessageHeaders headers, @Payload NotificationEmitted message, Acknowledgment acknowledgment) {
         try {
             log.info(append("headers", headers).and(append("payload", message)), "Receiving processed lead");
-            var id = message.getInsuranceQuoteId();
+            var id = message.getLeadId();
             log.info(append("id", id), "Finishing lead");
             this.useCase.finish(id);
             log.info(append("notification", id), "Lead was finished successfully");

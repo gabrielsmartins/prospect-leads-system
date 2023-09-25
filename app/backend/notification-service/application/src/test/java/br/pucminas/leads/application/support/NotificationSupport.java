@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static br.pucminas.leads.application.support.InsuranceQuoteSupport.defaultInsuranceQuote;
 
@@ -16,6 +17,7 @@ public class NotificationSupport {
 
     public static Notification.NotificationBuilder defaultNotification() {
         return Notification.builder()
+                .withId(UUID.randomUUID())
                 .withInsuranceQuote(defaultInsuranceQuote().build())
                 .withCreatedAt(LocalDateTime.now())
                 .withProcessedAt(LocalDateTime.now())

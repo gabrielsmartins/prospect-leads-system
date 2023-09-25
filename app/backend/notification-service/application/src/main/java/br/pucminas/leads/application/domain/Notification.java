@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,6 +17,7 @@ import java.util.List;
 @Builder(setterPrefix = "with")
 public class Notification {
 
+    private UUID id;
     private InsuranceQuote insuranceQuote;
     private LocalDateTime createdAt;
     private LocalDateTime processedAt;

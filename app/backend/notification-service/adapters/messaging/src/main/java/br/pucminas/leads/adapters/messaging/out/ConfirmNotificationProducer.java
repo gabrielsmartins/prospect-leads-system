@@ -34,7 +34,7 @@ public class ConfirmNotificationProducer implements ConfirmNotificationPort {
 
         var message = MessageBuilder.withPayload(notificationEmitted)
                                     .setHeader(KafkaHeaders.TOPIC, topic)
-                                    .setHeader(KafkaHeaders.MESSAGE_KEY, notificationEmitted.getInsuranceQuoteId().toString())
+                                    .setHeader(KafkaHeaders.MESSAGE_KEY, notificationEmitted.getLeadId().toString())
                                     .build();
 
         log.info(append("payload", message), "Sending notification");
