@@ -35,7 +35,7 @@
               "type": "bytes",
               "logicalType": "decimal",
               "precision": 9,
-              "scale": 2
+              "scale": 4
             }
           },
           {
@@ -44,7 +44,7 @@
               "type": "bytes",
               "logicalType": "decimal",
               "precision": 9,
-              "scale": 2
+              "scale": 4
             }
           },
           {
@@ -55,7 +55,7 @@
                 "type": "bytes",
                 "logicalType": "decimal",
                 "precision": 9,
-                "scale": 2
+                "scale": 4
               }
             }
           },
@@ -185,7 +185,7 @@
                     "type": "bytes",
                     "logicalType": "decimal",
                     "precision": 9,
-                    "scale": 2
+                    "scale": 4
                   }
                 },
                 { "name": "min_total_monthly_premium_amount",
@@ -193,7 +193,7 @@
                     "type": "bytes",
                     "logicalType": "decimal",
                     "precision": 9,
-                    "scale": 2
+                    "scale": 4
                   }
                 },
                 { "name": "suggested_total_monthly_premium_amount",
@@ -201,7 +201,7 @@
                     "type": "bytes",
                     "logicalType": "decimal",
                     "precision": 9,
-                    "scale": 2
+                    "scale": 4
                   }
                 },
                 { "name": "total_coverage_amount",
@@ -209,7 +209,7 @@
                     "type": "bytes",
                     "logicalType": "decimal",
                     "precision": 9,
-                    "scale": 2
+                    "scale": 4
                   }
                 },
                 {
@@ -220,7 +220,7 @@
                       "type": "bytes",
                       "logicalType": "decimal",
                       "precision": 9,
-                      "scale": 2
+                      "scale": 4
                     }
                   }
                 },
