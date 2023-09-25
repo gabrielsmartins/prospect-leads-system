@@ -22,6 +22,7 @@ export class InsuranceQuoteDetailComponent {
 
   constructor(private route: ActivatedRoute, private productService: ProductService, private insuranceQuoteService: InsuranceQuoteService, private router: Router, private formBuilder: FormBuilder, private successDialogService: SuccessDialogService) {
     this.form = this.formBuilder.group({
+      id: [{ value: '', disabled: true }, Validators.required],
       name: [{ value: '', disabled: true }, Validators.required],
       product: [{ value: this.selectedProduct, disabled: true }, Validators.required],
       document_number: [{ value: '', disabled: true }, Validators.required],
