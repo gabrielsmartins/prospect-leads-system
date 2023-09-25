@@ -14,6 +14,7 @@ public class LeadProducerMapper {
         }
         var insuranceQuoteMessage = InsuranceQuoteProducerMapper.mapToMessage(lead.getInsuranceQuote());
         return LeadProcessed.newBuilder()
+                            .setId(lead.getId())
                             .setInsuranceQuote(insuranceQuoteMessage)
                             .setCreatedAt(lead.getCreatedAt())
                             .setProcessedAt(lead.getProcessedAt())
