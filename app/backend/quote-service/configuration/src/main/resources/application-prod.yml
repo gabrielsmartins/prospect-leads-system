@@ -16,7 +16,7 @@ spring:
 
 eureka:
   instance:
-    hostname: prospect-leads-quote-service.railway.internal
+    hostname: prospect-leads-quote-service.up.railway.app
     lease-expiration-duration-in-seconds: 60
     lease-renewal-interval-in-seconds: 30
   client:
@@ -24,7 +24,6 @@ eureka:
     register-with-eureka: true
     serviceUrl:
       defaultZone: http://service-discovery.railway.internal:8761/eureka/
-
 
 webservice:
   products:

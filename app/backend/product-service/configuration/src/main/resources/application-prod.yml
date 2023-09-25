@@ -13,7 +13,7 @@ spring:
 
 eureka:
   instance:
-    hostname: prospect-leads-product-service.railway.internal
+    hostname: prospect-leads-product-service.up.railway.app
     lease-expiration-duration-in-seconds: 60
     lease-renewal-interval-in-seconds: 30
   client:

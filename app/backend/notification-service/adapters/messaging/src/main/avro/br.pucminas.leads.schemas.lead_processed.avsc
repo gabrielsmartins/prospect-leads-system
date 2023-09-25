@@ -34,7 +34,7 @@
             "type": {
               "type": "bytes",
               "logicalType": "decimal",
-              "precision": 9,
+              "precision": 10,
               "scale": 4
             }
           },
@@ -43,7 +43,7 @@
             "type": {
               "type": "bytes",
               "logicalType": "decimal",
-              "precision": 9,
+              "precision": 10,
               "scale": 4
             }
           },
@@ -54,7 +54,7 @@
               "values": {
                 "type": "bytes",
                 "logicalType": "decimal",
-                "precision": 9,
+                "precision": 10,
                 "scale": 4
               }
             }
@@ -184,7 +184,7 @@
                   "type": {
                     "type": "bytes",
                     "logicalType": "decimal",
-                    "precision": 9,
+                    "precision": 10,
                     "scale": 4
                   }
                 },
@@ -192,7 +192,7 @@
                   "type": {
                     "type": "bytes",
                     "logicalType": "decimal",
-                    "precision": 9,
+                    "precision": 10,
                     "scale": 4
                   }
                 },
@@ -200,7 +200,7 @@
                   "type": {
                     "type": "bytes",
                     "logicalType": "decimal",
-                    "precision": 9,
+                    "precision": 10,
                     "scale": 4
                   }
                 },
@@ -208,7 +208,7 @@
                   "type": {
                     "type": "bytes",
                     "logicalType": "decimal",
-                    "precision": 9,
+                    "precision": 10,
                     "scale": 4
                   }
                 },
@@ -219,7 +219,7 @@
                     "values": {
                       "type": "bytes",
                       "logicalType": "decimal",
-                      "precision": 9,
+                      "precision": 10,
                       "scale": 4
                     }
                   }
