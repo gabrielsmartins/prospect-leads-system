@@ -5,6 +5,9 @@ spring:
         enabled: true
         endpoint: https://localstack-production.up.railway.app
         region: sa-east-1
+        credentials:
+          access-key: 'foo'
+          secret-key: 'bar'
   kafka:
     bootstrap-servers: kafka.railway.internal:29092
     properties:

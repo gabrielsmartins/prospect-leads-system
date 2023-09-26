@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    aws:
+      ses:
+        enabled: true
+        endpoint: http://localhost:4566
+        region: sa-east-1
+        credentials:
+          access-key: 'foo'
+          secret-key: 'bar'

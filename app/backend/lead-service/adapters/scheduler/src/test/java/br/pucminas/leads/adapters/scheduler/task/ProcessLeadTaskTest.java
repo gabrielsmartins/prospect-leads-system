@@ -64,7 +64,7 @@ class ProcessLeadTaskTest {
     @DisplayName("Given Application When Startup Then Register Job")
     public void givenApplicationWhenStartupThenRegisterJob() throws Exception {
         this.task.run("args");
-        verify(this.jobScheduler, times(1)).scheduleRecurrently(anyString(), eq(Cron.everyHalfHour()), any(JobLambda.class));
+        verify(this.jobScheduler, times(1)).scheduleRecurrently(anyString(), eq(Cron.every5minutes()), any(JobLambda.class));
     }
 
 }

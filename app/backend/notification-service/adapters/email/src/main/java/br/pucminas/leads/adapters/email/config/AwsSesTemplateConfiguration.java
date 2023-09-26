@@ -30,9 +30,11 @@ public class AwsSesTemplateConfiguration {
             template.setSubjectPart("Olá {{customer_name}}");
             template.setHtmlPart(this.getResourceFileAsString("templates/template.html"));
 
+            log.info("Registering e-mail template: {}", TEMPLATE);
             var request = new CreateTemplateRequest();
             request.setTemplate(template);
             emailService.createTemplate(request);
+            log.info("E-mail {} template was registered successfully", TEMPLATE);
         } catch (AmazonSimpleEmailServiceException ex) {
             log.warn("Template already exists", ex);
         }
