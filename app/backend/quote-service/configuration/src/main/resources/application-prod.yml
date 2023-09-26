@@ -16,13 +16,17 @@ spring:
 
 eureka:
   instance:
-    prefer-ip-address: true
-    health-check-url: https://prospect-leads-bff-service.up.railway.app/actuator/health
+    hostname: prospect-leads-quote-service.up.railway.app
+    non-secure-port-enabled: true
+    non-secure-port: ${server.port}
+    lease-renewal-interval-in-seconds: 30
   client:
     enabled: true
     register-with-eureka: true
     eureka-server-connect-timeout-seconds: 15
     eureka-server-read-timeout-seconds: 15
+    eureka-server-d-n-s-name: service-discovery.railway.internal
+    eureka-server-port: 8761
     serviceUrl:
       defaultZone: http://service-discovery.railway.internal:8761/eureka/
 
