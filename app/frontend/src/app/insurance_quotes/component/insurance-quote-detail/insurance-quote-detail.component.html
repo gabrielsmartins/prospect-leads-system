@@ -25,6 +25,10 @@
         </mat-card-content>
       </mat-card>
 
+      <mat-card>
+        <mat-label><b>{{selectedProduct?.name}} - R$ {{selectedProduct?.suggested_total_monthly_premium_amount | currency:'BRL':'symbol':'2.2-2'}}</b></mat-label>
+      </mat-card>
+
       <mat-accordion>
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
