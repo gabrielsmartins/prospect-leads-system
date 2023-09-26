@@ -1,8 +1,8 @@
 spring:
   mail:
-    host: xxx
-    port: 587
-    username: xxxx@xxx.com
+    host: localhost
+    port: 5005
+    username: sender@whatever.com
     password: xxx
     properties:
       mail:

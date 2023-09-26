@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<html lang=pt-br>
+<head>
+    <meta charset=utf-8>
+    <meta name=viewport content=width=device-width, initial-scale=1>
+    <title>TCC PUC Minas</title>
+</head>
+<h2 th:text="${'Aproveite esta oferta ' + product_name}"></h2>
+
+<body style="background: whitesmoke; padding: 30px; height: 100%">
+<h5 style="font-size: 18px; margin-bottom: 6px" th:text="${'Olá ' + customer_name}"></h5>
+<p style="font-size: 16px; font-weight: 500" th:text="${'Aproveite esta oferta para o produto ' + product_name}"></p>
+<p style="font-size: 16px; font-weight: 500" th:text="${'Coberturas: ' + coverages}"></p>
+<p style="font-size: 16px; font-weight: 500" th:text="${'Assistências: ' + assistances}"></p>
+<p style="font-size: 16px; font-weight: 500" th:text="${'Valor total de Coberturas: ' + total_coverage_amount}"></p>
+<p style="font-size: 16px; font-weight: 500" th:text="${'Tudo isso por apenas: ' + total_monthly_premium_amount + 'por mês'}"></p>
+</body>
+</html>

@@ -45,6 +45,7 @@ subprojects {
 		set('springCloudVersion', "2021.0.7")
 		set('springCloudAwsVersion', "2.4.4")
 		set('springAdminVersion', "2.7.11")
+		set('dumbsterVersion', "1.7.1")
 		set('avroVersion', "1.11.2")
 		set('confluentVersion', "7.4.0")
 		set('logstashVersion', "7.4")

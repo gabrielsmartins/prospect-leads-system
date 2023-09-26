@@ -1,5 +1,7 @@
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    testImplementation "com.github.kirviq:dumbster:${dumbsterVersion}"
 
     implementation project(':common')
     implementation project(':application')

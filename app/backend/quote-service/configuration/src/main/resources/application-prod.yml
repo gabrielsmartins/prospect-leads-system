@@ -17,6 +17,8 @@ spring:
 eureka:
   instance:
     hostname: prospect-leads-quote-service.up.railway.app
+    non-secure-port-enabled: true
+    non-secure-port: ${server.port}
     lease-expiration-duration-in-seconds: 60
     lease-renewal-interval-in-seconds: 30
   client:
