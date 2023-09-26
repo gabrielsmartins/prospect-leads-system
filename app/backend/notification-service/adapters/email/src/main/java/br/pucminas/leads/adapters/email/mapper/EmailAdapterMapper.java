@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class EmailAdapterMapper {
 
-    public static String FROM_EMAIL = "tccleadspucminas.2023@gmail.com";
+    public static String FROM_EMAIL = "tccpucminas2023@yahoo.com";
 
     public static EmailDto mapToEmail(Notification notification) {
         if (notification == null) {
