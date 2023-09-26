@@ -9,6 +9,12 @@ server:
     port: 8761
 
 eureka:
+  instance:
+    hostname: service-discovery.railway.internal
+    non-secure-port-enabled: true
+    non-secure-port: 8761
+  server:
+    enable-self-preservation: false
   client:
     fetch-registry: false
     register-with-eureka: false
