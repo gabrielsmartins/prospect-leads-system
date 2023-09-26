@@ -19,5 +19,7 @@ eureka:
   client:
     enabled: true
     register-with-eureka: true
+    eureka-server-connect-timeout-seconds: 15
+    eureka-server-read-timeout-seconds: 15
     serviceUrl:
       defaultZone: http://service-discovery.railway.internal:8761/eureka/
