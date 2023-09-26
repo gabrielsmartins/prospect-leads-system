@@ -1,13 +1,15 @@
 spring:
-  cloud:
-    aws:
-      ses:
-        enabled: true
-        endpoint: https://localstack-production.up.railway.app
-        region: sa-east-1
-        credentials:
-          access-key: 'foo'
-          secret-key: 'bar'
+  mail:
+    host: ${SMTP_HOST}
+    port: 587
+    username: ${SMTP_USER}
+    password: ${SMTP_PASS}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   kafka:
     bootstrap-servers: kafka.railway.internal:29092
     properties:

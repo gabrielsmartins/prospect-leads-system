@@ -6,17 +6,13 @@ import br.pucminas.leads.application.domain.Notification;
 import br.pucminas.leads.application.domain.enums.ChannelEnum;
 import br.pucminas.leads.application.ports.out.SendNotificationPort;
 import br.pucminas.leads.common.EmailAdapter;
-import com.amazonaws.services.simpleemail.AmazonSimpleEmailService;
-import com.amazonaws.services.simpleemail.model.Destination;
-import com.amazonaws.services.simpleemail.model.SendTemplatedEmailRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 
-import java.util.Collections;
-
-import static br.pucminas.leads.adapters.email.config.AwsSesTemplateConfiguration.TEMPLATE;
 import static net.logstash.logback.marker.Markers.append;
 
 @EmailAdapter
@@ -24,7 +20,7 @@ import static net.logstash.logback.marker.Markers.append;
 @Slf4j
 public class SendNotificationEmailAdapter implements SendNotificationPort {
 
-    private final AmazonSimpleEmailService emailService;
+    private final JavaMailSender mailSender;
     private final ObjectMapper objectMapper;
 
     @Override
@@ -33,19 +29,19 @@ public class SendNotificationEmailAdapter implements SendNotificationPort {
         var emailDto = EmailAdapterMapper.mapToEmail(notification);
         log.info(append("email", emailDto), "Notification was mapped successfully");
 
-        var emailRequest = new SendTemplatedEmailRequest();
-        emailRequest.setTemplate(TEMPLATE);
-        emailRequest.setSource(emailDto.getFromEmail());
-        emailRequest.setDestination(new Destination(Collections.singletonList(emailDto.getToEmail())));
-        emailRequest.setTemplateData(this.toTemplateData(emailDto));
+        var message = new SimpleMailMessage();
+        message.setFrom(emailDto.getFromEmail());
+        message.setTo(emailDto.getToEmail());
+        message.setSubject(String.format("Olá %s", emailDto.getCustomerName()));
+        message.setText(this.toJson(emailDto));
 
-        log.info(append("email_request", emailRequest), "Sending e-mail");
-        emailService.sendTemplatedEmail(emailRequest);
-        log.info(append("email_request", emailRequest), "E-mail was sent successfully");
+        log.info(append("email", message), "Sending e-mail");
+        this.mailSender.send(message);
+        log.info(append("email", message), "E-mail was sent successfully");
     }
 
     @SneakyThrows
-    private String toTemplateData(EmailDto emailDto) {
+    private String toJson(EmailDto emailDto) {
         return this.objectMapper.writeValueAsString(emailDto);
     }
 

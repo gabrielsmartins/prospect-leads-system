@@ -17,15 +17,17 @@ spring:
     trace-id128: true
     opentracing:
       enabled: true
-  cloud:
-    aws:
-      ses:
-        enabled: true
-        endpoint: http://localhost:4566
-        region: sa-east-1
-        credentials:
-          access-key: localstack
-          secret-key: localstack
+  mail:
+    host: ${SMTP_HOST}
+    port: 587
+    username: ${SMTP_USER}
+    password: ${SMTP_PASS}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   kafka:
     bootstrap-servers: localhost:9092
     properties:

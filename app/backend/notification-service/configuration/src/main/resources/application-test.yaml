@@ -3,19 +3,17 @@ spring:
     bootstrap-servers: ${spring.embedded.kafka.brokers}
     properties:
       schema.registry.url: mock://http://localhost:8081
-  cloud:
-    aws:
-      ses:
-        enabled: true
-        endpoint: http://localhost:4566
-        region: sa-east-1
-
-cloud:
-  aws:
-    stack:
-      enabled: false
-    region:
-      static: sa-east-1
+  mail:
+    host: xxx
+    port: 587
+    username: xxxx@xxx.com
+    password: xxx
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 eureka:
   client:
