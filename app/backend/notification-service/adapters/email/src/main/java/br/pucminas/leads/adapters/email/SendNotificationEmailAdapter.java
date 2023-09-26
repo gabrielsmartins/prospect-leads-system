@@ -30,7 +30,7 @@ public class SendNotificationEmailAdapter implements SendNotificationPort {
         log.info(append("email", emailDto), "Notification was mapped successfully");
 
         var message = new SimpleMailMessage();
-        message.setFrom(this.mailSender.);
+        message.setFrom(emailDto.getFromEmail());
         message.setTo(emailDto.getToEmail());
         message.setSubject(String.format("Olá %s", emailDto.getCustomerName()));
         message.setText(this.toJson(emailDto));
