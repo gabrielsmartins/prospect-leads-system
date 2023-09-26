@@ -16,10 +16,8 @@ spring:
 
 eureka:
   instance:
-    hostname: prospect-leads-quote-service.up.railway.app
-    non-secure-port-enabled: true
-    non-secure-port: ${server.port}
-    lease-renewal-interval-in-seconds: 30
+    prefer-ip-address: true
+    health-check-url: https://prospect-leads-bff-service.up.railway.app/actuator/health
   client:
     enabled: true
     register-with-eureka: true
