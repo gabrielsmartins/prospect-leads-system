@@ -47,6 +47,7 @@ subprojects {
 		set('logstashVersion', "7.4")
 		set('assertJVersion', "3.24.2")
 		set('mockitoVersion', "5.4.0")
+		set('archUnitVersion', '1.1.0')
 		set('testcontainersVersion', "1.17.3")
 	}
 
@@ -74,6 +75,7 @@ subprojects {
 		testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
 		testImplementation 'org.testcontainers:junit-jupiter'
 		testImplementation 'org.testcontainers:postgresql'
+		testImplementation group: 'com.tngtech.archunit', name: 'archunit-junit5', version: archUnitVersion
 	}
 
 	dependencyManagement {

@@ -1,4 +1,4 @@
-package br.pucminas.bff.common.stereotype;
+package br.pucminas.quotes.common.stereotype;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Component;

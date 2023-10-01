@@ -1,6 +1,6 @@
 package br.pucminas.quotes.adapters.web.out.products;
 
-import br.pucminas.bff.common.stereotype.WebAdapter;
+import br.pucminas.quotes.common.stereotype.WebAdapter;
 import br.pucminas.quotes.adapters.web.out.products.config.ProductWebClientProperties;
 import br.pucminas.quotes.adapters.web.out.products.dto.ProductDto;
 import br.pucminas.quotes.adapters.web.out.products.mapper.ProductWebAdapterMapper;
