@@ -50,6 +50,7 @@ subprojects {
 		set('apacheCommonPoolVersion', "2.11.1")
 		set('testcontainersVersion', "1.17.3")
 		set('testcontainersRedisVersion', "1.6.4")
+		set('archUnitVersion', '1.1.0')
 	}
 
 	dependencies {
@@ -76,6 +77,7 @@ subprojects {
 		testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
 		testImplementation 'org.testcontainers:junit-jupiter'
 		testImplementation group: 'com.redis.testcontainers', name: 'testcontainers-redis', version: testcontainersRedisVersion
+		testImplementation group: 'com.tngtech.archunit', name: 'archunit-junit5', version: archUnitVersion
 	}
 
 	dependencyManagement {

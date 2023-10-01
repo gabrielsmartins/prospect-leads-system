@@ -55,6 +55,7 @@ subprojects {
 		set('dynamoDbLocalVersion', "1.15.0")
 		set('apacheCommonPoolVersion', "2.11.1")
 		set('jobrunrVersion', "6.3.0")
+		set('archUnitVersion', '1.1.0')
 		set('testcontainersVersion', "1.17.3")
 		set('testcontainersRedisVersion', "1.6.4")
 	}
@@ -85,6 +86,7 @@ subprojects {
 		testImplementation group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
 		testImplementation 'org.testcontainers:junit-jupiter'
 		testImplementation group: 'org.awaitility', name: 'awaitility', version: awaitilityVersion
+		testImplementation group: 'com.tngtech.archunit', name: 'archunit-junit5', version: archUnitVersion
 		testImplementation group: 'com.redis.testcontainers', name: 'testcontainers-redis', version: testcontainersRedisVersion
 	}
 
