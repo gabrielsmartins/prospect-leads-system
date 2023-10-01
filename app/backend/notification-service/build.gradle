@@ -51,6 +51,7 @@ subprojects {
 		set('logstashVersion', "7.4")
 		set('assertJVersion', "3.24.2")
 		set('mockitoVersion', "5.4.0")
+		set('archUnitVersion', '1.1.0')
 		set('testcontainersVersion', "1.17.3")
 		set('testcontainersRedisVersion', "1.6.4")
 		set('awaitilityVersion', "4.2.0")
@@ -83,6 +84,7 @@ subprojects {
 		testImplementation 'org.testcontainers:junit-jupiter'
 		testImplementation "org.testcontainers:localstack"
 		testImplementation group: 'org.awaitility', name: 'awaitility', version: awaitilityVersion
+		testImplementation group: 'com.tngtech.archunit', name: 'archunit-junit5', version: archUnitVersion
 		testImplementation group: 'com.redis.testcontainers', name: 'testcontainers-redis', version: testcontainersRedisVersion
 	}
 

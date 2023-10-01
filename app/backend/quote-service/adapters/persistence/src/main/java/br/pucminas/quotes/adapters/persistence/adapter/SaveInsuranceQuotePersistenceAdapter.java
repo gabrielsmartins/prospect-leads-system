@@ -1,6 +1,6 @@
 package br.pucminas.quotes.adapters.persistence.adapter;
 
-import br.pucminas.bff.common.stereotype.PersistenceAdapter;
+import br.pucminas.quotes.common.stereotype.PersistenceAdapter;
 import br.pucminas.quotes.adapters.persistence.adapter.mapper.InsuranceQuotePersistenceMapper;
 import br.pucminas.quotes.adapters.persistence.service.InsuranceQuotePersistenceService;
 import br.pucminas.quotes.application.domain.InsuranceQuote;
